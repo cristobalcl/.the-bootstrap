@@ -19,8 +19,6 @@ m4
 # Warning: big download!
 texlive-full
 
-yakuake
-xbindkeys
 curl
 wget
 htop
@@ -31,12 +29,10 @@ unzip
 unrar
 # encfs
 libxml2-utils
+run-one
 
 snapd
 # x2goclient
-
-# We'll use nerd-fonts instead of this:
-# fonts-powerline
 
 # Vim
 vim

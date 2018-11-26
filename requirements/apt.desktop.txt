@@ -8,3 +8,6 @@ moc
 
 # VLC
 vlc
+
+# We'll use nerd-fonts instead of this:
+# fonts-powerline

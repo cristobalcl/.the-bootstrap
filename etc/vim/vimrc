@@ -80,9 +80,9 @@ Plug 'tomasr/molokai'
 
 "" Custom bundles
 "" Python Bundle
-if has('nvim')
-	Plug 'roxma/nvim-completion-manager'
-endif
+" if has('nvim')
+" 	Plug 'roxma/nvim-completion-manager'
+" endif
 Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-scripts/c.vim'

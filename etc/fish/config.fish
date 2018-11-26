@@ -8,6 +8,7 @@ set -gx EDITOR "env TERM=xterm-256color $HOME/bin/nvim"
 
 set -gx  LC_ALL en_US.UTF-8
 set -gx PYTHONIOENCODING UTF-8
+set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 
 function fish_greeting
 	set_color $fish_color_autosuggestion
