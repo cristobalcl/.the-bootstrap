@@ -6,8 +6,7 @@ cd "$(dirname "$0")/.."
 
 source lib/files.sh
 source lib/colors.sh
-
-. /etc/os-release
+source lib/system.sh
 
 if [[ "$VERSION_CODENAME" == "bionic" ]]; then
     sudo apt install vim-athena -y

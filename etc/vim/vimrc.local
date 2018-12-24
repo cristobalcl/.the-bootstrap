@@ -126,6 +126,9 @@ augroup END
 " Javascript
 autocmd FileType javascript setlocal iskeyword-=.,#
 
+" Terraform
+autocmd FileType terraform setlocal iskeyword+=-
+
 " Json
 augroup vimrc-json
   autocmd!
@@ -154,6 +157,10 @@ nnoremap <A-Left> <C-w>h
 nnoremap <A-Down> <C-w>j
 nnoremap <A-Up> <C-w>k
 nnoremap <A-Right> <C-w>l
+
+" Move between tabs
+nnoremap <C-h> gT
+nnoremap <C-j> gt
 
 " Move tabs
 nnoremap <silent> <A-PageUp> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
@@ -265,6 +272,12 @@ inoremap <C-Down> <Esc>:m+<CR>==gi
 inoremap <C-Up> <Esc>:m-2<CR>==gi
 vnoremap <C-Down> :m'>+<CR>gv=gv
 vnoremap <C-Up> :m-2<CR>gv=gv
+nnoremap <C-k> :m+<CR>==
+nnoremap <C-l> :m-2<CR>==
+inoremap <C-k> <Esc>:m+<CR>==gi
+inoremap <C-l> <Esc>:m-2<CR>==gi
+vnoremap <C-k> :m'>+<CR>gv=gv
+vnoremap <C-l> :m-2<CR>gv=gv
 
 " Change case of whole word
 nnoremap <leader>u guiw

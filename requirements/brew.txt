@@ -1,6 +1,3 @@
-#cask install iterm2
-#cask install vimr
-#
 fish
 python
 neovim

@@ -70,9 +70,9 @@ function mkpy
 end
 
 # git
-alias g 'git'
-alias gi 'git init'
-alias gs 'git status -u'
+abbr -a g 'git'
+abbr -a gi 'git init'
+abbr -a gs 'git status -u'
 # Source: https://coderwall.com/p/euwpig/a-better-git-log
 alias gh 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit'
 alias ghd 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit -p'
@@ -81,13 +81,14 @@ alias gld 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset
 # ---
 alias gconfdiff 'git diff --diff-filter=U'
 alias gconflict 'git diff --name-only --diff-filter=U'
-alias gd 'git diff'
-alias ga 'git add .'
+abbr -a gd 'git diff'
+abbr -a ga 'git add .'
 abbr -a gc 'git commit -am'
 abbr -a gp 'git push'
-alias gpom 'git push -u origin master'
-alias gc 'git checkout'
-abbr -a gcb 'git checkout -b'
+abbr -a gpom 'git push -u origin master'
+abbr -a gg 'git fetch; and git checkout'
+abbr -a gch 'git checkout'
+abbr -a gbr 'git checkout -b'
 abbr -a gm 'git merge --no-ff'
 
 # screen

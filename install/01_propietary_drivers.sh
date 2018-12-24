@@ -5,8 +5,9 @@ set -e
 cd "$(dirname "$0")/.."
 
 source lib/colors.sh
+source lib/system.sh
 
-if grep --quiet '^ID=ubuntu' /etc/os-release; then
+if [ "$OS_NAME" == "ubuntu" ]; then
     if [ ! -z "${TB_RECOMMENDED_DRIVERS}" ]; then
         echo "==> ${BROWN}Autoinstalling Ubuntu drivers!${END}"
         sudo ubuntu-drivers autoinstall

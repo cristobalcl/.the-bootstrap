@@ -161,8 +161,8 @@ endsnippet
 
 snippet "ctrlc" "capture CTRL+C" !b
 try:
-	while True:
-		pass
+    while True:
+        pass
 
 except (KeyboardInterrupt, SystemExit):
 	print('Exiting!')
@@ -187,4 +187,8 @@ class TestObject(unittest.TestCase):
     @mock.patch('module.func')
     def test_get_next(self, mock_func):
         self.assertTrue(True)
+
+
+if __name__ == '__main__':
+    unittest.main()
 endsnippet
