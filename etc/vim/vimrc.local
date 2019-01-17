@@ -242,6 +242,9 @@ map . .`[
 " Copy&Paste from clipboard
 set clipboard+=unnamedplus
 
+" Copy until the end of the line
+nnoremap Y y$
+
 " Paste yank
 vnoremap <leader>p "0p
 

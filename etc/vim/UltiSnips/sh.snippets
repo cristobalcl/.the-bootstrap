@@ -1,8 +1,16 @@
+snippet shebang "bash shebang" !b
+#!/usr/bin/env bash
+endsnippet
+
 snippet bash "bash script" !b
 #!/usr/bin/env bash
 
 set -e
 
+endsnippet
+
+snippet debug "conditional debug" !b
+[ "$DEBUG" == 'true' ] && set -x
 endsnippet
 
 snippet run "run service" !b

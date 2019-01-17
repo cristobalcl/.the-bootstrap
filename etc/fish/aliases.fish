@@ -8,6 +8,7 @@ alias ..... "cd ../../../.."
 alias , "cd -"
 abbr -a -- + 'pushd .'
 abbr -a -- - 'popd'
+abbr -a chsh 'chmod +x *.sh'
 
 function mkcd
     mkdir "$argv"; and cd "$argv"
@@ -90,6 +91,8 @@ abbr -a gg 'git fetch; and git checkout'
 abbr -a gch 'git checkout'
 abbr -a gbr 'git checkout -b'
 abbr -a gm 'git merge --no-ff'
+abbr -a g+ 'git stash'
+abbr -a g- 'git stash apply'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
