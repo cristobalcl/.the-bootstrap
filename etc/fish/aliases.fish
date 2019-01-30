@@ -93,6 +93,7 @@ abbr -a gbr 'git checkout -b'
 abbr -a gm 'git merge --no-ff'
 abbr -a g+ 'git stash'
 abbr -a g- 'git stash apply'
+abbr -a gundo 'git reset HEAD~'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
