@@ -29,7 +29,7 @@ set sessionoptions-=blank,help
 set lazyredraw
 
 " Reload vim configuration
-nnoremap <Leader>v :source $MYVIMRC<CR>
+nnoremap <Leader>V :source $MYVIMRC<CR>
 
 " Shell
 set shell=/usr/bin/fish
@@ -171,8 +171,8 @@ nmap <C-t> :tabnew<CR>
 " Create tab
 imap <C-t> <Esc>:tabnew<CR>
 
-nmap <Leader>vv <C-w>t<C-w>H
-nmap <Leader>hh <C-w>t<C-w>K
+" nmap <Leader>vv <C-w>t<C-w>H
+" nmap <Leader>hh <C-w>t<C-w>K
 
 " Hihglight long lines
 highlight ColorColumn ctermbg=237 guibg=#2c2d27
@@ -291,6 +291,9 @@ nnoremap <leader>S :%s/[ \t]\+$//g<cr>
 
 " Select what you just pasted
 nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
+
+" Select until end of the line
+nnoremap <leader>v v$h
 
 " Experimenting with alternative keys for cursor movement
 " nnoremap ñ <C-f>

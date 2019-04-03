@@ -40,6 +40,8 @@ alias there 'cd (xsel --clipboard)'
 # alias vim "vim.athena-py2"
 # alias nv "env TERM=xterm-256color nvim -p"
 
+alias vi "nvim -u NONE"
+
 alias gc "git commit"
 alias gcv "git commit --no-verify"
 
@@ -92,10 +94,13 @@ abbr -a gg 'git fetch; and git checkout'
 abbr -a gch 'git checkout'
 abbr -a gbr 'git checkout -b'
 abbr -a gm 'git merge --no-ff'
-abbr -a g+ 'git stash'
+abbr -a g+ 'git stash --include-untracked'
 abbr -a g- 'git stash apply'
 abbr -a gsl 'git stash list'
 abbr -a gundo 'git reset HEAD~'
+abbr -a gunmerge 'git merge --abort'
+abbr -a gfe 'git checkout -b feature/'
+abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
