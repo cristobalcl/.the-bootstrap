@@ -16,6 +16,7 @@ fi
 
 echo "==> ${LBLUE}Linking Vim configuration…${END}"
 directory ~/.vim
+directory ~/.vim/undodir
 
 linked $(pwd)/etc/vim/ftplugin ~/.vim/
 #linked $(pwd)/etc/vim/ftdetect ~/.vim/
