@@ -97,6 +97,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic
 
+let mapleader=','
+
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
@@ -126,6 +128,7 @@ function! ToggleMouse()
 		echo "Mouse usage enabled"
 	endif
 endfunction
+" MAP `,m`: switch mouse on/off
 nnoremap <Leader>m :call ToggleMouse()<CR>
 
 set mouse=a                            " Mouse activate
@@ -148,10 +151,13 @@ set number                             " Line number
 set relativenumber                     " Relative line numbers
 
 " Switch cursor line
+" MAP `,l`: switch cursor line on/off
 nmap <leader>l :set cursorline!<CR>
 " Remove line numbers
+" MAP `,n`: switch line numbers on/off
 nmap <leader>n :set number!<CR>
 " Switch relative line numbers
+" MAP `,n`: switch relative line numbers on/off
 nmap <leader>r :set relativenumber!<CR>
 
 set scrolloff=3                        " Always see next 3 lines
@@ -208,18 +214,18 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Controls
 
-let mapleader=','
-
 " Disable F1 key
 inoremap <F1> <Nop>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
 
+" MAP `-`: enter command mode
 nnoremap - :
 
 """"""""""""""""""""""""""""""""""""""""
 " Movements
 
+" MAP `jklñ`: left, down, up, right
 nnoremap ñ l
 nnoremap l k
 nnoremap k j
@@ -230,18 +236,22 @@ vnoremap k j
 vnoremap j h
 
 " Center the line of the cursor
+" MAP `,zz`: center de current line in the screen
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
 
 """"""""""""""""""""""""""""""""""""""""
 " Tabs
 
 " Move between tabs
+" MAP `C-h`, `C-j`: move between tabs
 nnoremap <C-h> gT
 nnoremap <C-j> gt
 " Move tabs
+" MAP `A-PageUp`, `A-PageUp`: move tab
 nnoremap <silent> <A-PageUp> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 " Create tab
+" MAP `C-t`: new tab
 nmap <C-t> :tabnew<CR>
 imap <C-t> <Esc>:tabnew<CR>
 
@@ -255,12 +265,14 @@ set ignorecase                          " Ignore case
 set smartcase                           " Smartcase
 
 " Clear search highlight
+" MAP `,s`: clear search
 nmap <leader>s :nohlsearch<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visualization
 
 " Show special characters
+" MAP `,c`: switch showing special characters on/off
 nmap <leader>c :set list!<CR>
 set listchars=tab:▸.,trail:.,extends:…,nbsp:.,eol:¬
 "highlight NonText ctermfg=8 ctermbg=0  " Invisible character colors
@@ -269,6 +281,7 @@ match ErrorMsg /\s\+$/                 " Highlight spaces at the end of the line
 
 " Highlight all instances of word under cursor, when idle.
 " http://vim.wikia.com/wiki/Auto_highlight_current_word_when_idle
+" MAP `,z`: hightlight all instances of word under cursor, when idle
 nnoremap <leader>z :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 function! AutoHighlightToggle()
   let @/ = ''
@@ -308,6 +321,10 @@ map <Leader>f <plug>NERDTreeTabsToggle<CR>
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
+" Trying to fix problem with for CoC
+let g:UltiSnipsExpandTrigger = "<Nop>"
+let g:UltiSnipsListSnippets = "<Nop>"
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edition
 
@@ -327,19 +344,21 @@ vnoremap <leader>p "0p
 nnoremap QQ @q
 
 " Switch paste mode
+" MAP `F2`: switch paste mode on/off
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set noshowmode
 
 " Swap words
+" MAP `gw`: swap words
 nnoremap <silent> gw "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
 
-" Append line after next line
+" MAP `gl`: append line after next line
 nnoremap gl ddpkJ
-" Cut line and paste before this line
+" MAP `gL`: cut line and paste before this line
 nnoremap gL DO<ESC>p0d^==
 
-" Move lines and visual selections up and down
+" MAP `C-Up`,`C-Down`,`C-l`, `C-k`: move line or visual selection up and down
 nnoremap <C-Down> :m+<CR>==
 nnoremap <C-Up> :m-2<CR>==
 inoremap <C-Down> <Esc>:m+<CR>==gi
@@ -353,25 +372,24 @@ inoremap <C-l> <Esc>:m-2<CR>==gi
 vnoremap <C-k> :m'>+<CR>gv=gv
 vnoremap <C-l> :m-2<CR>gv=gv
 
-" Remove spaces at the end of the line
+" MAP `,S`: remove spaces at the end of the line
 nnoremap <leader>S :%s/[ \t]\+$//g<cr>
 
-" Select what you just pasted
+" MAP `gV`: select what you just pasted
 nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
 
-" Select until end of the line
+" MAP `,v`: select until end of the line
 nnoremap <leader>v v$h
 
 nnoremap <CR> gea<CR><ESC>d^
 
-" Change case of whole word
+" MAP `,u`, `,U`: change case of whole word
 nnoremap <leader>u guiw
 nnoremap <leader>U gUiw
 
-" Surround word
+" MAP `,"`, `,'`: surround word or visual selection with " or '
 nmap <leader>" ysiw"
 nmap <leader>' ysiw'
-" Surround visual
 vmap <leader>" S"
 vmap <leader>' S'
 
@@ -387,6 +405,7 @@ function! TwiddleCase(str)
 	endif
 	return result
 endfunction
+" MAP `~`: change between lower case, UPPER CASE and Tittle Case
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
 
 " Remember cursor position
@@ -394,6 +413,11 @@ augroup vimrc-remember-cursor-position
   autocmd!
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
+
+" Vmap for maintain Visual Mode after shifting > and <
+" Source: https://vim-bootstrap.com/
+vmap < <gv
+vmap > >gv
 
 """"""""""""""""""""""""""""""""""""""""
 " Autocompletion
@@ -410,6 +434,9 @@ augroup END
 " " let g:mucomplete#completion_delay = 1
 
 " Coc
+
+" Extra completion sources:
+" https://github.com/neoclide/coc-sources
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
@@ -442,12 +469,13 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
+" MAP `gd`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K for show documentation in preview window
+" MAP `K`: show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -461,44 +489,45 @@ endfunction
 " Highlight symbol under cursor on CursorHold
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Remap for rename current word
+" MAP `,rn`: rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" Remap for format selected region
+" MAP `,t`: format region or visual selection
 vmap <leader>t  <Plug>(coc-format-selected)
 nmap <leader>t  <Plug>(coc-format-selected)
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" MAP `,a`: do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
+" MAP `,ac`: do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
+" MAP `,qf`: fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Use `:Format` for format current buffer
+" MAP `:Format`: format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-" Use `:Fold` for fold current buffer
+" MAP `:Fold`: fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Using CocList
-" Show all diagnostics
+" MAP `SPC a`: show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
+" MAP `SPC e`: manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
+" MAP `SPC c`: manage extensions
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
+" MAP `SPC o`: find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
+" MAP `SPC s`: search workspace symbols
 nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
+" MAP `SPC j`: do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
+" MAP `SPC k`: do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
+" MAP `SPC p`: resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Snip completion
@@ -512,7 +541,7 @@ function! SetupCommandAbbrs(from, to)
         \ .'? ("'.a:to.'") : ("'.a:from.'"))'
 endfunction
 
-" Use C to open coc config
+" MAP `:C`: open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -520,12 +549,14 @@ call SetupCommandAbbrs('C', 'CocConfig')
 set spelllang=es,en_us
 set spellsuggest=10
 " Start spell checker
-map <C-F5> :setlocal spell<CR>
-" Show suggestions
+
+" MAP `M-F5`: show spell checker suggestions
 map <M-F5> z=
 imap <M-F5> <ESC>z=
 
+" MAP `C-s`: activate spell checker for Spanish
 nmap <c-s> :setlocal spell spelllang=es<cr>
+" MAP `C-g`: activate spell checker for English
 nmap <c-g> :setlocal spell spelllang=en_us<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
