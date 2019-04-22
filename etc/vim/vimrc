@@ -80,6 +80,10 @@ endif
 " Useful:
 " :CocInstall coc-snippets
 
+" Writing
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+
 " VimWiki
 Plug 'vimwiki/vimwiki'
 
@@ -152,6 +156,10 @@ set signcolumn=yes                     " Always show signcolumns
 set cursorline                         " Highlight cursor line
 set number                             " Line number
 set relativenumber                     " Relative line numbers
+
+" Use to improve scroll speed
+" set lazyredraw
+" set regexpengine=1
 
 " Switch cursor line
 " MAP `,l`: switch cursor line on/off
@@ -384,7 +392,7 @@ nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
 " MAP `,v`: select until end of the line
 nnoremap <leader>v v$h
 
-nnoremap <CR> gea<CR><ESC>d^
+" nnoremap <CR> gea<CR><ESC>d^
 
 " MAP `,u`, `,U`: change case of whole word
 nnoremap <leader>u guiw
@@ -584,6 +592,32 @@ autocmd FileType sh
 
 " Comments in JSON
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Writing
+function! s:goyo_enter()
+  NERDTreeSteppedClose
+  set noshowmode
+  set noshowcmd
+  " set scrolloff=999
+  nnoremap <buffer> l gk
+  nnoremap <buffer> k gj
+  nnoremap <buffer> <up> gk
+  nnoremap <buffer> <down> gj
+  Limelight
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  " set scrolloff=5
+  Limelight!
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki
