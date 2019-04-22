@@ -5,3 +5,4 @@ yapf
 howdoi
 awscli
 httpie
+you-get
