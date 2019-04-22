@@ -22,8 +22,8 @@ linked $(pwd)/etc/vim/ftplugin ~/.vim/
 #linked $(pwd)/etc/vim/ftdetect ~/.vim/
 linked $(pwd)/etc/vim/UltiSnips ~/.vim/
 linked $(pwd)/etc/vim/vimrc ~/.vimrc
-linked $(pwd)/etc/vim/vimrc.local ~/.vimrc.local
-linked $(pwd)/etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
+# linked $(pwd)/etc/vim/vimrc.local ~/.vimrc.local
+# linked $(pwd)/etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
 
 echo "==> ${LBLUE}Install NeoVim…${END}"
 directory ~/bin

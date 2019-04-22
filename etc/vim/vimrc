@@ -114,8 +114,11 @@ set wildmenu
 set wildmode=list:longest,full
 
 " Shell
-" set shell=/usr/bin/fish
-set shell=/usr/local/bin/fish
+if filereadable("/usr/bin/fish")
+  set shell=/usr/bin/fish
+elseif filereadable("/usr/local/bin/fish")
+  set shell=/usr/local/bin/fish
+endif
 " set autochdir
 
 " Swicth mouse on/off
@@ -575,7 +578,9 @@ iabbr ... …
 " Custom settings for filetypes
 
 " Bash (disable fi -> if)
-autocmd FileType sh silent! unabbreviate fi
+autocmd FileType sh
+      \ silent! unabbreviate fi |
+      \ setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab iskeyword-=.,#
 
 " Comments in JSON
 autocmd FileType json syntax match Comment +\/\/.\+$+
