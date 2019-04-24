@@ -246,6 +246,9 @@ vnoremap l k
 vnoremap k j
 vnoremap j h
 
+" MAP `00`: beginning of the line
+map 00 ^
+
 " Center the line of the cursor
 " MAP `,zz`: center de current line in the screen
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>

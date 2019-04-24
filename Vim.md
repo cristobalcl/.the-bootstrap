@@ -18,6 +18,8 @@ Installed plugins
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
 * [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
+* [goyo.vim](https://github.com/junegunn/goyo.vim)
+* [limelight.vim](https://github.com/junegunn/limelight.vim)
 * [vimwiki](https://github.com/vimwiki/vimwiki)
 * [ultisnips](https://github.com/SirVer/ultisnips)
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons)
@@ -30,6 +32,7 @@ Customized key binding
 * `,n`: switch relative line numbers on/off
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
+* `00`: beginning of the line
 * `,zz`: center de current line in the screen
 * `C-h`, `C-j`: move between tabs
 * `A-PageUp`, `A-PageUp`: move tab
