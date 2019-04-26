@@ -32,6 +32,7 @@ Customized key binding
 * `,n`: switch relative line numbers on/off
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
+* `C-w jklñ`: go to left, down, up, right panel
 * `00`: beginning of the line
 * `gb`: go back
 * `,zz`: center de current line in the screen

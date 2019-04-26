@@ -246,11 +246,17 @@ vnoremap l k
 vnoremap k j
 vnoremap j h
 
+" MAP `C-w jklñ`: go to left, down, up, right panel
+nnoremap <C-w>j <C-w><left>
+nnoremap <C-w>k <C-w><down>
+nnoremap <C-w>l <C-w><up>
+nnoremap <C-w>ñ <C-w><right>
+
 " MAP `00`: beginning of the line
 map 00 ^
 
 " MAP `gb`: go back
-nnoremap gb <C-O>
+nnoremap gb <C-o>
 
 " Center the line of the cursor
 " MAP `,zz`: center de current line in the screen
