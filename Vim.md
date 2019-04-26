@@ -33,6 +33,7 @@ Customized key binding
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
 * `00`: beginning of the line
+* `gb`: go back
 * `,zz`: center de current line in the screen
 * `C-h`, `C-j`: move between tabs
 * `A-PageUp`, `A-PageUp`: move tab
@@ -51,7 +52,7 @@ Customized key binding
 * `,u`, `,U`: change case of whole word
 * `,"`, `,'`: surround word or visual selection with " or '
 * `~`: change between lower case, UPPER CASE and Tittle Case
-* `gd`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
+* `gs`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
 * `K`: show documentation in preview window
 * `,rn`: rename current word
 * `,t`: format region or visual selection

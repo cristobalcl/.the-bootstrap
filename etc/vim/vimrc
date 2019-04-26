@@ -249,6 +249,9 @@ vnoremap j h
 " MAP `00`: beginning of the line
 map 00 ^
 
+" MAP `gb`: go back
+nnoremap gb <C-O>
+
 " Center the line of the cursor
 " MAP `,zz`: center de current line in the screen
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
@@ -483,8 +486,8 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-" MAP `gd`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
-nmap <silent> gd <Plug>(coc-definition)
+" MAP `gs`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
+nmap <silent> gs <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
