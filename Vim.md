@@ -7,10 +7,13 @@ Installed plugins
 * [nerdtree](https://github.com/scrooloose/nerdtree)
 * [vim-nerdtree-tabs](https://github.com/jistr/vim-nerdtree-tabs)
 * [vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+* [fzf](https://github.com/junegunn/fzf)
+* [fzf.vim](https://github.com/junegunn/fzf.vim)
 * [vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
 * [vim-commentary](https://github.com/tpope/vim-commentary)
 * [vim-surround](https://github.com/tpope/vim-surround)
+* [indentLine](https://github.com/Yggdroot/indentLine)
 * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 * [vim-fugitive](https://github.com/tpope/vim-fugitive)
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
@@ -18,6 +21,7 @@ Installed plugins
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
 * [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
+* [vista.vim](https://github.com/liuchengxu/vista.vim)
 * [goyo.vim](https://github.com/junegunn/goyo.vim)
 * [limelight.vim](https://github.com/junegunn/limelight.vim)
 * [vimwiki](https://github.com/vimwiki/vimwiki)
@@ -71,6 +75,8 @@ Customized key binding
 * `SPC k`: do default action for previous item.
 * `SPC p`: resume latest coc list
 * `:C`: open coc config
+* `SPC t`: open/close symbols & tags panel
+* `SPC f`: fuzzy find symbol or tag
 * `M-F5`: show spell checker suggestions
 * `C-s`: activate spell checker for Spanish
 * `C-g`: activate spell checker for English
