@@ -46,6 +46,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" Fuzzy find
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -54,6 +58,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-commentary'
 " Surround
 Plug 'tpope/vim-surround'
+" Show indent lines
+Plug 'Yggdroot/indentLine'
 
 " Multicursor
 Plug 'terryma/vim-multiple-cursors'
@@ -79,6 +85,9 @@ if !has('nvim')
 endif
 " Useful:
 " :CocInstall coc-snippets
+
+" Symbols and tag views
+Plug 'liuchengxu/vista.vim'
 
 " Writing
 Plug 'junegunn/goyo.vim'
@@ -221,6 +230,10 @@ else
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
 endif
+
+" Don't show indent lines in some types
+let g:indentLine_fileTypeExclude = ['text', 'help', 'terminal']
+let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Controls
@@ -443,7 +456,7 @@ vmap < <gv
 vmap > >gv
 
 """"""""""""""""""""""""""""""""""""""""
-" Autocompletion
+" Coding
 
 " mucomplete
 " set completeopt-=preview
@@ -566,6 +579,18 @@ endfunction
 
 " MAP `:C`: open coc config
 call SetupCommandAbbrs('C', 'CocConfig')
+
+" Vista
+
+let g:vista_default_executive = 'coc' " ctag/vim_lsp/coc
+
+" MAP `SPC t`: open/close symbols & tags panel
+nnoremap <silent> <space>t  :Vista!!<CR>
+
+" MAP `SPC f`: fuzzy find symbol or tag
+nnoremap <silent> <space>f  :Vista finder coc<CR>
+
+let g:vista#renderer#enable_icon = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checker
