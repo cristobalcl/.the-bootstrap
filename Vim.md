@@ -11,6 +11,7 @@ Installed plugins
 * [fzf.vim](https://github.com/junegunn/fzf.vim)
 * [vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
+* [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 * [vim-commentary](https://github.com/tpope/vim-commentary)
 * [vim-surround](https://github.com/tpope/vim-surround)
 * [indentLine](https://github.com/Yggdroot/indentLine)
@@ -19,6 +20,7 @@ Installed plugins
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [jedi-vim](https://github.com/davidhalter/jedi-vim)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
+* [delimitMate](https://github.com/Raimondi/delimitMate)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
 * [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
 * [vista.vim](https://github.com/liuchengxu/vista.vim)
@@ -30,6 +32,8 @@ Installed plugins
 
 Customized key binding
 ----------------------
+* `C-x C-l`: line completion
+* `C-o`, `C-i`: jump back, jump forward (out/in)
 * `,m`: switch mouse on/off
 * `,l`: switch cursor line on/off
 * `,n`: switch line numbers on/off
@@ -38,8 +42,10 @@ Customized key binding
 * `jklñ`: left, down, up, right
 * `C-w jklñ`: go to left, down, up, right panel
 * `00`: beginning of the line
+* `<SPACE><SPACE>`: end of the line
 * `gb`: go back
 * `,zz`: center de current line in the screen
+* `s`: jump anywhere typing two characters and then the label
 * `C-h`, `C-j`: move between tabs
 * `A-PageUp`, `A-PageUp`: move tab
 * `C-t`: new tab
@@ -80,3 +86,5 @@ Customized key binding
 * `M-F5`: show spell checker suggestions
 * `C-s`: activate spell checker for Spanish
 * `C-g`: activate spell checker for English
+* `F3`: count words of the document
+* `:Goyo`: distraction-free writing
