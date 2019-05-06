@@ -1,4 +1,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim standard commands cheatsheet
+
+" MAP `C-x C-l`: line completion
+" MAP `C-o`, `C-i`: jump back, jump forward (out/in)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Init
 
 if has('vim_starting')
@@ -54,6 +60,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" EasyMotion
+Plug 'easymotion/vim-easymotion'
+
 " Comments
 Plug 'tpope/vim-commentary'
 " Surround
@@ -74,6 +83,9 @@ Plug 'davidhalter/jedi-vim'
 
 " Languages support
 Plug 'sheerun/vim-polyglot'
+
+" Autoclose delimiters
+Plug 'Raimondi/delimitMate'
 
 " Autocompletion
 " mucomplete
@@ -266,7 +278,10 @@ nnoremap <C-w>l <C-w><up>
 nnoremap <C-w>ñ <C-w><right>
 
 " MAP `00`: beginning of the line
-map 00 ^
+nnoremap 00 ^
+
+" MAP `<SPACE><SPACE>`: end of the line
+nnoremap <SPACE><SPACE> $
 
 " MAP `gb`: go back
 nnoremap gb <C-o>
@@ -274,6 +289,21 @@ nnoremap gb <C-o>
 " Center the line of the cursor
 " MAP `,zz`: center de current line in the screen
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
+
+" EasyMotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" MAP `s`: jump anywhere typing two characters and then the label
+" " Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" " `s{char}{label}`
+" nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
 
 """"""""""""""""""""""""""""""""""""""""
 " Tabs
@@ -632,6 +662,13 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Writing
+
+" MAP `F3`: count words of the document
+map <F3> :w !wc -w<CR>
+
+" Goyo
+" MAP `:Goyo`: distraction-free writing
+
 function! s:goyo_enter()
   NERDTreeSteppedClose
   set noshowmode
