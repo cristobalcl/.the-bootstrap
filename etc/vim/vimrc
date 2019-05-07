@@ -583,7 +583,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " MAP `SPC e`: manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-" MAP `SPC c`: manage extensions
+" MAP `SPC c`: list commands
 nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " MAP `SPC o`: find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>

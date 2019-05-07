@@ -74,7 +74,7 @@ Customized key binding
 * `:Fold`: fold current buffer
 * `SPC a`: show all diagnostics
 * `SPC e`: manage extensions
-* `SPC c`: manage extensions
+* `SPC c`: list commands
 * `SPC o`: find symbol of current document
 * `SPC s`: search workspace symbols
 * `SPC j`: do default action for next item.
