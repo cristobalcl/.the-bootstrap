@@ -2,3 +2,5 @@ fish
 python
 neovim
 jq
+lsd
+fd

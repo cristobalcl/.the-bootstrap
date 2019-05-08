@@ -1,6 +1,15 @@
-alias l "ls -hlA"
-alias lo "ls -hlAtr"
-alias ll "ls -hlASr"
+if type -q lsd
+  alias l "lsd --human-readable --long --date relative"
+  alias lo "lsd --human-readable --long --date relative --timesort --reverse"
+  alias ll "lsd --human-readable --long --date relative --timesort"
+  alias l1 "lsd --oneline"
+else
+  alias l "ls -hlA"
+  alias lo "ls -hlAtr"
+  alias ll "ls -hlASr"
+  alias l1 "ls -1"
+end
+
 alias .. "cd .."
 alias ... "cd ../.."
 alias .... "cd ../../.."
