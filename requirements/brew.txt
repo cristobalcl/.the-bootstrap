@@ -4,3 +4,4 @@ neovim
 jq
 lsd
 fd
+bat
