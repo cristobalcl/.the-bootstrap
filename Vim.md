@@ -34,6 +34,7 @@ Customized key binding
 ----------------------
 * `C-x C-l`: line completion
 * `C-o`, `C-i`: jump back, jump forward (out/in)
+* `ds'`, `ds"`: remove quotes (' or ")
 * `,m`: switch mouse on/off
 * `,l`: switch cursor line on/off
 * `,n`: switch line numbers on/off
