@@ -280,9 +280,11 @@ nnoremap <C-w>ñ <C-w><right>
 
 " MAP `00`: beginning of the line
 nnoremap 00 ^
+vnoremap 00 ^
 
 " MAP `<SPACE><SPACE>`: end of the line
 nnoremap <SPACE><SPACE> $
+vnoremap <SPACE><SPACE> $
 
 " MAP `gb`: go back
 nnoremap gb <C-o>
