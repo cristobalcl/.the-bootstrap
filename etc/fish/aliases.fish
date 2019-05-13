@@ -1,8 +1,9 @@
 if type -q lsd
-  alias l "lsd --human-readable --long --date relative"
-  alias lo "lsd --human-readable --long --date relative --timesort --reverse"
-  alias ll "lsd --human-readable --long --date relative --timesort"
+  alias l "lsd --human-readable --long --date=relative"
+  alias lo "lsd --human-readable --long --date=relative --timesort --reverse"
+  alias ll "lsd --human-readable --long --date=relative --timesort"
   alias l1 "lsd --oneline"
+  alias tree "lsd --tree"
 else
   alias l "ls -hlA"
   alias lo "ls -hlAtr"
@@ -123,3 +124,7 @@ abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
 # .the-bootstrap
 alias .tbcd 'cd ~/.the-bootstrap'
 alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
+
+if type -q fzf
+  alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'
+end

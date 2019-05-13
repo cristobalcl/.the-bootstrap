@@ -57,6 +57,10 @@ else
     end
 end
 
+if type -q fzf
+  set -gx FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
+end
+
 set CDPATH $CDPATH .
 
 if test -e $HOME/Proyectos
