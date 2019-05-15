@@ -1,8 +1,8 @@
 if type -q lsd
-  alias l "lsd --human-readable --long --date=relative"
-  alias lo "lsd --human-readable --long --date=relative --timesort --reverse"
-  alias ll "lsd --human-readable --long --date=relative --timesort"
-  alias l1 "lsd --oneline"
+  alias l "lsd --all --human-readable --long --date=relative"
+  alias lo "lsd --all --human-readable --long --date=relative --timesort --reverse"
+  alias ll "lsd --all --human-readable --long --date=relative --timesort"
+  alias l1 "lsd --all --oneline"
   alias tree "lsd --tree"
 else
   alias l "ls -hlA"
