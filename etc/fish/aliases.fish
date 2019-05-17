@@ -128,3 +128,9 @@ alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
 if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'
 end
+
+if type -q jq
+  function jat
+    cat "$argv" | jq
+  end
+end
