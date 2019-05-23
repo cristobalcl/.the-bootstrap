@@ -51,8 +51,20 @@ Customized key binding
 * `A-PageUp`, `A-PageUp`: move tab
 * `C-t`: new tab
 * `,s`: clear search
+* `,G`: grep in open buffers
+* `\`: grep
+* `+`: grep this word
 * `,c`: switch showing special characters on/off
 * `,z`: hightlight all instances of word under cursor, when idle
+* `,f`: open file tree
+* `,F`: search file
+* `,B`: search buffer
+* `.`: repeat last action and move to the beginning of the edition
+* `Y`: copy until the end of the line
+* `,p`: paste yank
+* `qq`: start recording macro `q`
+* `q`: end recording macro
+* `QQ`: run macro `q`
 * `F2`: switch paste mode on/off
 * `gw`: swap words
 * `gl`: append line after next line
