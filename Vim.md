@@ -51,6 +51,7 @@ Customized key binding
 * `A-PageUp`, `A-PageUp`: move tab
 * `C-t`: new tab
 * `,s`: clear search
+* `,G`: grep in open buffers
 * `\`: grep
 * `+`: grep this word
 * `,c`: switch showing special characters on/off
