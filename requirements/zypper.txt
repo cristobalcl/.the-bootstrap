@@ -16,3 +16,4 @@ python-neovim
 python3-neovim
 fd
 bat
+the_silver_searcher

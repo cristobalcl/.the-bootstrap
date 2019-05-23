@@ -337,6 +337,12 @@ set smartcase                           " Smartcase
 " MAP `,s`: clear search
 nmap <leader>s :nohlsearch<CR>
 
+" Ag (grep) + fzf
+" MAP `\`: grep
+nnoremap \ :Ag<Space>
+" MAP `+`: grep this word
+nnoremap <silent> + :Ag <C-R><C-W><CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Visualization
 
@@ -369,9 +375,11 @@ function! AutoHighlightToggle()
     echo 'Highlight current word: ON'
     return 1
   endif
-
 endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Files
+
 " NERDTree and NERDTreeTabs
 
 let g:NERDTreeChDirMode=2
@@ -383,7 +391,15 @@ let g:NERDTreeMapOpenInTabSilent = '<RightMouse>'
 let g:NERDTreeWinSize = 30
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*.zip
 
+" MAP `,f`: open file tree
 map <Leader>f <plug>NERDTreeTabsToggle<CR>
+
+" Fuzzy open file
+
+" MAP `,F`: search file
+nnoremap <silent> <leader>F :Files<CR>
+" MAP `,B`: search buffer
+nnoremap <silent> <leader>B :Buffers<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Snippets
@@ -401,15 +417,18 @@ set tabstop=2                          " Show existing tab with 2 spaces width
 set shiftwidth=2                       " When indenting with '>', use 2 spaces width
 set expandtab                          " On pressing tab, insert 2 spaces
 
-" Repeat last action and move to the beginning of the edition
+" MAP `.`: repeat last action and move to the beginning of the edition
 map . .`[
-" Copy until the end of the line
+" MAP `Y`: copy until the end of the line
 nnoremap Y y$
 
-" Paste yank
+" MAP `,p`: paste yank
 vnoremap <leader>p "0p
 
-" Run macro 'q'
+" Quick macro
+" MAP `qq`: start recording macro `q`
+" MAP `q`: end recording macro
+" MAP `QQ`: run macro `q`
 nnoremap QQ @q
 
 " Switch paste mode
