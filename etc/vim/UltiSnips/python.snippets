@@ -168,7 +168,9 @@ except (KeyboardInterrupt, SystemExit):
 	print('Exiting!')
 endsnippet
 
-snippet "test object" "unit test object" !b
+snippet "tests" "unit tests" !b
+#!/usr/bin/env python
+
 import unittest
 import unittest.mock as mock
 
@@ -187,8 +189,4 @@ class TestObject(unittest.TestCase):
     @mock.patch('module.func')
     def test_get_next(self, mock_func):
         self.assertTrue(True)
-
-
-if __name__ == '__main__':
-    unittest.main()
 endsnippet

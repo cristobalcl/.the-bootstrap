@@ -43,5 +43,7 @@ directory ~/.config/nvim
 directory ~/.local/share/nvim/site/
 
 linked $(pwd)/etc/vim/vimrc ~/.config/nvim/init.vim
+linked $(pwd)/etc/vim/UltiSnips ~/.config/nvim/UltiSnips
+linked $(pwd)/etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 linked ~/.vim ~/.nvim
 linked ~/.vim/autoload ~/.local/share/nvim/site/autoload

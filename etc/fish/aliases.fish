@@ -74,6 +74,7 @@ alias dud='du . -hd1'
 alias pycdel='find . -name \*.pyc -delete'
 
 alias mkenv="virtualenv -p python3 .env"
+alias mkvenv="virtualenv -p python3 .venv"
 alias ienv="source .env/bin/activate.fish"
 alias oenv="deactivate"
 

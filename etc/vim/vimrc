@@ -98,6 +98,7 @@ if !has('nvim')
 endif
 " Useful:
 " :CocInstall coc-snippets
+" :CocInstall coc-python
 
 " Symbols and tag views
 Plug 'liuchengxu/vista.vim'

@@ -2,5 +2,9 @@
   // make vim select first item on completion
   "suggest.noselect": false,
   // when snippet activated and pumvisible, prefer complete completion.
-  "suggest.preferCompleteThanJumpPlaceholder": true
+  "suggest.preferCompleteThanJumpPlaceholder": true,
+  // Auto format on save
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  // Provider for formatting. Possible options include 'autopep8', 'black', and 'yapf'., default: "autopep8"
+  "python.formatting.provider": "black"
 }
