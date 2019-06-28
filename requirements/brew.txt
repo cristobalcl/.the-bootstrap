@@ -1,0 +1,8 @@
+fish
+python
+neovim
+jq
+lsd
+fd
+bat
+the_silver_searcher

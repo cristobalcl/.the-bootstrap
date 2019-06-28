@@ -3,22 +3,29 @@
 # Disable copy deleted words to clipboard
 set FISH_CLIPBOARD_CMD "cat"
 
-set -gx EDITOR "env TERM=xterm-256color $HOME/bin/nvim"
-# set -U EDITOR vim
+if test -e $HOME/bin/nvim
+  set -gx EDITOR "env TERM=xterm-256color $HOME/bin/nvim"
+else
+  if command -v nvim > /dev/null
+    set -gx EDITOR nvim
+  else
+    set -gx EDITOR vim
+  end
+end
 
 set -gx  LC_ALL en_US.UTF-8
 set -gx PYTHONIOENCODING UTF-8
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 
 function fish_greeting
-	set_color $fish_color_autosuggestion
-	uname -nmsr
-	echo (lsb_release -s -d) "|" (lsb_release -s -r) (lsb_release -s -c)
-	# uptime
-    echo
-    ~/bin/packt_offer.sh full
-    echo
-	set_color normal
+    # set_color $fish_color_autosuggestion
+    # uname -nmsr
+    # echo (lsb_release -s -d) "|" (lsb_release -s -r) (lsb_release -s -c)
+    # uptime
+    # echo
+    # ~/bin/packt_offer.sh full
+    # echo
+    # set_color normal
 end
 
 if test -e $HOME/bin
@@ -33,8 +40,13 @@ if test -e /snap/bin
     set PATH $PATH /snap/bin
 end
 
+
 if test -e $HOME/Programas/flutter/bin
     set PATH $PATH $HOME/Programas/flutter/bin
+end
+
+if test -e $HOME/Library/Python/3.7/bin
+    set PATH $PATH $HOME/Library/Python/3.7/bin
 end
 
 if type -q powerline-shell
@@ -48,6 +60,10 @@ else
         set fish_function_path $fish_function_path "$PYTHON3_USER_PATH/powerline/bindings/fish/"
         powerline-setup
     end
+end
+
+if type -q fzf
+  set -gx FZF_DEFAULT_OPTS '--height 40% --layout=reverse --border'
 end
 
 set CDPATH $CDPATH .

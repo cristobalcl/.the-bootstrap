@@ -161,14 +161,16 @@ endsnippet
 
 snippet "ctrlc" "capture CTRL+C" !b
 try:
-	while True:
-		pass
+    while True:
+        pass
 
 except (KeyboardInterrupt, SystemExit):
 	print('Exiting!')
 endsnippet
 
-snippet "test object" "unit test object" !b
+snippet "tests" "unit tests" !b
+#!/usr/bin/env python
+
 import unittest
 import unittest.mock as mock
 

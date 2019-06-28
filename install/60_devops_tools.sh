@@ -43,6 +43,7 @@ if ! command -v terraform &> /dev/null; then
 
     echo "==> ${LBLUE}Downloading Terraform ${TER_VERSION}…${END}"
     download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_linux_amd64.zip" /tmp/terraform.zip
+    # download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_darwin_amd64.zip" /tmp/terraform.zip
 
     echo "==> ${LBLUE}Installing Terraform ${TER_VERSION}…${END}"
     unzip /tmp/terraform.zip -d ~/bin/

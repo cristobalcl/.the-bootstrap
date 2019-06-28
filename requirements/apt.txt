@@ -30,9 +30,12 @@ unrar
 # encfs
 libxml2-utils
 run-one
+silversearcher-ag
 
 snapd
 # x2goclient
 
 # Vim
 vim
+
+shellcheck

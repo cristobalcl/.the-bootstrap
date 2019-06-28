@@ -6,8 +6,7 @@ cd "$(dirname "$0")/.."
 
 source lib/files.sh
 source lib/colors.sh
-
-. /etc/os-release
+source lib/system.sh
 
 if [[ "$VERSION_CODENAME" == "bionic" ]]; then
     sudo apt install vim-athena -y
@@ -17,13 +16,14 @@ fi
 
 echo "==> ${LBLUE}Linking Vim configuration…${END}"
 directory ~/.vim
+directory ~/.vim/undodir
 
 linked $(pwd)/etc/vim/ftplugin ~/.vim/
 #linked $(pwd)/etc/vim/ftdetect ~/.vim/
 linked $(pwd)/etc/vim/UltiSnips ~/.vim/
 linked $(pwd)/etc/vim/vimrc ~/.vimrc
-linked $(pwd)/etc/vim/vimrc.local ~/.vimrc.local
-linked $(pwd)/etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
+# linked $(pwd)/etc/vim/vimrc.local ~/.vimrc.local
+# linked $(pwd)/etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
 
 echo "==> ${LBLUE}Install NeoVim…${END}"
 directory ~/bin
@@ -43,5 +43,7 @@ directory ~/.config/nvim
 directory ~/.local/share/nvim/site/
 
 linked $(pwd)/etc/vim/vimrc ~/.config/nvim/init.vim
+linked $(pwd)/etc/vim/UltiSnips ~/.config/nvim/UltiSnips
+linked $(pwd)/etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 linked ~/.vim ~/.nvim
 linked ~/.vim/autoload ~/.local/share/nvim/site/autoload

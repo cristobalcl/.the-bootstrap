@@ -6,19 +6,22 @@ cd "$(dirname "$0")/.."
 
 source lib/files.sh
 source lib/colors.sh
+source lib/system.sh
 
-echo "==> ${LBLUE}Installing Fish…${END}"
-if grep --quiet '^ID=ubuntu' /etc/os-release; then
-    if [ ! -f /etc/apt/sources.list.d/fish-shell-ubuntu-release-2-xenial.list ]; then
-        sudo apt-add-repository ppa:fish-shell/release-2 -y
-        sudo apt-get update
-    fi
-    sudo apt-get install fish -y
-elif grep --quiet '^ID=opensuse' /etc/os-release; then
-	sudo zypper install fish
-else
-    echo "==> ${RED}ERROR: OS not supported! The supported systems are: Ubuntu|OpenSuse${END}"
-    exit 1
+if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
+  echo "==> ${LBLUE}Installing Fish…${END}"
+  if [ "$OS_NAME" == "ubuntu" ]; then
+      if [ ! -f /etc/apt/sources.list.d/fish-shell-ubuntu-release-2-xenial.list ]; then
+          sudo apt-add-repository ppa:fish-shell/release-2 -y
+          sudo apt-get update
+      fi
+      sudo apt-get install fish -y
+  elif [ "$OS_NAME" == "opensuse" ]; then
+    sudo zypper install fish
+  # else
+  #     echo "==> ${RED}ERROR: OS not supported! The supported systems are: Ubuntu|OpenSuse${END}"
+  #     exit 1
+  fi
 fi
 
 echo "==> ${LBLUE}Linking Fish configuration…${END}"

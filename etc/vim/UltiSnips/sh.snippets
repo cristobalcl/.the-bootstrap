@@ -1,8 +1,16 @@
+snippet shebang "bash shebang" !b
+#!/usr/bin/env bash
+endsnippet
+
 snippet bash "bash script" !b
 #!/usr/bin/env bash
 
 set -e
 
+endsnippet
+
+snippet debug "conditional debug" !b
+[ "$DEBUG" == 'true' ] && set -x
 endsnippet
 
 snippet run "run service" !b
@@ -104,4 +112,8 @@ snippet	"for find" "iterate over find files" !b
 find . -type f -iname "${1:*.txt}" -print0 | while IFS= read -r -d $'\0' file_path; do
     ${2:echo} "$file_path"
 done
+endsnippet
+
+snippet	"check venv" "Check if we are in a Python virtual environment" !b
+[[ "$VIRTUAL_ENV" != "" ]] && echo "True" || echo "False"
 endsnippet
