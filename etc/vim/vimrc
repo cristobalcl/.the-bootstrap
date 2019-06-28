@@ -115,6 +115,9 @@ if v:version >= 704
   Plug 'SirVer/ultisnips'
 endif
 
+" codi.vim - interactive scratchpad
+Plug 'metakirby5/codi.vim'
+
 " XXX Load last
 " Icons for NERDTree, Airline,…
 Plug 'ryanoasis/vim-devicons'
