@@ -190,3 +190,16 @@ class TestObject(unittest.TestCase):
     def test_get_next(self, mock_func):
         self.assertTrue(True)
 endsnippet
+
+snippet "attr_class" "attr class" !b
+import attr
+
+
+@attr.s(auto_attribs=True)
+class ${1:Name}:
+    attribute1: str = attr.ib()
+		attribute2: int = attr.ib(init=False)
+
+    def __attrs_post_init__(self):
+			  pass
+endsnippet
