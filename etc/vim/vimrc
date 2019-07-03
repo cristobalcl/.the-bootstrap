@@ -4,6 +4,7 @@
 " MAP `C-x C-l`: line completion
 " MAP `C-o`, `C-i`: jump back, jump forward (out/in)
 " MAP `ds'`, `ds"`: remove quotes (' or ")
+" MAP `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Init
