@@ -49,6 +49,16 @@ if test -e $HOME/Library/Python/3.7/bin
     set PATH $PATH $HOME/Library/Python/3.7/bin
 end
 
+if test -e $HOME/.poetry/bin
+    set PATH $PATH $HOME/.poetry/bin
+end
+
+if test -e $HOME/.pyenv
+    set -gx PYENV_ROOT $HOME/.pyenv
+    set PATH $PATH $PYENV_ROOT/bin
+    pyenv init - | source
+end
+
 if type -q powerline-shell
     function fish_prompt
         powerline-shell --shell bare $status

@@ -130,6 +130,11 @@ if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'
 end
 
+if test -e $HOME/.pyenv
+  alias py36 'eval $HOME/.pyenv/versions/3.6.0/bin/python'
+  alias py37 'eval $HOME/.pyenv/versions/3.7.0/bin/python'
+end
+
 if type -q jq
   function jat
     cat "$argv" | jq
