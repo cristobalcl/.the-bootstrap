@@ -28,6 +28,7 @@ Installed plugins
 * [limelight.vim](https://github.com/junegunn/limelight.vim)
 * [vimwiki](https://github.com/vimwiki/vimwiki)
 * [ultisnips](https://github.com/SirVer/ultisnips)
+* [codi.vim](https://github.com/metakirby5/codi.vim)
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 Customized key binding
@@ -35,6 +36,7 @@ Customized key binding
 * `C-x C-l`: line completion
 * `C-o`, `C-i`: jump back, jump forward (out/in)
 * `ds'`, `ds"`: remove quotes (' or ")
+* `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
 * `,m`: switch mouse on/off
 * `,l`: switch cursor line on/off
 * `,n`: switch line numbers on/off
