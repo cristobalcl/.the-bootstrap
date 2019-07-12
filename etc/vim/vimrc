@@ -86,6 +86,9 @@ Plug 'davidhalter/jedi-vim'
 " Languages support
 Plug 'sheerun/vim-polyglot'
 
+" Markdown
+Plug 'gabrielelana/vim-markdown'
+
 " Autoclose delimiters
 Plug 'Raimondi/delimitMate'
 
@@ -528,6 +531,10 @@ vmap > >gv
 " let g:mucomplete#enable_auto_at_startup = 1
 " " let g:mucomplete#completion_delay = 1
 
+" Polyglot
+
+let g:polyglot_disabled = ['markdown']
+
 " Coc
 
 " Extra completion sources:
@@ -665,6 +672,9 @@ imap <M-F5> <ESC>z=
 nmap <c-s> :setlocal spell spelllang=es<cr>
 " MAP `C-g`: activate spell checker for English
 nmap <c-g> :setlocal spell spelllang=en_us<cr>
+
+" MAP `M-F6`: deactivate spell checker
+nmap <M-F6> :setlocal nospell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Abbreviations
