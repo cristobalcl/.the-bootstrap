@@ -1,5 +1,5 @@
 if type -q lsd
-  alias l "lsd -all --human-readable --long --date=relative"
+  alias l "lsd --all --human-readable --long --date=relative"
   alias lo "lsd --all -human-readable --long --date=relative --timesort --reverse"
   alias ll "lsd --all -human-readable --long --date=relative --timesort"
   alias l1 "lsd --all -oneline"
