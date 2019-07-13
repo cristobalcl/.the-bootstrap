@@ -1,8 +1,8 @@
 if type -q lsd
-  alias l "lsd --human-readable --long --date=relative"
-  alias lo "lsd --human-readable --long --date=relative --timesort --reverse"
-  alias ll "lsd --human-readable --long --date=relative --timesort"
-  alias l1 "lsd --oneline"
+  alias l "lsd --all --human-readable --long --date=relative"
+  alias lo "lsd --all -human-readable --long --date=relative --timesort --reverse"
+  alias ll "lsd --all -human-readable --long --date=relative --timesort"
+  alias l1 "lsd --all -oneline"
   alias tree "lsd --tree"
 else
   alias l "ls -hlA"
@@ -76,6 +76,7 @@ alias pycdel='find . -name \*.pyc -delete'
 alias mkenv="virtualenv -p python3 .env"
 alias mkvenv="virtualenv -p python3 .venv"
 alias ienv="source .env/bin/activate.fish"
+alias ivenv="source .env/bin/activate.fish"
 alias oenv="deactivate"
 
 alias initpy='touch __init__.py'
@@ -129,6 +130,11 @@ alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
 
 if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'
+
+  # https://github.com/junegunn/fzf/wiki/Examples-(fish)
+  function gcf -d "Fuzzy-find and checkout a branch"
+    git branch --all | grep -v HEAD | string trim | fzf | read -l result; and git checkout "$result"
+  end
 end
 
 if test -e $HOME/.pyenv
