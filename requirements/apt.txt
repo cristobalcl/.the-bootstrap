@@ -18,6 +18,10 @@ tk-dev
 liblzma-dev
 python-openssl
 
+python3.7-dev
+libpython3.7-dev
+libyaml-dev
+
 # Source Code Control Systems
 git
 mercurial

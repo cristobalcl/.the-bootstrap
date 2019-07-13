@@ -115,6 +115,7 @@ abbr -a gsl 'git stash list'
 abbr -a gundo 'git reset HEAD~'
 abbr -a gunmerge 'git merge --abort'
 abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
+abbr -a glsn 'git clean -xdn'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
