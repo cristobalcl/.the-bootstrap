@@ -264,6 +264,9 @@ inoremap <F1> <Nop>
 nnoremap <F1> <Nop>
 vnoremap <F1> <Nop>
 
+" Disable Q key
+nnoremap Q <Nop>
+
 " MAP `-`: enter command mode
 nnoremap - :
 
@@ -279,6 +282,14 @@ vnoremap ñ l
 vnoremap l k
 vnoremap k j
 vnoremap j h
+
+" MAP `ARROW KEYS`: move in visual lines
+imap <up> <C-O>gk
+imap <down> <C-O>gj
+nmap <up> gk
+nmap <down> gj
+vmap <up> gk
+vmap <down> gj
 
 " MAP `C-w jklñ`: go to left, down, up, right panel
 nnoremap <C-w>j <C-w><left>
