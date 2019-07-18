@@ -20,6 +20,7 @@ Installed plugins
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [jedi-vim](https://github.com/davidhalter/jedi-vim)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
+* [vim-markdown](https://github.com/gabrielelana/vim-markdown)
 * [delimitMate](https://github.com/Raimondi/delimitMate)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
 * [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
@@ -43,6 +44,7 @@ Customized key binding
 * `,n`: switch relative line numbers on/off
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
+* `ARROW KEYS`: move in visual lines
 * `C-w jklñ`: go to left, down, up, right panel
 * `00`: beginning of the line
 * `<SPACE><SPACE>`: end of the line
@@ -101,5 +103,6 @@ Customized key binding
 * `M-F5`: show spell checker suggestions
 * `C-s`: activate spell checker for Spanish
 * `C-g`: activate spell checker for English
+* `M-F6`: deactivate spell checker
 * `F3`: count words of the document
 * `:Goyo`: distraction-free writing
