@@ -288,13 +288,13 @@ vnoremap l k
 vnoremap k j
 vnoremap j h
 
-" MAP `ARROW KEYS`: move in visual lines
-imap <up> <C-O>gk
-imap <down> <C-O>gj
-nmap <up> gk
-nmap <down> gj
-vmap <up> gk
-vmap <down> gj
+" MxP `ARROW KEYS`: move in visual lines
+" imap <up> <C-O>gk
+" imap <down> <C-O>gj
+" nmap <up> gk
+" nmap <down> gj
+" vmap <up> gk
+" vmap <down> gj
 
 " MAP `C-w jklñ`: go to left, down, up, right panel
 nnoremap <C-w>j <C-w><left>
