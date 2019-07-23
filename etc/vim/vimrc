@@ -105,9 +105,7 @@ endif
 " :CocInstall coc-python  " https://github.com/neoclide/coc.nvim/wiki/Language-servers#python
 
 " REPL
-" if has('nvim')
-"   Plug 'kassio/neoterm'
-" endif
+" Plug 'jalvesaq/vimcmdline'
 
 " Symbols and tag views
 Plug 'liuchengxu/vista.vim'
