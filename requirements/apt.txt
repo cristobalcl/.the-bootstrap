@@ -50,6 +50,7 @@ unrar
 libxml2-utils
 run-one
 silversearcher-ag
+jq
 
 snapd
 # x2goclient

@@ -44,7 +44,6 @@ Customized key binding
 * `,n`: switch relative line numbers on/off
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
-* `ARROW KEYS`: move in visual lines
 * `C-w jklñ`: go to left, down, up, right panel
 * `00`: beginning of the line
 * `<SPACE><SPACE>`: end of the line
