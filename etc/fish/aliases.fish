@@ -1,8 +1,8 @@
 if type -q lsd
   alias l "lsd --all --human-readable --long --date=relative"
-  alias lo "lsd --all -human-readable --long --date=relative --timesort --reverse"
-  alias ll "lsd --all -human-readable --long --date=relative --timesort"
-  alias l1 "lsd --all -oneline"
+  alias lo "lsd --all --human-readable --long --date=relative --timesort --reverse"
+  alias ll "lsd --all --human-readable --long --date=relative --timesort"
+  alias l1 "lsd --all --oneline"
   alias tree "lsd --tree"
 else
   alias l "ls -hlA"
@@ -117,6 +117,8 @@ abbr -a gundo 'git reset HEAD~'
 abbr -a gunmerge 'git merge --abort'
 abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
 abbr -a glsn 'git clean -xdn'
+abbr -a gclean 'git clean -fd'
+abbr -a gcleanall 'git clean -fdx'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
