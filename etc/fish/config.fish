@@ -53,9 +53,11 @@ if test -e $HOME/.poetry/bin
 end
 
 if test -e $HOME/.pyenv
-    set -gx PYENV_ROOT $HOME/.pyenv
+  set -gx PYENV_ROOT $HOME/.pyenv
+  if test -e $HOME/.pyenv/bin
     set PATH $PATH $PYENV_ROOT/bin
-    pyenv init - | source
+  end
+  pyenv init - | source
 end
 
 if type -q powerline-shell

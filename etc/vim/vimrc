@@ -105,9 +105,7 @@ endif
 " :CocInstall coc-python  " https://github.com/neoclide/coc.nvim/wiki/Language-servers#python
 
 " REPL
-" if has('nvim')
-"   Plug 'kassio/neoterm'
-" endif
+" Plug 'jalvesaq/vimcmdline'
 
 " Symbols and tag views
 Plug 'liuchengxu/vista.vim'
@@ -305,6 +303,9 @@ nnoremap <C-w>ñ <C-w><right>
 " MAP `00`: beginning of the line
 nnoremap 00 ^
 vnoremap 00 ^
+" MAP `h`: beginning of the line
+nnoremap h ^
+vnoremap h ^
 
 " MAP `<SPACE><SPACE>`: end of the line
 nnoremap <SPACE><SPACE> $
