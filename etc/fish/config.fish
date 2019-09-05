@@ -40,7 +40,6 @@ if test -e /snap/bin
     set PATH $PATH /snap/bin
 end
 
-
 if test -e $HOME/Programas/flutter/bin
     set PATH $PATH $HOME/Programas/flutter/bin
 end
