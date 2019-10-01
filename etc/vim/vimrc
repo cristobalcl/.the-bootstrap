@@ -615,7 +615,7 @@ nmap <leader>rn <Plug>(coc-rename)
 vmap <leader>t  <Plug>(coc-format-selected)
 nmap <leader>t  <Plug>(coc-format-selected)
 
-" MAP `,a`: do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" MAP `,a`: do codeAction of selected region, ex: `,aap` for current paragraph
 vmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
@@ -674,6 +674,12 @@ nnoremap <silent> <space>t  :Vista!!<CR>
 nnoremap <silent> <space>f  :Vista finder coc<CR>
 
 let g:vista#renderer#enable_icon = 1
+
+" From George in Vim Telegram Group
+function! JsonPrettyTool()
+ :%!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), indent=4,ensure_ascii=False).encode('utf-8')"
+ :set ft=json
+endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checker

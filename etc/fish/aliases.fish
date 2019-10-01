@@ -79,6 +79,19 @@ alias ienv="source .env/bin/activate.fish"
 alias ivenv="source .env/bin/activate.fish"
 alias oenv="deactivate"
 
+abbr -a httpserver 'python3 -m http.server'
+
+if type -q python2.7
+  alias py2="python2.7"
+else if type -q python
+  alias py2="python"
+end
+
+if type -q python3
+  alias py="python3"
+  alias py3="python3"
+end
+
 alias initpy='touch __init__.py'
 function mkpy
     mkdir "$argv"; and touch $argv/__init__.py
