@@ -13,6 +13,11 @@ if has('vim_starting')
   set nocompatible
 endif
 
+if has('nvim')
+  let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
+  let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug install
 
@@ -436,6 +441,9 @@ let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', 'UltiSnips']
 " Trying to fix problem with for CoC
 let g:UltiSnipsExpandTrigger = "<Nop>"
 let g:UltiSnipsListSnippets = "<Nop>"
+
+" Trying to fix "change completeopt on insert mode" problem
+let g:jedi#completions_enabled = 0
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Edition

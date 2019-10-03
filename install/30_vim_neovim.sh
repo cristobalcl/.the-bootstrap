@@ -47,3 +47,20 @@ linked $(pwd)/etc/vim/UltiSnips ~/.config/nvim/UltiSnips
 linked $(pwd)/etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 linked ~/.vim ~/.nvim
 linked ~/.vim/autoload ~/.local/share/nvim/site/autoload
+
+# Reference:
+# https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
+echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
+pyenv install 2.7.11
+pyenv install 3.7.4
+
+pyenv virtualenv 2.7.11 neovim2
+pyenv virtualenv 3.7.4 neovim3
+
+pyenv activate neovim2
+pip install neovim
+
+pyenv activate neovim3
+pip install neovim
+
+pyenv deactivate

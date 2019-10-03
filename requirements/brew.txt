@@ -7,3 +7,8 @@ fd
 bat
 the_silver_searcher
 pandoc
+zlib
+readline
+xz
+pyenv-virtualenv
+npm
