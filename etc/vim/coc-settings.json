@@ -10,5 +10,13 @@
   // Auto format on save
   "coc.preferences.formatOnSaveFiletypes": ["python"],
   // Provider for formatting. Possible options include 'autopep8', 'black', and 'yapf'., default: "autopep8"
-  "python.formatting.provider": "black"
+  // Black
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "~/bin/black",
+  // Flake8
+  "python.linting.flake8Enabled": true,
+  "python.linting.flake8Path": "~/bin/flake8",
+  // mypy
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyPath": "~/bin/mypy"
 }
