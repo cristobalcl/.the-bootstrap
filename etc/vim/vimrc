@@ -86,6 +86,9 @@ Plug 'davidhalter/jedi-vim'
 " Languages support
 Plug 'sheerun/vim-polyglot'
 
+" Dart tools
+Plug 'dart-lang/dart-vim-plugin'
+
 " Markdown
 Plug 'gabrielelana/vim-markdown'
 
