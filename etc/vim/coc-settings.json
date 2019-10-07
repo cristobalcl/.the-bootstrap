@@ -3,6 +3,10 @@
   "suggest.noselect": false,
   // when snippet activated and pumvisible, prefer complete completion.
   "suggest.preferCompleteThanJumpPlaceholder": true,
+  // Keep completeopt
+  //"suggest.keepCompleteopt": true,
+  // Trying to fix "change completeopt on insert mode" problem
+  //"suggest.autoTrigger": "none",
   // Auto format on save
   "coc.preferences.formatOnSaveFiletypes": ["python"],
   // Provider for formatting. Possible options include 'autopep8', 'black', and 'yapf'., default: "autopep8"

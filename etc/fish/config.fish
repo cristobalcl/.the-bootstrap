@@ -57,7 +57,8 @@ if test -e $HOME/.pyenv
   if test -e $HOME/.pyenv/bin
     set PATH $PATH $PYENV_ROOT/bin
   end
-  pyenv init - | source
+  status --is-interactive; and pyenv init - | source
+  status --is-interactive; and pyenv virtualenv-init - | source
 end
 
 if type -q powerline-shell

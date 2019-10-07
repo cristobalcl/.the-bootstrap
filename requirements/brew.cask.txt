@@ -1,2 +1,3 @@
 iterm2
 vimr
+mactex-no-gui
