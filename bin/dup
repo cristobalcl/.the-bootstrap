@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ -z "$2" ]; then
+    cp $1 "./$(basename "$1")"
+else
+    cp $1 "$(dirname "$1")/$2"
+fi
