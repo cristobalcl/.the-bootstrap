@@ -40,9 +40,8 @@ if test -e /snap/bin
     set PATH $PATH /snap/bin
 end
 
-
 if test -e $HOME/Programas/flutter/bin
-    set PATH $PATH $HOME/Programas/flutter/bin
+    set PATH $PATH $HOME/Programas/flutter/bin $HOME/Programas/flutter/.pub-cache/bin
 end
 
 if test -e $HOME/Library/Python/3.7/bin
@@ -102,6 +101,10 @@ end
 if test -e ~/.nvm/nvm.sh
 	bass export NVM_DIR="$HOME/.nvm"
 	bass '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'  # This loads nvm
+end
+
+if test -e /usr/lib/dart/bin/
+  set PATH $PATH /usr/lib/dart/bin/
 end
 
 eval (ssh-agent -c) > /dev/null
