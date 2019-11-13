@@ -7,6 +7,7 @@ Installed plugins
 * [nerdtree](https://github.com/scrooloose/nerdtree)
 * [vim-nerdtree-tabs](https://github.com/jistr/vim-nerdtree-tabs)
 * [vim-nerdtree-syntax-highlight](https://github.com/tiagofumo/vim-nerdtree-syntax-highlight)
+* [nerdtree-git-plugin](https://github.com/Xuyuanp/nerdtree-git-plugin)
 * [fzf](https://github.com/junegunn/fzf)
 * [fzf.vim](https://github.com/junegunn/fzf.vim)
 * [vim-airline](https://github.com/vim-airline/vim-airline)
@@ -46,10 +47,12 @@ Customized key binding
 * `jklñ`: left, down, up, right
 * `C-w jklñ`: go to left, down, up, right panel
 * `00`: beginning of the line
-* `<SPACE><SPACE>`: end of the line
+* `h`: beginning of the line
+* `hh`: end of the line
 * `gb`: go back
 * `,zz`: center de current line in the screen
 * `s`: jump anywhere typing two characters and then the label
+* `SPACE`: open/close folds (in visual mode create a fold)
 * `C-h`, `C-j`: move between tabs
 * `A-PageUp`, `A-PageUp`: move tab
 * `C-t`: new tab
@@ -62,6 +65,7 @@ Customized key binding
 * `,f`: open file tree
 * `,F`: search file
 * `,B`: search buffer
+* `,p`: show full filename and path
 * `.`: repeat last action and move to the beginning of the edition
 * `Y`: copy until the end of the line
 * `,p`: paste yank
@@ -83,7 +87,7 @@ Customized key binding
 * `K`: show documentation in preview window
 * `,rn`: rename current word
 * `,t`: format region or visual selection
-* `,a`: do codeAction of selected region, ex: `<leader>aap` for current paragraph
+* `,a`: do codeAction of selected region, ex: `,aap` for current paragraph
 * `,ac`: do codeAction of current line
 * `,qf`: fix autofix problem of current line
 * `:Format`: format current buffer
@@ -105,3 +109,8 @@ Customized key binding
 * `M-F6`: deactivate spell checker
 * `F3`: count words of the document
 * `:Goyo`: distraction-free writing
+* `,ww`: open default VimWiki
+* `,wt`: open default VimWiki in a new tab
+* `,ws`: select VimWiki to open
+* `,wd`: delete current VimWiki file
+* `,wr`: rename current VimWiki file

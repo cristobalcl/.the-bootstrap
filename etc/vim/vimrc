@@ -58,6 +58,7 @@ Plug 'freeo/vim-kalisi'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Fuzzy find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -105,9 +106,6 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 if !has('nvim')
   Plug 'neoclide/vim-node-rpc'
 endif
-" Useful:
-" :CocInstall coc-snippets
-" :CocInstall coc-python  " https://github.com/neoclide/coc.nvim/wiki/Language-servers#python
 
 " REPL
 " Plug 'jalvesaq/vimcmdline'
@@ -298,6 +296,9 @@ vnoremap j h
 " nmap <down> gj
 " vmap <up> gk
 " vmap <down> gj
+" Another version (from https://gist.github.com/benawad/b768f5a5bbd92c8baabd363b7e79786f)
+" noremap <silent> <expr> k (v:count == 0 ? 'gj' : 'j')
+" noremap <silent> <expr> l (v:count == 0 ? 'gk' : 'k')
 
 " MAP `C-w jklñ`: go to left, down, up, right panel
 nnoremap <C-w>j <C-w><left>
@@ -312,9 +313,12 @@ vnoremap 00 ^
 nnoremap h ^
 vnoremap h ^
 
-" MAP `<SPACE><SPACE>`: end of the line
-nnoremap <SPACE><SPACE> $
-vnoremap <SPACE><SPACE> $
+" MxP `<SPACE><SPACE>`: end of the line
+" nnoremap <SPACE><SPACE> $
+" vnoremap <SPACE><SPACE> $
+" MAP `hh`: end of the line
+nnoremap hh $
+vnoremap hh $
 
 " MAP `gb`: go back
 nnoremap gb <C-o>
@@ -337,6 +341,14 @@ nmap s <Plug>(easymotion-overwin-f2)
 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
+
+""""""""""""""""""""""""""""""""""""""""
+" Folding
+
+" https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds
+" MAP `SPACE`: open/close folds (in visual mode create a fold)
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
 
 """"""""""""""""""""""""""""""""""""""""
 " Tabs
@@ -432,6 +444,8 @@ map <Leader>f <plug>NERDTreeTabsToggle<CR>
 nnoremap <silent> <leader>F :Files<CR>
 " MAP `,B`: search buffer
 nnoremap <silent> <leader>B :Buffers<CR>
+" MAP `,p`: show full filename and path
+nnoremap <leader>p :echo expand('%:p')<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Snippets
@@ -562,8 +576,30 @@ let g:polyglot_disabled = ['markdown']
 
 " Coc
 
-" Extra completion sources:
+" Useful
+" :CocInstall …
+" :CocList extensions
+
+" Links
 " https://github.com/neoclide/coc-sources
+" https://github.com/neoclide/coc.nvim/wiki/Language-servers#python
+
+" More extensions
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#implemented-coc-extensions
+
+let g:coc_global_extensions = [
+      \ 'coc-snippets',
+      \ 'coc-ultisnips',
+      \ 'coc-python',
+      \ 'coc-lists',
+      \ 'coc-json',
+      \ ]
+      " Extra
+      " \ 'coc-pairs',
+      " For Javascript/TS
+      " \ 'coc-tsserver',
+      " \ 'coc-eslint',
+      " \ 'coc-prettier',
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
@@ -765,7 +801,13 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki
+" MAP `,ww`: open default VimWiki
+" MAP `,wt`: open default VimWiki in a new tab
+" MAP `,ws`: select VimWiki to open
+" MAP `,wd`: delete current VimWiki file
+" MAP `,wr`: rename current VimWiki file
 let g:vimwiki_camel_case=0
+" let g:vimwiki_folding='list'
 let g:vimwiki_list=[
 					\{'path': '~/.vimwiki', 'path_html': '~/vimwiki/html'},
 					\{'path': '~/Privado/vimwiki/private', 'path_html': '~/Privado/vimwiki/private/html'},
