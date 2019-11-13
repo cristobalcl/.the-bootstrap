@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim standard commands cheatsheet
 
-" MAP `C-d C-u`: page up, page down
+" MAP `C-d`, `C-u`: page up, page down
 " MAP `C-x C-l`: line completion
 " MAP `C-o`, `C-i`: jump back, jump forward (out/in)
 " MAP `ds'`, `ds"`: remove quotes (' or ")
