@@ -5,6 +5,7 @@
 " MAP `C-o`, `C-i`: jump back, jump forward (out/in)
 " MAP `ds'`, `ds"`: remove quotes (' or ")
 " MAP `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
+" MAP `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Init
@@ -677,6 +678,12 @@ command! -nargs=0 Format :call CocAction('format')
 " MAP `:Fold`: fold current buffer
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
+" MAP `:OR`: organize imports of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
 " Using CocList
 " MAP `SPC a`: show all diagnostics
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -758,6 +765,14 @@ iabbr urrlib2 urllib2
 iabbr ^2 ²
 iabbr ... …
 
+iabbr 80- -------------------------------------------------------------------------------- 
+iabbr 80= ================================================================================
+iabbr 80# ################################################################################
+iabbr 80' ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+iabbr 80" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+iab todaydate <c-r>=strftime("%Y-%m-%d")<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Custom settings for filetypes
 
@@ -816,3 +831,9 @@ let g:vimwiki_list=[
 					\{'path': '~/Privado/vimwiki/private', 'path_html': '~/Privado/vimwiki/private/html'},
 					\{'path': '~/Dropbox/vimwiki/public', 'path_html': '~/Dropbox/Public/wiki/html'}]
 let g:vimwiki_browsers=['/usr/bin/firefox']
+
+autocmd BufEnter, *.wiki nnoremap - :
+
+" To disable map of '-'
+" nmap -- <Plug>VimwikiRemoveHeaderLevel
+" nmap <Leader>wf <Plug>VimwikiFollowLink
