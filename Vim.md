@@ -21,6 +21,7 @@ Installed plugins
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [jedi-vim](https://github.com/davidhalter/jedi-vim)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
+* [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)
 * [vim-markdown](https://github.com/gabrielelana/vim-markdown)
 * [delimitMate](https://github.com/Raimondi/delimitMate)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
@@ -39,6 +40,7 @@ Customized key binding
 * `C-o`, `C-i`: jump back, jump forward (out/in)
 * `ds'`, `ds"`: remove quotes (' or ")
 * `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
+* `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one
 * `,m`: switch mouse on/off
 * `,l`: switch cursor line on/off
 * `,n`: switch line numbers on/off
@@ -92,6 +94,7 @@ Customized key binding
 * `,qf`: fix autofix problem of current line
 * `:Format`: format current buffer
 * `:Fold`: fold current buffer
+* `:OR`: organize imports of current buffer
 * `SPC a`: show all diagnostics
 * `SPC e`: manage extensions
 * `SPC c`: list commands

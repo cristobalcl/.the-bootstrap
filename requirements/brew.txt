@@ -12,3 +12,4 @@ readline
 xz
 pyenv-virtualenv
 npm
+broot
