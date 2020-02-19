@@ -87,6 +87,9 @@ Plug 'tpope/vim-fugitive'
 " Git diff in sign column
 Plug 'airblade/vim-gitgutter'
 
+" EditorConfig coding style configuration
+Plug 'editorconfig/editorconfig-vim'
+
 " Python
 Plug 'davidhalter/jedi-vim'
 
