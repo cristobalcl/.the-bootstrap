@@ -13,3 +13,4 @@ xz
 pyenv-virtualenv
 npm
 broot
+lazygit
