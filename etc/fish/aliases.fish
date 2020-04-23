@@ -86,7 +86,7 @@ alias ienv="source .env/bin/activate.fish"
 alias ivenv="source .env/bin/activate.fish"
 alias oenv="deactivate"
 
-abbr -a httpserver 'python3 -m http.server'
+abbr -a server 'python3 -m http.server'
 
 if type -q python2.7
   alias py2="python2.7"
