@@ -19,6 +19,7 @@ Installed plugins
 * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors)
 * [vim-fugitive](https://github.com/tpope/vim-fugitive)
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
+* [editorconfig-vim](https://github.com/editorconfig/editorconfig-vim)
 * [jedi-vim](https://github.com/davidhalter/jedi-vim)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)
@@ -36,6 +37,7 @@ Installed plugins
 
 Customized key binding
 ----------------------
+* `C-d`, `C-u`: page up, page down
 * `C-x C-l`: line completion
 * `C-o`, `C-i`: jump back, jump forward (out/in)
 * `ds'`, `ds"`: remove quotes (' or ")
@@ -68,6 +70,8 @@ Customized key binding
 * `,F`: search file
 * `,B`: search buffer
 * `,p`: show full filename and path
+* `gF`: open file under cursor in a horizontal split
+* `ggf`: open file under cursor in a new tab
 * `.`: repeat last action and move to the beginning of the edition
 * `Y`: copy until the end of the line
 * `,p`: paste yank
