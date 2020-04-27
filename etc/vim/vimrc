@@ -18,6 +18,11 @@ endif
 if has('nvim')
   let g:python_host_prog = expand('~/.pyenv/versions/neovim2/bin/python')
   let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+  " To update:
+  " $ source ~/.pyenv/versions/neovim2/bin/activate
+  " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+  " $ source ~/.pyenv/versions/neovim3/bin/activate
+  " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
