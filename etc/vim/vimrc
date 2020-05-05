@@ -5,8 +5,8 @@
 " MAP `C-x C-l`: line completion
 " MAP `C-o`, `C-i`: jump back, jump forward (out/in)
 " MAP `ds'`, `ds"`: remove quotes (' or ")
-" MAP `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
-" MAP `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one
+" MAP `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one (or cycle through words)
+" MAP `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one (or cycle through words)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Init
@@ -110,6 +110,9 @@ Plug 'gabrielelana/vim-markdown'
 
 " Autoclose delimiters
 Plug 'Raimondi/delimitMate'
+
+" Toggle words between pairs or lists of related words
+Plug 'zef/vim-cycle'
 
 " Autocompletion
 " mucomplete

@@ -25,6 +25,7 @@ Installed plugins
 * [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)
 * [vim-markdown](https://github.com/gabrielelana/vim-markdown)
 * [delimitMate](https://github.com/Raimondi/delimitMate)
+* [vim-cycle](https://github.com/zef/vim-cycle)
 * [coc.nvim](https://github.com/neoclide/coc.nvim)
 * [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
 * [vista.vim](https://github.com/liuchengxu/vista.vim)
@@ -41,8 +42,8 @@ Customized key binding
 * `C-x C-l`: line completion
 * `C-o`, `C-i`: jump back, jump forward (out/in)
 * `ds'`, `ds"`: remove quotes (' or ")
-* `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one
-* `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one
+* `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one (or cycle through words)
+* `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one (or cycle through words)
 * `,m`: switch mouse on/off
 * `,l`: switch cursor line on/off
 * `,n`: switch line numbers on/off
