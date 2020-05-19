@@ -1,5 +1,6 @@
+" vim: foldmethod=marker
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim standard commands cheatsheet
+" Vim standard commands cheatsheet {{{
 
 " MAP `C-d`, `C-u`: page up, page down
 " MAP `C-x C-l`: line completion
@@ -8,8 +9,10 @@
 " MAP `AMOUNT C-a`: add AMOUNT to number under cursor, if no AMOUNT specified then add one (or cycle through words)
 " MAP `AMOUNT C-x`: subtract AMOUNT to number under cursor, if no AMOUNT specified then subtract one (or cycle through words)
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Init
+" Init {{{
 
 if has('vim_starting')
   set nocompatible
@@ -25,8 +28,10 @@ if has('nvim')
   " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 endif
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plug install
+" Plug install {{{
 
 if has('nvim')
 	let vimplug_exists=expand('~/.local/share/nvim/site/autoload/plug.vim')
@@ -47,8 +52,10 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Install plugins
+" Install plugins {{{
 
 if has('nvim')
   call plug#begin(expand('~/.local/share/nvim/plugged'))
@@ -150,8 +157,10 @@ Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Basic
+" Basic {{{
 
 let mapleader=','
 
@@ -193,8 +202,10 @@ nnoremap <Leader>m :call ToggleMouse()<CR>
 set mouse=a                            " Mouse activate
 set clipboard+=unnamedplus             " Copy&Paste from clipboard
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Appearance
+" Appearance {{{
 
 colorscheme kalisi
 
@@ -278,8 +289,10 @@ endif
 let g:indentLine_fileTypeExclude = ['text', 'help', 'terminal']
 let g:indentLine_bufNameExclude = ['NERD_tree.*', 'term:.*']
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Controls
+" Controls {{{
 
 " Disable F1 key
 inoremap <F1> <Nop>
@@ -292,8 +305,10 @@ nnoremap Q <Nop>
 " MAP `-`: enter command mode
 nnoremap - :
 
-""""""""""""""""""""""""""""""""""""""""
-" Movements
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Movements {{{
 
 " MAP `jklñ`: left, down, up, right
 nnoremap ñ l
@@ -358,16 +373,24 @@ nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
-""""""""""""""""""""""""""""""""""""""""
-" Folding
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Folding {{{
+
+" MAP `zR`: open all folds
+" MAP `zM`: close all folds
+" MAP `zi`: toggle folds
 
 " https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds
 " MAP `SPACE`: open/close folds (in visual mode create a fold)
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-""""""""""""""""""""""""""""""""""""""""
-" Tabs
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabs {{{
 
 " Move between tabs
 " MAP `C-h`, `C-j`: move between tabs
@@ -382,8 +405,10 @@ nnoremap <silent> <A-PageDown> :execute 'silent! tabmove ' . tabpagenr()<CR>
 nmap <C-t> :tabnew<CR>
 imap <C-t> <Esc>:tabnew<CR>
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search
+" Search {{{
 
 set showmatch
 set hlsearch                            " Highligh search result
@@ -403,8 +428,10 @@ nnoremap \ :Ag<Space>
 " MAP `+`: grep this word
 nnoremap <silent> + :Ag <C-R><C-W><CR>
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visualization
+" Visualization {{{
 
 " Show special characters
 " MAP `,c`: switch showing special characters on/off
@@ -437,8 +464,10 @@ function! AutoHighlightToggle()
   endif
 endfunction
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Files
+" Files {{{
 
 " NERDTree and NERDTreeTabs
 
@@ -454,6 +483,14 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc,*.db,*.sqlite,*.zip
 " MAP `,f`: open file tree
 map <Leader>f <plug>NERDTreeTabsToggle<CR>
 
+" " Don't open NERDTree for saved sessions
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
+
+" Don't open files and other buffers on NerdTree window
+" If more than one window and previous buffer was NERDTree, go back to it.
+autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
 " Fuzzy open file
 
 " MAP `,F`: search file
@@ -468,8 +505,10 @@ map gF :wincmd f<CR>
 " MAP `ggf`: open file under cursor in a new tab
 map ggf :wincmd gf<CR>
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Snippets
+" Snippets {{{
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
@@ -480,8 +519,10 @@ let g:UltiSnipsListSnippets = "<Nop>"
 " Trying to fix "change completeopt on insert mode" problem
 let g:jedi#completions_enabled = 0
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Edition
+" Edition {{{
 
 set tabstop=2                          " Show existing tab with 2 spaces width
 set shiftwidth=2                       " When indenting with '>', use 2 spaces width
@@ -577,8 +618,10 @@ augroup END
 vmap < <gv
 vmap > >gv
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""
-" Coding
+" Coding {{{
 
 " mucomplete
 " set completeopt-=preview
@@ -701,24 +744,24 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Using CocList
-" MAP `SPC a`: show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" MAP `SPC e`: manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-" MAP `SPC c`: list commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" MAP `SPC o`: find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" MAP `SPC s`: search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" MAP `SPC j`: do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" MAP `SPC k`: do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" MAP `SPC p`: resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" " Using CocList
+" " MAP `SPC a`: show all diagnostics
+" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" " MAP `SPC e`: manage extensions
+" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" " MAP `SPC c`: list commands
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" " MAP `SPC o`: find symbol of current document
+" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" " MAP `SPC s`: search workspace symbols
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" " MAP `SPC j`: do default action for next item.
+" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" " MAP `SPC k`: do default action for previous item.
+" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" " MAP `SPC p`: resume latest coc list
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Snip completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -738,11 +781,11 @@ call SetupCommandAbbrs('C', 'CocConfig')
 
 let g:vista_default_executive = 'coc' " ctag/vim_lsp/coc
 
-" MAP `SPC t`: open/close symbols & tags panel
-nnoremap <silent> <space>t  :Vista!!<CR>
+" " MAP `SPC t`: open/close symbols & tags panel
+" nnoremap <silent> <space>t  :Vista!!<CR>
 
-" MAP `SPC f`: fuzzy find symbol or tag
-nnoremap <silent> <space>f  :Vista finder coc<CR>
+" " MAP `SPC f`: fuzzy find symbol or tag
+" nnoremap <silent> <space>f  :Vista finder coc<CR>
 
 let g:vista#renderer#enable_icon = 1
 
@@ -752,8 +795,10 @@ function! JsonPrettyTool()
  :set ft=json
 endfunction
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Spell checker
+" Spell checker {{{
 set spelllang=es,en_us
 set spellsuggest=10
 " Start spell checker
@@ -770,8 +815,10 @@ nmap <c-g> :setlocal spell spelllang=en_us<cr>
 " MAP `M-F6`: deactivate spell checker
 nmap <M-F6> :setlocal nospell
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Abbreviations
+" Abbreviations {{{
 iabbr fi if
 iabbr teh the
 iabbr Teh The
@@ -790,8 +837,10 @@ iabbr 80" """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 iab todaydate <c-r>=strftime("%Y-%m-%d")<CR>
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Custom settings for filetypes
+" Custom settings for filetypes {{{
 
 " Bash (disable fi -> if)
 autocmd FileType sh
@@ -801,8 +850,10 @@ autocmd FileType sh
 " Comments in JSON
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Writing
+" Writing {{{
 
 " MAP `F3`: count words of the document
 map <F3> :w !wc -w<CR>
@@ -834,8 +885,10 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
+" }}}
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwiki
+" vimwiki {{{
 " MAP `,ww`: open default VimWiki
 " MAP `,wt`: open default VimWiki in a new tab
 " MAP `,ws`: select VimWiki to open
@@ -854,3 +907,5 @@ autocmd BufEnter, *.wiki nnoremap - :
 " To disable map of '-'
 " nmap -- <Plug>VimwikiRemoveHeaderLevel
 " nmap <Leader>wf <Plug>VimwikiFollowLink
+
+" }}}
