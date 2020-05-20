@@ -65,12 +65,12 @@ pip install neovim
 
 # TODO Put all this elsewhere...
 pip install flake8
-ln -s `pyenv which flake8` ~/bin/
+linked `pyenv which flake8` ~/bin/flake8
 
 pip install black
-ln -s `pyenv which black` ~/bin/
+linked `pyenv which black` ~/bin/black
 
 pip install mypy
-ln -s `pyenv which mypy` ~/bin/
+linked `pyenv which mypy` ~/bin/mypy
 
 pyenv deactivate

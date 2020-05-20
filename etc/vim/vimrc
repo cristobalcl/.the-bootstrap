@@ -858,6 +858,11 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " MAP `F3`: count words of the document
 map <F3> :w !wc -w<CR>
 
+" MAP `,=`: underline word with "=" (Markdown)
+nnoremap <leader>= YpVr=
+" MAP `,-`: underline word with "-" (Markdown)
+nnoremap <leader>- YpVr-
+
 " Goyo
 " MAP `:Goyo`: distraction-free writing
 
