@@ -141,7 +141,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
 " VimWiki
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
 if v:version >= 704
   " UltiSnips
@@ -907,10 +907,10 @@ let g:vimwiki_list=[
 					\{'path': '~/Dropbox/vimwiki/public', 'path_html': '~/Dropbox/Public/wiki/html'}]
 let g:vimwiki_browsers=['/usr/bin/firefox']
 
-autocmd BufEnter, *.wiki nnoremap - :
-
 " To disable map of '-'
-" nmap -- <Plug>VimwikiRemoveHeaderLevel
-" nmap <Leader>wf <Plug>VimwikiFollowLink
+let g:vimwiki_key_mappings =
+  \ {
+  \ 'headers': 0,
+  \ }
 
 " }}}
