@@ -73,17 +73,15 @@ alias lost "cat ~/lost.txt; cat >> ~/lost.txt"
 alias ducks='du -cks * | sort -rn | head'
 # alias unp 'file-unpack'
 
-# Disk ussage for each directory with depth=1
+# Disk usage for each directory with depth=1
 alias dud='du . -hd1'
 
 # Find and remove *.pyc
 # http://stackoverflow.com/questions/785519/how-do-i-remove-all-pyc-files-from-a-project
 alias pycdel='find . -name \*.pyc -delete'
 
-alias mkenv="virtualenv -p python3 .env"
-alias mkvenv="virtualenv -p python3 .venv"
-alias ienv="source .env/bin/activate.fish"
-alias ivenv="source .env/bin/activate.fish"
+alias mkenv="virtualenv -p python3 .venv"
+alias ienv="source .venv/bin/activate.fish"
 alias oenv="deactivate"
 
 abbr -a server 'python3 -m http.server'
@@ -118,7 +116,8 @@ alias gconfdiff 'git diff --diff-filter=U'
 alias gconflict 'git diff --name-only --diff-filter=U'
 abbr -a gd 'git diff'
 abbr -a ga 'git add .'
-abbr -a gc 'git commit -am'
+abbr -a gc 'git commit -m'
+abbr -a gca 'git commit -am'
 abbr -a gll 'git pull'
 abbr -a gp 'git push'
 abbr -a gls 'git branch -a'
@@ -128,8 +127,8 @@ abbr -a gch 'git checkout'
 abbr -a gbr 'git checkout -b'
 abbr -a gfe 'git checkout -b feature/'
 abbr -a gfi 'git checkout -b fix/'
-abbr -a gmas 'git checkout master'
-abbr -a gdev 'git checkout develop'
+abbr -a gma 'git checkout master'
+abbr -a gde 'git checkout develop'
 abbr -a gm 'git merge --no-ff'
 abbr -a g+ 'git stash --include-untracked'
 abbr -a g- 'git stash apply'
