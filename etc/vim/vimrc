@@ -200,6 +200,7 @@ endfunction
 nnoremap <Leader>m :call ToggleMouse()<CR>
 
 set mouse=a                            " Mouse activate
+" FIXME This break copy&paste with visual blocks:
 set clipboard+=unnamedplus             " Copy&Paste from clipboard
 
 " }}}
@@ -337,16 +338,9 @@ nnoremap <C-w>k <C-w><down>
 nnoremap <C-w>l <C-w><up>
 nnoremap <C-w>ñ <C-w><right>
 
-" MAP `00`: beginning of the line
-nnoremap 00 ^
-vnoremap 00 ^
 " MAP `h`: beginning of the line
 nnoremap h ^
 vnoremap h ^
-
-" MxP `<SPACE><SPACE>`: end of the line
-" nnoremap <SPACE><SPACE> $
-" vnoremap <SPACE><SPACE> $
 " MAP `hh`: end of the line
 nnoremap hh $
 vnoremap hh $
@@ -383,9 +377,9 @@ let g:EasyMotion_smartcase = 1
 " MAP `zi`: toggle folds
 
 " https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds
-" MAP `SPACE`: open/close folds (in visual mode create a fold)
-nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-vnoremap <Space> zf
+" MAP `ENTER`: open/close folds (in visual mode create a fold)
+nnoremap <silent> <CR> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <CR> zf
 
 " }}}
 
@@ -744,24 +738,24 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
 " set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" " Using CocList
-" " MAP `SPC a`: show all diagnostics
-" nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" " MAP `SPC e`: manage extensions
-" nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" " Show commands
-" " MAP `SPC c`: list commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" " MAP `SPC o`: find symbol of current document
-" nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" " MAP `SPC s`: search workspace symbols
-" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" " MAP `SPC j`: do default action for next item.
-" nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" " MAP `SPC k`: do default action for previous item.
-" nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" " MAP `SPC p`: resume latest coc list
-" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Using CocList
+" MAP `SPC a`: show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" MAP `SPC e`: manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+" MAP `SPC c`: list commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" MAP `SPC o`: find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" MAP `SPC s`: search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" MAP `SPC j`: do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" MAP `SPC k`: do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" MAP `SPC p`: resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " Snip completion
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<TAB>"
@@ -781,11 +775,11 @@ call SetupCommandAbbrs('C', 'CocConfig')
 
 let g:vista_default_executive = 'coc' " ctag/vim_lsp/coc
 
-" " MAP `SPC t`: open/close symbols & tags panel
-" nnoremap <silent> <space>t  :Vista!!<CR>
+" MAP `SPC t`: open/close symbols & tags panel
+nnoremap <silent> <space>t  :Vista!!<CR>
 
-" " MAP `SPC f`: fuzzy find symbol or tag
-" nnoremap <silent> <space>f  :Vista finder coc<CR>
+" MAP `SPC f`: fuzzy find symbol or tag
+nnoremap <silent> <space>f  :Vista finder coc<CR>
 
 let g:vista#renderer#enable_icon = 1
 
@@ -912,5 +906,21 @@ let g:vimwiki_key_mappings =
   \ {
   \ 'headers': 0,
   \ }
+
+function SetVimWikiOptions()
+  " Change folding mapping to <space>
+  nnoremap <silent><buffer> <space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+  vnoremap <buffer> <space> zf
+endfunction
+autocmd Filetype vimwiki call SetVimWikiOptions()
+
+" }}}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimrc {{{
+
+" From: https://github.com/CalinLeafshade/dots/blob/master/nvim/.config/nvim/init.vim
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC <bar> :doautocmd BufRead<CR>
 
 " }}}
