@@ -13,6 +13,7 @@ Installed plugins
 * [vim-airline](https://github.com/vim-airline/vim-airline)
 * [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
 * [vim-easymotion](https://github.com/easymotion/vim-easymotion)
+* [quick-scope](https://github.com/unblevable/quick-scope)
 * [vim-commentary](https://github.com/tpope/vim-commentary)
 * [vim-surround](https://github.com/tpope/vim-surround)
 * [indentLine](https://github.com/Yggdroot/indentLine)
@@ -51,13 +52,15 @@ Customized key binding
 * `-`: enter command mode
 * `jklñ`: left, down, up, right
 * `C-w jklñ`: go to left, down, up, right panel
-* `00`: beginning of the line
-* `h`: beginning of the line
-* `hh`: end of the line
+* `hj`: beginning of the line
+* `hñ`: end of the line
 * `gb`: go back
 * `,zz`: center de current line in the screen
 * `s`: jump anywhere typing two characters and then the label
-* `SPACE`: open/close folds (in visual mode create a fold)
+* `zR`: open all folds
+* `zM`: close all folds
+* `zi`: toggle folds
+* `ENTER`: open/close folds (in visual mode create a fold)
 * `C-h`, `C-j`: move between tabs
 * `A-PageUp`, `A-PageUp`: move tab
 * `C-t`: new tab
@@ -116,9 +119,13 @@ Customized key binding
 * `C-g`: activate spell checker for English
 * `M-F6`: deactivate spell checker
 * `F3`: count words of the document
+* `,=`: underline word with "=" (Markdown)
+* `,-`: underline word with "-" (Markdown)
 * `:Goyo`: distraction-free writing
 * `,ww`: open default VimWiki
 * `,wt`: open default VimWiki in a new tab
 * `,ws`: select VimWiki to open
 * `,wd`: delete current VimWiki file
 * `,wr`: rename current VimWiki file
+* `,ev`: edit vimrc
+* `,ev`: run vimrc

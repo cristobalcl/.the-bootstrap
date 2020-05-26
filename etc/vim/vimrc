@@ -85,6 +85,9 @@ Plug 'vim-airline/vim-airline-themes'
 " EasyMotion
 Plug 'easymotion/vim-easymotion'
 
+" quick-scope
+Plug 'unblevable/quick-scope'
+
 " Comments
 Plug 'tpope/vim-commentary'
 " Surround
@@ -202,6 +205,15 @@ nnoremap <Leader>m :call ToggleMouse()<CR>
 set mouse=a                            " Mouse activate
 " FIXME This break copy&paste with visual blocks:
 set clipboard+=unnamedplus             " Copy&Paste from clipboard
+
+" function YankBlock(vmode)
+"   echo vmode
+" endfunction
+
+" " vnoremap <silent> y :call YankBlock()
+" vnoremap y :call YankBlock(visualmode())<CR>
+" " vnoremap y if mode() == "CTRL-V" | echo "block" :call YankBlock()<CR>
+" " vnoremap y :echo mode()<CR>
 
 " }}}
 
@@ -338,12 +350,12 @@ nnoremap <C-w>k <C-w><down>
 nnoremap <C-w>l <C-w><up>
 nnoremap <C-w>ñ <C-w><right>
 
-" MAP `h`: beginning of the line
-nnoremap h ^
-vnoremap h ^
-" MAP `hh`: end of the line
-nnoremap hh $
-vnoremap hh $
+" MAP `hj`: beginning of the line
+nnoremap hj ^
+vnoremap hj ^
+" MAP `hñ`: end of the line
+nnoremap hñ $
+vnoremap hñ $
 
 " MAP `gb`: go back
 nnoremap gb <C-o>
@@ -367,16 +379,29 @@ nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
+" quick-scope
+
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+let g:qs_max_chars=150
+
+hi link QuickScopePrimary IncSearch
+hi link QuickScopeSecondary ErrorMsg
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Folding {{{
 
+" set foldmethod=syntax
+set foldmethod=indent
+set foldnestmax=2
+
 " MAP `zR`: open all folds
 " MAP `zM`: close all folds
 " MAP `zi`: toggle folds
 
-" https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds
+" From: https://vim.fandom.com/wiki/Folding#Mappings_to_toggle_folds
 " MAP `ENTER`: open/close folds (in visual mode create a fold)
 nnoremap <silent> <CR> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <CR> zf
@@ -614,7 +639,7 @@ vmap > >gv
 
 " }}}
 
-""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coding {{{
 
 " mucomplete
@@ -920,7 +945,9 @@ autocmd Filetype vimwiki call SetVimWikiOptions()
 " vimrc {{{
 
 " From: https://github.com/CalinLeafshade/dots/blob/master/nvim/.config/nvim/init.vim
+" MAP `,ev`: edit vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
+" MAP `,ev`: run vimrc
 nnoremap <leader>sv :source $MYVIMRC <bar> :doautocmd BufRead<CR>
 
 " }}}
