@@ -947,7 +947,7 @@ autocmd Filetype vimwiki call SetVimWikiOptions()
 " From: https://github.com/CalinLeafshade/dots/blob/master/nvim/.config/nvim/init.vim
 " MAP `,ev`: edit vimrc
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
-" MAP `,ev`: run vimrc
+" MAP `,sv`: run vimrc
 nnoremap <leader>sv :source $MYVIMRC <bar> :doautocmd BufRead<CR>
 
 " }}}

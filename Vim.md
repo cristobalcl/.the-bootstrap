@@ -128,4 +128,4 @@ Customized key binding
 * `,wd`: delete current VimWiki file
 * `,wr`: rename current VimWiki file
 * `,ev`: edit vimrc
-* `,ev`: run vimrc
+* `,sv`: run vimrc
