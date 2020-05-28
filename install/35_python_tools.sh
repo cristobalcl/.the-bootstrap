@@ -11,15 +11,21 @@ source lib/system.sh
 echo "==> ${LBLUE}Installing pyenv…${END}"
 if [[ "$OS_NAME" == "Darwin" ]]; then
     brew install pyenv
-elif [[ "$VERSION_CODENAME" == "xenial" ]]; then
+else
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
 fi
 
-echo "==> ${LBLUE}Installing Python 3.6…${END}"
-pyenv install 3.6.0
+echo "==> ${LBLUE}Installing Python 3.6.10…${END}"
+pyenv install 3.6.10
 
-echo "==> ${LBLUE}Installing Python 3.7…${END}"
-pyenv install 3.7.0
+echo "==> ${LBLUE}Installing Python 3.7.7…${END}"
+pyenv install 3.7.7
+
+echo "==> ${LBLUE}Installing Python 3.8.2…${END}"
+pyenv install 3.8.2
 
 echo "==> ${LBLUE}Installing poetry…${END}"
 curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
