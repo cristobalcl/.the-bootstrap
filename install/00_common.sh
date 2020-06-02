@@ -78,7 +78,17 @@ directory ~/bin
 directory ~/tmp
 directory ~/Proyectos
 
+echo "==> ${LBLUE}Linking files…${END}"
+cat links.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read link; do
+    linked $(pwd)/$link
+done
+
 echo "==> ${LBLUE}Linking scripts…${END}"
 ls -1 bin/*.sh | while IFS= read file_path; do
     linked $(pwd)/${file_path} ~/bin/
+done
+
+echo "==> ${LBLUE}Cloning git repositories…${END}"
+cat requirements/links.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read link; do
+    git clone $link
 done

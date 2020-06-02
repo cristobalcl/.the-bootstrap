@@ -1,0 +1,2 @@
+# git -> dest
+https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
