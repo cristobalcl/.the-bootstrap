@@ -33,6 +33,8 @@ python3-dev
 python3-pip
 virtualenv
 
+ruby-full
+
 # Writing
 m4
 # Warning: big download!

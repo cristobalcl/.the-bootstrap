@@ -14,3 +14,4 @@ pyenv-virtualenv
 npm
 broot
 lazygit
+tmuxinator

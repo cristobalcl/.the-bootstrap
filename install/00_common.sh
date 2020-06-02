@@ -71,6 +71,10 @@ if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
 
   echo "==> ${LBLUE}Linking screen configuration…${END}"
   linked $(pwd)/etc/screenrc ~/.screenrc
+
+  # FIXME
+  echo "==> ${LBLUE}Install tmuxinator…${END}"
+  gem install tmuxinator
 fi
 
 echo "==> ${LBLUE}Creating default directories…${END}"
