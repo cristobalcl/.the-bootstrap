@@ -1,2 +1,3 @@
 # source relative path -> destination
 etc/tmux.conf ~/.tmux.conf
+etc/ranger/rc.conf ~/.config/ranger/rc.conf

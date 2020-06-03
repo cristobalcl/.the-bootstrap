@@ -8,3 +8,4 @@ httpie
 you-get
 glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]
 tldr
+ranger-fm
