@@ -1,2 +1,3 @@
 # source relative path -> destination
+etc/screenrc ~/.screenrc
 etc/tmux.conf ~/.tmux.conf

@@ -9,7 +9,7 @@ if xset q &>/dev/null; then
     source lib/colors.sh
 
     echo "==> ${LBLUE}Linking xbindkeys configuration…${END}"
-    linked $(pwd)/etc/xbindkeysrc ~/.xbindkeysrc
+    linked etc/xbindkeysrc ~/.xbindkeysrc
 
     if ! pgrep xbindkeysx &> /dev/null; then
         echo "==> ${LBLUE}Launching xbindkeys…${END}"

@@ -26,8 +26,8 @@ fi
 
 echo "==> ${LBLUE}Linking Fish configuration…${END}"
 directory ~/.config/fish
-linked $(pwd)/etc/fish/aliases.fish ~/.config/fish/aliases.fish
-linked $(pwd)/etc/fish/config.fish ~/.config/fish/config.fish
+linked etc/fish/aliases.fish ~/.config/fish/aliases.fish
+linked etc/fish/config.fish ~/.config/fish/config.fish
 
 echo "==> ${LBLUE}Installing Fisherman…${END}"
 directory ~/.config/fish/functions

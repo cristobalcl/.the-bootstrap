@@ -18,12 +18,12 @@ echo "==> ${LBLUE}Linking Vim configuration…${END}"
 directory ~/.vim
 directory ~/.vim/undodir
 
-linked $(pwd)/etc/vim/ftplugin ~/.vim/
-#linked $(pwd)/etc/vim/ftdetect ~/.vim/
-linked $(pwd)/etc/vim/UltiSnips ~/.vim/
-linked $(pwd)/etc/vim/vimrc ~/.vimrc
-# linked $(pwd)/etc/vim/vimrc.local ~/.vimrc.local
-# linked $(pwd)/etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
+linked etc/vim/ftplugin ~/.vim/
+#linked etc/vim/ftdetect ~/.vim/
+linked etc/vim/UltiSnips ~/.vim/
+linked etc/vim/vimrc ~/.vimrc
+# linked etc/vim/vimrc.local ~/.vimrc.local
+# linked etc/vim/vimrc.local.bundles ~/.vimrc.local.bundles
 
 echo "==> ${LBLUE}Install NeoVim…${END}"
 directory ~/bin
@@ -42,11 +42,11 @@ echo "==> ${LBLUE}Linking NeoVim configuration…${END}"
 directory ~/.config/nvim
 directory ~/.local/share/nvim/site/
 
-linked $(pwd)/etc/vim/vimrc ~/.config/nvim/init.vim
-linked $(pwd)/etc/vim/UltiSnips ~/.config/nvim/UltiSnips
-linked $(pwd)/etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
-linked ~/.vim ~/.nvim
-linked ~/.vim/autoload ~/.local/share/nvim/site/autoload
+linked etc/vim/vimrc ~/.config/nvim/init.vim
+linked etc/vim/UltiSnips ~/.config/nvim/UltiSnips
+linked etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
+linked_p ~/.vim ~/.nvim
+linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
 
 # Reference:
 # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
@@ -65,12 +65,12 @@ pip install neovim
 
 # TODO Put all this elsewhere...
 pip install flake8
-linked `pyenv which flake8` ~/bin/flake8
+linked_p `pyenv which flake8` ~/bin/flake8
 
 pip install black
-linked `pyenv which black` ~/bin/black
+linked_p `pyenv which black` ~/bin/black
 
 pip install mypy
-linked `pyenv which mypy` ~/bin/mypy
+linked_p `pyenv which mypy` ~/bin/mypy
 
 pyenv deactivate

@@ -24,15 +24,15 @@ if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
           echo "==> ${LBLUE}Installing Hack nerd font…${END}"
           directory "${FONTS_PATH}"
           # download ${FONT_URL} "${FONTS_PATH}/${FONT_NAME}"
-          linked $(pwd)/fonts/LigaHackNerdFontMono-Regular.ttf "${FONTS_PATH}/${FONT_NAME}"
+          linked fonts/LigaHackNerdFontMono-Regular.ttf "${FONTS_PATH}/${FONT_NAME}"
       fi
 
       fc-cache -vf ${FONTS_PATH}
 
       echo "==> ${LBLUE}Linking Konsole and Yakuake configuration…${END}"
       directory ~/.kde/share/apps/konsole
-      linked $(pwd)/etc/kde/share/apps/konsole/Shell.profile ~/.kde/share/apps/konsole/Shell.profile
-      linked $(pwd)/etc/kde/share/apps/konsole/Yakuake.profile ~/.kde/share/apps/konsole/Yakuake.profile
+      linked etc/kde/share/apps/konsole/Shell.profile ~/.kde/share/apps/konsole/Shell.profile
+      linked etc/kde/share/apps/konsole/Yakuake.profile ~/.kde/share/apps/konsole/Yakuake.profile
 
       echo "==> ${LBLUE}Installing Spotify…${END}"
       sudo snap install spotify || sudo snap refresh spotify

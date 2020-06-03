@@ -9,4 +9,4 @@ source lib/colors.sh
 
 echo "==> ${LBLUE}Linking powerline-shell config…${END}"
 directory ~/.config/powerline-shell
-linked $(pwd)/etc/powerline-shell.json ~/.config/powerline-shell/config.json
+linked etc/powerline-shell.json ~/.config/powerline-shell/config.json

@@ -31,4 +31,4 @@ echo "==> ${LBLUE}Installing poetry…${END}"
 curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 echo "==> ${LBLUE}Installing flake8 config…${END}"
-linked $(pwd)/etc/flake8 ~/.config/
+linked etc/flake8 ~/.config/
