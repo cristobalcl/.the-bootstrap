@@ -1,3 +1,4 @@
 # source relative path -> destination
 etc/screenrc ~/.screenrc
 etc/tmux.conf ~/.tmux.conf
+etc/ranger/rc.conf ~/.config/ranger/rc.conf
