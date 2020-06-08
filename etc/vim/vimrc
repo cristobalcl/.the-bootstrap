@@ -521,8 +521,8 @@ nnoremap <leader>p :echo expand('%:p')<CR>
 
 " MAP `gF`: open file under cursor in a horizontal split
 map gF :wincmd f<CR>
-" MAP `ggf`: open file under cursor in a new tab
-map ggf :wincmd gf<CR>
+" MAP `gFF`: open file under cursor in a new tab
+map gFF :wincmd gf<CR>
 
 " }}}
 
