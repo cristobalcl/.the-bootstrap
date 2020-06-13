@@ -17,7 +17,7 @@ if ! command -v ansible &> /dev/null; then
 fi
 
 if ! command -v vagrant &> /dev/null; then
-    VAG_VERSION=`curl -L https://releases.hashicorp.com/vagrant/ 2> /dev/null | grep -m 1 'vagrant_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    VAG_VERSION=`curl -L https://releases.hashicorp.com/vagrant/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'vagrant_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
     echo "==> ${LBLUE}Downloading Vagrant ${VAG_VERSION}…${END}"
     download "https://releases.hashicorp.com/vagrant/${VAG_VERSION}/vagrant_${VAG_VERSION}_x86_64.deb" /tmp/vagrant.deb
@@ -28,7 +28,7 @@ if ! command -v vagrant &> /dev/null; then
 fi
 
 if ! command -v packer &> /dev/null; then
-    PAC_VERSION=`curl -L https://releases.hashicorp.com/packer/ 2> /dev/null | grep -m 1 'packer_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    PAC_VERSION=`curl -L https://releases.hashicorp.com/packer/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'packer_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
     echo "==> ${LBLUE}Downloading Packer ${PAC_VERSION}…${END}"
     download "https://releases.hashicorp.com/packer/${PAC_VERSION}/packer_${PAC_VERSION}_linux_amd64.zip" /tmp/packer.zip
@@ -39,7 +39,7 @@ if ! command -v packer &> /dev/null; then
 fi
 
 if ! command -v terraform &> /dev/null; then
-    TER_VERSION=`curl -L https://releases.hashicorp.com/terraform/ 2> /dev/null | grep -m 1 'terraform_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    TER_VERSION=`curl -L https://releases.hashicorp.com/terraform/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'terraform_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
     echo "==> ${LBLUE}Downloading Terraform ${TER_VERSION}…${END}"
     download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_linux_amd64.zip" /tmp/terraform.zip
