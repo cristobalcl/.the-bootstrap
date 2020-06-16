@@ -605,11 +605,21 @@ nnoremap <leader>v v$h
 nnoremap <leader>u guiw
 nnoremap <leader>U gUiw
 
-" MAP `,"`, `,'`: surround word or visual selection with " or '
+" MAP `,"`, `,'`, `,(`, `,[`, `,{`: surround word or visual selection with ", ', (), [] or {}
 nmap <leader>" ysiw"
 nmap <leader>' ysiw'
 vmap <leader>" S"
 vmap <leader>' S'
+nmap <leader>( ysiw)
+nmap <leader>[ ysiw]
+nmap <leader>{ ysiw}
+vmap <leader>( S)
+vmap <leader>[ S]
+vmap <leader>{ S}
+
+" MAP `,)`, `,]`: interchange () and []
+nmap <leader>) cs[)
+nmap <leader>] cs(]
 
 " Chage to UPPER CASE, lower case and Tittle Case
 " http://vim.wikia.com/wiki/Switching_case_of_characters

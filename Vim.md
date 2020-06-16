@@ -75,7 +75,7 @@ Customized key binding
 * `,B`: search buffer
 * `,p`: show full filename and path
 * `gF`: open file under cursor in a horizontal split
-* `ggf`: open file under cursor in a new tab
+* `gFF`: open file under cursor in a new tab
 * `.`: repeat last action and move to the beginning of the edition
 * `Y`: copy until the end of the line
 * `,p`: paste yank
@@ -91,7 +91,8 @@ Customized key binding
 * `gV`: select what you just pasted
 * `,v`: select until end of the line
 * `,u`, `,U`: change case of whole word
-* `,"`, `,'`: surround word or visual selection with " or '
+* `,"`, `,'`, `,(`, `,[`, `,{`: surround word or visual selection with ", ', (), [] or {}
+* `,)`, `,]`: interchange () and []
 * `~`: change between lower case, UPPER CASE and Tittle Case
 * `gs`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
 * `K`: show documentation in preview window
