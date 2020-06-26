@@ -144,6 +144,11 @@ abbr -a gcleanall 'git clean -fdx'
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
 
+# tmux
+abbr -a tv 'tmux new-session 'nvim' \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
+abbr -a tvw 'tmux new-session 'nvim' \; split-window -v -p 30 \; new-window \; selectw -t 1 \; selectp -t 0 \;'
+abbr -a tvww 'tmux new-session 'nvim' \; split-window -v -p 30 \; new-window \; new-window \; selectw -t 1 \; selectp -t 0 \;'
+
 # Deepo
 abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
 
