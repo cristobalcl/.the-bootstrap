@@ -19,13 +19,13 @@ else
 fi
 
 echo "==> ${LBLUE}Installing Python 3.6.10…${END}"
-pyenv install 3.6.10
+pyenv install 3.6.10 || echo "Already exist..."
 
 echo "==> ${LBLUE}Installing Python 3.7.7…${END}"
-pyenv install 3.7.7
+pyenv install 3.7.7 || echo "Already exist..."
 
 echo "==> ${LBLUE}Installing Python 3.8.2…${END}"
-pyenv install 3.8.2
+pyenv install 3.8.2 || echo "Already exist..."
 
 echo "==> ${LBLUE}Installing poetry…${END}"
 curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
