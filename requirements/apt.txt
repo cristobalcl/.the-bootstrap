@@ -3,6 +3,8 @@ software-properties-common
 ca-certificates
 build-essential
 
+httpie
+
 # Compile Python with pyenv
 zlib1g-dev
 libffi-dev
@@ -18,8 +20,6 @@ tk-dev
 liblzma-dev
 python-openssl
 
-python3.7-dev
-libpython3.7-dev
 libyaml-dev
 
 # Source Code Control Systems
@@ -34,6 +34,8 @@ python3-pip
 virtualenv
 
 ruby-full
+
+cargo
 
 # Writing
 m4
