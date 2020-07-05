@@ -11,10 +11,8 @@ source lib/system.sh
 if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
   echo "==> ${LBLUE}Installing Fish…${END}"
   if [ "$OS_NAME" == "ubuntu" ]; then
-      if [ ! -f /etc/apt/sources.list.d/fish-shell-ubuntu-release-2-xenial.list ]; then
-          sudo apt-add-repository ppa:fish-shell/release-2 -y
-          sudo apt-get update
-      fi
+      sudo apt-add-repository ppa:fish-shell/release-3 -y
+      sudo apt-get update
       sudo apt-get install fish -y
   elif [ "$OS_NAME" == "opensuse" ]; then
     sudo zypper install fish
