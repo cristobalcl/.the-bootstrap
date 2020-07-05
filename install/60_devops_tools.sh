@@ -8,9 +8,9 @@ source lib/files.sh
 source lib/colors.sh
 
 if ! command -v ansible &> /dev/null; then
-    echo "==> ${LBLUE}Adding Ansible repository…${END}"
-    sudo apt-add-repository ppa:ansible/ansible -y
-    sudo apt-get update
+    # echo "==> ${LBLUE}Adding Ansible repository…${END}"
+    # sudo apt-add-repository ppa:ansible/ansible -y
+    # sudo apt-get update
 
     echo "==> ${LBLUE}Installing Ansible…${END}"
     sudo apt-get install ansible -y
