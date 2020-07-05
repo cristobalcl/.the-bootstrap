@@ -31,8 +31,14 @@ if [ "$OS_NAME" == "darwin" ]; then
   install_brew
 fi
 
-echo "==> ${LBLUE}Updating pip2…${END}"
-sudo pip2 install --upgrade pip
+if [ "$OS_NAME" == "ubuntu" ]; then
+    echo "==> ${LBLUE}Install pip2…${END}"
+    sudo add-apt-repository universe
+    sudo apt update
+    sudo apt install python2
+    curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py
+    sudo python2 /tmp/get-pip.py
+fi
 
 echo "==> ${LBLUE}Updating pip3…${END}"
 sudo pip3 install --upgrade pip
