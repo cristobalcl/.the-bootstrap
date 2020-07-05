@@ -49,6 +49,6 @@ install_links() {
 install_git() {
     echo "==> ${LBLUE}Installing git repositories…${END}"
     cat requirements/git.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read repo; do
-        git clone ${repo/\~/$HOME}
+        git clone ${repo/\~/$HOME} || echo "Error installing git repo: ${repo}"
     done
 }

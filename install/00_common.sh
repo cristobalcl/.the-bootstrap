@@ -32,12 +32,14 @@ if [ "$OS_NAME" == "darwin" ]; then
 fi
 
 if [ "$OS_NAME" == "ubuntu" ]; then
-    echo "==> ${LBLUE}Install pip2…${END}"
-    sudo add-apt-repository universe
-    sudo apt update
-    sudo apt install python2
-    curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py
-    sudo python2 /tmp/get-pip.py
+    if ! command -v pip2 &> /dev/null; then
+        echo "==> ${LBLUE}Install pip2…${END}"
+        sudo add-apt-repository universe
+        sudo apt update
+        sudo apt install python2
+        curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py
+        sudo python2 /tmp/get-pip.py
+    fi
 fi
 
 echo "==> ${LBLUE}Updating pip3…${END}"
