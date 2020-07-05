@@ -57,10 +57,6 @@ done
 
 if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
     install_snap
-
-    # FIXME
-    echo "==> ${LBLUE}Install tmuxinator…${END}"
-    gem install tmuxinator
 fi
 
 echo "==> ${LBLUE}Creating default directories…${END}"
