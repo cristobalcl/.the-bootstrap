@@ -12,7 +12,7 @@ echo "==> ${LBLUE}Installing pyenv…${END}"
 if [[ "$OS_NAME" == "Darwin" ]]; then
     brew install pyenv
 else
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv || echo "Already exist..."
 
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"

@@ -51,27 +51,29 @@ linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
 # Reference:
 # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
 echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
-pyenv_cmd="$HOME/.pyenv/bin/pyenv"
-${pyenv_cmd} install 2.7.11
-${pyenv_cmd} install 3.7.4
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 
-${pyenv_cmd} virtualenv 2.7.11 neovim2
-${pyenv_cmd} virtualenv 3.7.4 neovim3
+pyenv install 2.7.11
+pyenv install 3.7.4
 
-${pyenv_cmd} activate neovim2
+pyenv virtualenv 2.7.11 neovim2
+pyenv virtualenv 3.7.4 neovim3
+
+pyenv activate neovim2
 pip install neovim
 
-${pyenv_cmd} activate neovim3
+pyenv activate neovim3
 pip install neovim
 
 # TODO Put all this elsewhere...
 pip install flake8
-linked_p `${pyenv_cmd} which flake8` ~/bin/flake8
+linked_p `pyenv which flake8` ~/bin/flake8
 
 pip install black
-linked_p `${pyenv_cmd} which black` ~/bin/black
+linked_p `pyenv which black` ~/bin/black
 
 pip install mypy
-linked_p `${pyenv_cmd} which mypy` ~/bin/mypy
+linked_p `pyenv which mypy` ~/bin/mypy
 
-${pyenv_cmd} deactivate
+pyenv deactivate
