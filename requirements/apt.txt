@@ -55,6 +55,7 @@ libxml2-utils
 run-one
 silversearcher-ag
 jq
+libaa-bin
 
 snapd
 # x2goclient

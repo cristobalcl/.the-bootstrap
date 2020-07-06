@@ -73,4 +73,7 @@ ls -1 bin/*.sh | while IFS= read file_path; do
     linked ${file_path} ~/bin/
 done
 
+git config --global user.email "ccarnerolinan@gmail.com"
+git config --global user.name "Cristóbal Carnero Liñán"
+
 install_git

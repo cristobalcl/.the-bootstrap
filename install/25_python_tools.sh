@@ -16,6 +16,8 @@ else
 
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
+
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 fi
 
 echo "==> ${LBLUE}Installing Python 3.6.10…${END}"
