@@ -54,14 +54,14 @@ echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
-pyenv install 2.7.11
-pyenv install 3.7.4
+# pyenv install 2.7.11
+# pyenv install 3.7.4
 
-pyenv virtualenv 2.7.11 neovim2
-pyenv virtualenv 3.7.4 neovim3
+# pyenv virtualenv 2.7.11 neovim2
+pyenv virtualenv 3.8.2 neovim3
 
-pyenv activate neovim2
-pip install neovim
+# pyenv activate neovim2
+# pip install neovim
 
 pyenv activate neovim3
 pip install neovim
