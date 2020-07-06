@@ -116,6 +116,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'dart-lang/dart-vim-plugin'
 
 " Markdown
+Plug 'godlygeek/tabular'
 Plug 'gabrielelana/vim-markdown'
 
 " Autoclose delimiters
@@ -878,6 +879,9 @@ autocmd FileType sh
 
 " Comments in JSON
 autocmd FileType json syntax match Comment +\/\/.\+$+
+
+" *.md files -> Markdown
+autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
 
 " }}}
 
