@@ -106,9 +106,6 @@ Plug 'airblade/vim-gitgutter'
 " EditorConfig coding style configuration
 Plug 'editorconfig/editorconfig-vim'
 
-" Python
-Plug 'davidhalter/jedi-vim'
-
 " Languages support
 Plug 'sheerun/vim-polyglot'
 
@@ -125,16 +122,21 @@ Plug 'Raimondi/delimitMate'
 " Toggle words between pairs or lists of related words
 Plug 'zef/vim-cycle'
 
-" Autocompletion
-" mucomplete
-" Plug 'lifepillar/vim-mucomplete'
-
-" REPL
-" Plug 'jalvesaq/vimcmdline'
-
-" Language Server Protocol support
+" Language Service Provider
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+
+" ALE
+Plug 'dense-analysis/ale'
+
+" UltiSnips
+if has('python3')
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+endif
 
 " Symbols and tag views
 Plug 'liuchengxu/vista.vim'
@@ -145,11 +147,6 @@ Plug 'junegunn/limelight.vim'
 
 " VimWiki
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
-
-if v:version >= 704
-  " UltiSnips
-  Plug 'SirVer/ultisnips'
-endif
 
 " codi.vim - interactive scratchpad
 Plug 'metakirby5/codi.vim'
@@ -531,8 +528,13 @@ map gFF :wincmd gf<CR>
 
 let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', 'UltiSnips']
 
-" Trying to fix "change completeopt on insert mode" problem
-let g:jedi#completions_enabled = 0
+if has('python3')
+    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+        \ 'name': 'ultisnips',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+        \ }))
+endif
 
 " }}}
 
@@ -648,27 +650,20 @@ vmap > >gv
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coding {{{
 
-" mucomplete
-" set completeopt-=preview
-" set completeopt+=noselect
-" " set completeopt+=noinsert
-" " set completeopt+=longest
-" set completeopt+=menuone
-" set shortmess+=c                       " Shut off completion messages
-" set belloff+=ctrlg                     " If Vim beeps during completion
-" let g:mucomplete#enable_auto_at_startup = 1
-" " let g:mucomplete#completion_delay = 1
+" Python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+" Omnicompletion
+" set completeopt+=longest,menuone
 
 " vim-lsp
-" if executable('pyls')
-"     " pip install python-language-server
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'allowlist': ['python'],
-"         \ })
-" endif
-
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -704,13 +699,17 @@ let g:vista_executive_for = {
   \ 'python': 'vim_lsp',
   \ }
 
-" " MAP `SPC t`: open/close symbols & tags panel
-" nnoremap <silent> <space>t  :Vista!!<CR>
+" MAP `SPC t`: open/close symbols & tags panel
+nnoremap <silent> <space>t  :Vista!!<CR>
 
 " " MAP `SPC f`: fuzzy find symbol or tag
 " nnoremap <silent> <space>f  :Vista finder coc<CR>
 
 let g:vista#renderer#enable_icon = 1
+
+" ALE
+" Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1
 
 " From George in Vim Telegram Group
 function! JsonPrettyTool()
