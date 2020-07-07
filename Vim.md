@@ -21,24 +21,30 @@ Installed plugins
 * [vim-fugitive](https://github.com/tpope/vim-fugitive)
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter)
 * [editorconfig-vim](https://github.com/editorconfig/editorconfig-vim)
-* [jedi-vim](https://github.com/davidhalter/jedi-vim)
 * [vim-polyglot](https://github.com/sheerun/vim-polyglot)
 * [dart-vim-plugin](https://github.com/dart-lang/dart-vim-plugin)
+* [tabular](https://github.com/godlygeek/tabular)
 * [vim-markdown](https://github.com/gabrielelana/vim-markdown)
 * [delimitMate](https://github.com/Raimondi/delimitMate)
 * [vim-cycle](https://github.com/zef/vim-cycle)
-* [coc.nvim](https://github.com/neoclide/coc.nvim)
-* [vim-node-rpc](https://github.com/neoclide/vim-node-rpc)
+* [vim-lsp](https://github.com/prabirshrestha/vim-lsp)
+* [vim-lsp-settings](https://github.com/mattn/vim-lsp-settings)
+* [asyncomplete.vim](https://github.com/prabirshrestha/asyncomplete.vim)
+* [asyncomplete-lsp.vim](https://github.com/prabirshrestha/asyncomplete-lsp.vim)
+* [ale](https://github.com/dense-analysis/ale)
+* [ultisnips](https://github.com/SirVer/ultisnips)
+* [vim-snippets](https://github.com/honza/vim-snippets)
+* [asyncomplete-ultisnips.vim](https://github.com/prabirshrestha/asyncomplete-ultisnips.vim)
 * [vista.vim](https://github.com/liuchengxu/vista.vim)
 * [goyo.vim](https://github.com/junegunn/goyo.vim)
 * [limelight.vim](https://github.com/junegunn/limelight.vim)
 * [vimwiki](https://github.com/vimwiki/vimwiki)
-* [ultisnips](https://github.com/SirVer/ultisnips)
 * [codi.vim](https://github.com/metakirby5/codi.vim)
 * [vim-devicons](https://github.com/ryanoasis/vim-devicons)
 
 Customized key binding
 ----------------------
+* `gi`: go insert mode in the last insert location
 * `C-d`, `C-u`: page up, page down
 * `C-x C-l`: line completion
 * `C-o`, `C-i`: jump back, jump forward (out/in)
@@ -94,27 +100,7 @@ Customized key binding
 * `,"`, `,'`, `,(`, `,[`, `,{`: surround word or visual selection with ", ', (), [] or {}
 * `,)`, `,]`: interchange () and []
 * `~`: change between lower case, UPPER CASE and Tittle Case
-* `gs`, `gy`, `gi`, `gr`: go to definition, type definition, implementation or references
-* `K`: show documentation in preview window
-* `,rn`: rename current word
-* `,t`: format region or visual selection
-* `,a`: do codeAction of selected region, ex: `,aap` for current paragraph
-* `,ac`: do codeAction of current line
-* `,qf`: fix autofix problem of current line
-* `:Format`: format current buffer
-* `:Fold`: fold current buffer
-* `:OR`: organize imports of current buffer
-* `SPC a`: show all diagnostics
-* `SPC e`: manage extensions
-* `SPC c`: list commands
-* `SPC o`: find symbol of current document
-* `SPC s`: search workspace symbols
-* `SPC j`: do default action for next item.
-* `SPC k`: do default action for previous item.
-* `SPC p`: resume latest coc list
-* `:C`: open coc config
 * `SPC t`: open/close symbols & tags panel
-* `SPC f`: fuzzy find symbol or tag
 * `M-F5`: show spell checker suggestions
 * `C-s`: activate spell checker for Spanish
 * `C-g`: activate spell checker for English
