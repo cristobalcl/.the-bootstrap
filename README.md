@@ -26,6 +26,7 @@ sudo apt update && sudo apt install git && cd && \
 - Start `ssh-agent`: `eval "$(ssh-agent -s)"`
 - Add ssh key: `ssh-add ~/.ssh/id_rsa`
 - Configure new key in [GitHub](https://github.com/settings/ssh/new)
+- Install tmux plugins: `c-b I`
 
 Features
 --------
