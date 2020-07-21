@@ -348,7 +348,11 @@ nnoremap <C-w>k <C-w><down>
 nnoremap <C-w>l <C-w><up>
 nnoremap <C-w>ñ <C-w><right>
 
-" MAP `hj`: beginning of the line
+" MAP `hh`: beginning of the line
+nnoremap hh 0
+vnoremap hh 0
+
+" MAP `hj`: first character of the line
 nnoremap hj ^
 vnoremap hj ^
 " MAP `hñ`: end of the line

@@ -141,6 +141,11 @@ abbr -a glsn 'git clean -xdn'
 abbr -a gclean 'git clean -fd'
 abbr -a gcleanall 'git clean -fdx'
 
+# Docker
+abbr -a dps 'docker ps'
+abbr -a ds 'docker stop'
+abbr -a dk 'docker stop'
+
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
 
