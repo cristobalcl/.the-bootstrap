@@ -43,28 +43,28 @@ directory ~/.config/nvim
 directory ~/.local/share/nvim/site/
 
 linked etc/vim/vimrc ~/.config/nvim/init.vim
-linked etc/vim/UltiSnips ~/.config/nvim/UltiSnips
-linked etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
+linked etc/vim/UltiSnips ~/.config/nvim/
+# linked etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 linked_p ~/.vim ~/.nvim
 linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
 
 # Reference:
 # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
 echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 # pyenv install 2.7.11
 # pyenv install 3.7.4
 
-# pyenv virtualenv 2.7.11 neovim2
-pyenv virtualenv 3.8.2 neovim3
+pyenv virtualenv 2.7.18 neovim2
+pyenv virtualenv 3.8.5 neovim3
 
-# pyenv activate neovim2
-# pip install neovim
+pyenv activate neovim2
+pip install pynvim
 
 pyenv activate neovim3
-pip install neovim
+pip install pynvim
 
 # TODO Put all this elsewhere...
 pip install flake8

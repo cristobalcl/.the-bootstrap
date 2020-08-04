@@ -28,10 +28,17 @@ sudo apt update && sudo apt install git && cd && \
 - Configure new key in [GitHub](https://github.com/settings/ssh/new)
 - Install tmux plugins: `c-b I`
 
+Fix origin:
+
+```
+cd ~/.the-bootstrap/
+git remote set-url origin git@github.com:cristobalcl/.the-bootstrap.git
+```
+
 Features
 --------
 
-For (K)ubuntu (tested on 16.04) and OpenSuse (experimental).
+For (K)ubuntu, OpenSuse (very experimental), and MacOS (experimental).
 
 ### Install recommended drivers
 
@@ -39,7 +46,7 @@ For (K)ubuntu (tested on 16.04) and OpenSuse (experimental).
 TB_RECOMMENDED_DRIVERS=true .the-bootstrap/bootstrap.sh
 ```
 
-### Bash & Fish
+### Fish
 
 ### powerline-shell
 
@@ -128,7 +135,6 @@ Install Kubuntu again without connecting the cable :(
 2. Go to `System setting -> Display and Monitor -> Compositor -> Rendering Backend` and change OpenGL 2.0 to XRender.
 
 Source: [Ubuntu Forums](https://ubuntuforums.org/showthread.php?t=2358926&s=a0573c29ff5f56dff90cf77418efa722&p=13679079#post13679079)
-
 ### Docker permission denied
 
 Full error message:

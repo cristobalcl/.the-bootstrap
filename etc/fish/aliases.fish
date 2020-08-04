@@ -76,6 +76,10 @@ alias ducks='du -cks * | sort -rn | head'
 # Disk usage for each directory with depth=1
 alias dud='du . -hd1'
 
+# Print MD5 fingerprint of a SSH public key
+abbr -a ssh-finger 'ssh-keygen -l -E md5 -f'
+
+# Python
 # Find and remove *.pyc
 # http://stackoverflow.com/questions/785519/how-do-i-remove-all-pyc-files-from-a-project
 alias pycdel='find . -name \*.pyc -delete'
@@ -83,6 +87,10 @@ alias pycdel='find . -name \*.pyc -delete'
 alias mkenv="virtualenv -p python3 .venv"
 alias ienv="source .venv/bin/activate.fish"
 alias oenv="deactivate"
+
+abbr -a pi 'pip install'
+abbr -a pir 'pip install -r requirements.txt'
+abbr -a pif 'pip freeze'
 
 abbr -a server 'python3 -m http.server'
 
@@ -155,6 +163,8 @@ abbr -a ta 'tmux attach-session -t'
 abbr -a tv 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
 abbr -a tvw 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; new-window \; selectw -t 1 \; selectp -t 0 \;'
 abbr -a tvww 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; new-window \; new-window \; selectw -t 1 \; selectp -t 0 \;'
+
+abbr -a tran 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'ranger\' C-m \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
 
 # Deepo
 abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
