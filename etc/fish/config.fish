@@ -56,15 +56,6 @@ if test -e $HOME/.poetry/bin
     set PATH $PATH $HOME/.poetry/bin
 end
 
-if test -e $HOME/.pyenv
-  set -gx PYENV_ROOT $HOME/.pyenv
-  if test -e $HOME/.pyenv/bin
-    set PATH $PATH $PYENV_ROOT/bin
-  end
-  status --is-interactive; and pyenv init - | source
-  status --is-interactive; and pyenv virtualenv-init - | source
-end
-
 if type -q powerline-shell
     function fish_prompt
         powerline-shell --shell bare $status
@@ -112,3 +103,10 @@ if test -e /usr/lib/dart/bin/
 end
 
 eval (ssh-agent -c) > /dev/null
+
+if test -e $HOME/.pyenv
+  set -Ux PYENV_ROOT $HOME/.pyenv
+  set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+  status --is-interactive; and pyenv init - | source
+  status --is-interactive; and pyenv virtualenv-init - | source
+end

@@ -97,3 +97,12 @@ alias scr='TERM=xterm-256color screen -x || screen'
 # .the-bootstrap
 alias .tbcd='cd ~/.the-bootstrap'
 alias .tbed='cd ~/.the-bootstrap && eval $EDITOR'
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+if command -v pyenv 1>/dev/null 2>&1
+then
+    eval "$(pyenv init -)"
+fi

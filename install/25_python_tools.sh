@@ -19,7 +19,6 @@ fi
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-
 echo "==> ${LBLUE}Installing Python 2.7.18…${END}"
 pyenv install 2.7.18 || echo "Already exist..."
 
