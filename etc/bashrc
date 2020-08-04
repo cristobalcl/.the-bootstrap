@@ -67,6 +67,7 @@ then
     alias here='printf "`pwd`" | xsel --clipboard'
     alias there='cd "`xsel --clipboard`"'
 elif command -v pbcopy &> /dev/null
+then
     alias here='printf "`pwd`" | pbcopy'
     alias there='cd "`pbpaste`"'
 fi
