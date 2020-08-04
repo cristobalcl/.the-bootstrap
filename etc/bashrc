@@ -62,8 +62,14 @@ alias today='date +%F'
 alias pylab='ipython -pylab'
 alias wcat='wget -qO-'
 
-alias here='printf `pwd`  | xsel --clipboard'
-alias there='cd "`xsel --clipboard`"'
+if command -v xsel &> /dev/null
+then
+    alias here='printf "`pwd`" | xsel --clipboard'
+    alias there='cd "`xsel --clipboard`"'
+elif command -v pbcopy &> /dev/null
+    alias here='printf "`pwd`" | pbcopy'
+    alias there='cd "`pbpaste`"'
+fi
 
 # alias vims='TERM=xterm-256color vim -S Session.vim'
 # alias vim='TERM=xterm-256color vim -p'

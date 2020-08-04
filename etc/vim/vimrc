@@ -734,6 +734,10 @@ set spellsuggest=10
 map <M-F5> z=
 imap <M-F5> <ESC>z=
 
+" MAP `M-s`: show spell checker suggestions
+map <M-s> z=
+imap <M-s> <ESC>z=
+
 " MAP `C-s`: activate spell checker for Spanish
 nmap <c-s> :setlocal spell spelllang=es<cr>
 " MAP `C-g`: activate spell checker for English
