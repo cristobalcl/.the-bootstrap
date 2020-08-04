@@ -222,7 +222,13 @@ colorscheme kalisi
 
 set background=dark
 
-set termguicolors                      " To fix Powerline in VimR
+if has('nvim')
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 set cmdheight=2                        " Two lines for commands
 set signcolumn=yes                     " Always show signcolumns
@@ -656,14 +662,14 @@ vmap > >gv
 " Coding {{{
 
 " Python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
+" py << EOF
+" import os
+" import sys
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+" EOF
 
 " Omnicompletion
 " set completeopt+=longest,menuone

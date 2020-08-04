@@ -48,6 +48,10 @@ if test -e $HOME/Library/Python/3.7/bin
     set PATH $PATH $HOME/Library/Python/3.7/bin
 end
 
+if test -e $HOME/Library/Python/3.8/bin
+    set PATH $PATH $HOME/Library/Python/3.8/bin
+end
+
 if test -e $HOME/.poetry/bin
     set PATH $PATH $HOME/.poetry/bin
 end

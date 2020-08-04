@@ -13,39 +13,49 @@ if ! command -v ansible &> /dev/null; then
     # sudo apt-get update
 
     echo "==> ${LBLUE}Installing Ansible…${END}"
-    sudo apt-get install ansible -y
+    if [ "$OS_NAME" == "ubuntu" ]; then
+        sudo apt-get install ansible -y
+    elif [[ "$OS_NAME" == "darwin" ]]; then
+        pip3 install --user ansible
+    fi
 fi
 
 if ! command -v vagrant &> /dev/null; then
-    VAG_VERSION=`curl -L https://releases.hashicorp.com/vagrant/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'vagrant_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    if [ "$OS_NAME" == "ubuntu" ]; then
+        VAG_VERSION=`curl -L https://releases.hashicorp.com/vagrant/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'vagrant_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
-    echo "==> ${LBLUE}Downloading Vagrant ${VAG_VERSION}…${END}"
-    download "https://releases.hashicorp.com/vagrant/${VAG_VERSION}/vagrant_${VAG_VERSION}_x86_64.deb" /tmp/vagrant.deb
+        echo "==> ${LBLUE}Downloading Vagrant ${VAG_VERSION}…${END}"
+        download "https://releases.hashicorp.com/vagrant/${VAG_VERSION}/vagrant_${VAG_VERSION}_x86_64.deb" /tmp/vagrant.deb
 
-    echo "==> ${LBLUE}Installing Vagrant ${VAG_VERSION}…${END}"
-    sudo dpkg -i /tmp/vagrant.deb
-    rm /tmp/vagrant.deb
+        echo "==> ${LBLUE}Installing Vagrant ${VAG_VERSION}…${END}"
+        sudo dpkg -i /tmp/vagrant.deb
+        rm /tmp/vagrant.deb
+    fi
 fi
 
 if ! command -v packer &> /dev/null; then
-    PAC_VERSION=`curl -L https://releases.hashicorp.com/packer/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'packer_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    if [ "$OS_NAME" == "ubuntu" ]; then
+        PAC_VERSION=`curl -L https://releases.hashicorp.com/packer/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'packer_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
-    echo "==> ${LBLUE}Downloading Packer ${PAC_VERSION}…${END}"
-    download "https://releases.hashicorp.com/packer/${PAC_VERSION}/packer_${PAC_VERSION}_linux_amd64.zip" /tmp/packer.zip
+        echo "==> ${LBLUE}Downloading Packer ${PAC_VERSION}…${END}"
+        download "https://releases.hashicorp.com/packer/${PAC_VERSION}/packer_${PAC_VERSION}_linux_amd64.zip" /tmp/packer.zip
 
-    echo "==> ${LBLUE}Installing Packer ${PAC_VERSION}…${END}"
-    unzip /tmp/packer.zip -d ~/bin/
-    rm /tmp/packer.zip
+        echo "==> ${LBLUE}Installing Packer ${PAC_VERSION}…${END}"
+        unzip /tmp/packer.zip -d ~/bin/
+        rm /tmp/packer.zip
+    fi
 fi
 
 if ! command -v terraform &> /dev/null; then
-    TER_VERSION=`curl -L https://releases.hashicorp.com/terraform/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'terraform_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
+    if [ "$OS_NAME" == "ubuntu" ]; then
+        TER_VERSION=`curl -L https://releases.hashicorp.com/terraform/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'terraform_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
 
-    echo "==> ${LBLUE}Downloading Terraform ${TER_VERSION}…${END}"
-    download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_linux_amd64.zip" /tmp/terraform.zip
-    # download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_darwin_amd64.zip" /tmp/terraform.zip
+        echo "==> ${LBLUE}Downloading Terraform ${TER_VERSION}…${END}"
+        download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_linux_amd64.zip" /tmp/terraform.zip
+        # download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_darwin_amd64.zip" /tmp/terraform.zip
 
-    echo "==> ${LBLUE}Installing Terraform ${TER_VERSION}…${END}"
-    unzip /tmp/terraform.zip -d ~/bin/
-    rm /tmp/terraform.zip
+        echo "==> ${LBLUE}Installing Terraform ${TER_VERSION}…${END}"
+        unzip /tmp/terraform.zip -d ~/bin/
+        rm /tmp/terraform.zip
+    fi
 fi

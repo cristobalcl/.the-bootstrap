@@ -26,30 +26,30 @@ fi
 
 if [ "$OS_NAME" == "darwin" ]; then
   echo "==> ${LBLUE}Installing Homebrew…${END}"
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
   install_brew
 fi
 
-if [ "$OS_NAME" == "ubuntu" ]; then
-    if ! command -v pip2 &> /dev/null; then
-        echo "==> ${LBLUE}Install pip2…${END}"
-        sudo add-apt-repository universe
-        sudo apt update
-        sudo apt install python2
-        curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py
-        sudo python2 /tmp/get-pip.py
-    fi
-fi
+# if [ "$OS_NAME" == "ubuntu" ]; then
+#     if ! command -v pip2 &> /dev/null; then
+#         echo "==> ${LBLUE}Install pip2…${END}"
+#         sudo add-apt-repository universe
+#         sudo apt update
+#         sudo apt install python2
+#         curl https://bootstrap.pypa.io/get-pip.py --output /tmp/get-pip.py
+#         sudo python2 /tmp/get-pip.py
+#     fi
+# fi
+
+# echo "==> ${LBLUE}Installing Python 2 dependencies…${END}"
+# cat requirements/pip2.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read package; do
+#     echo "--> ${LYELLOW}${package}${END}…"
+#     pip2 install --upgrade --user $package
+# done
 
 echo "==> ${LBLUE}Updating pip3…${END}"
 sudo pip3 install --upgrade pip
-
-echo "==> ${LBLUE}Installing Python 2 dependencies…${END}"
-cat requirements/pip2.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read package; do
-    echo "--> ${LYELLOW}${package}${END}…"
-    pip2 install --upgrade --user $package
-done
 
 echo "==> ${LBLUE}Installing Python 3 dependencies…${END}"
 cat requirements/pip3.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read package; do
