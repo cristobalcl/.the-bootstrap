@@ -29,6 +29,7 @@ if has('nvim')
   " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 endif
 
+let g:airline_powerline_fonts = 1
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -123,20 +124,33 @@ Plug 'Raimondi/delimitMate'
 " Toggle words between pairs or lists of related words
 Plug 'zef/vim-cycle'
 
-" Language Service Provider
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-" ALE
-Plug 'dense-analysis/ale'
-
 " UltiSnips
 if has('python3')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
-  Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+endif
+
+" Language Service Provider
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+
+" Autoformat
+" Plug 'Chiel92/vim-autoformat'
+
+" Completion
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'lighttiger2505/deoplete-vim-lsp'
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'lighttiger2505/deoplete-vim-lsp'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 " Symbols and tag views
@@ -258,7 +272,6 @@ if exists("*fugitive#statusline")
 endif
 
 " Airline
-let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -402,8 +415,13 @@ hi link QuickScopeSecondary ErrorMsg
 " Folding {{{
 
 " set foldmethod=syntax
-set foldmethod=indent
-set foldnestmax=2
+" set foldmethod=indent
+" set foldnestmax=2
+
+" vim-lsp
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  " \ foldtext=lsp#ui#vim#folding#foldtext()
 
 " MAP `zR`: open all folds
 " MAP `zM`: close all folds
@@ -537,15 +555,7 @@ map gFF :wincmd gf<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Snippets {{{
 
-let g:UltiSnipsSnippetDirectories = [$HOME.'/.vim/UltiSnips', 'UltiSnips']
-
-if has('python3')
-    call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
-        \ 'name': 'ultisnips',
-        \ 'whitelist': ['*'],
-        \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
-        \ }))
-endif
+let g:UltiSnipsSnippetDirectories = ['UltiSnips']
 
 " }}}
 
@@ -673,8 +683,15 @@ vmap > >gv
 
 " Omnicompletion
 " set completeopt+=longest,menuone
+" set completeopt+=menuone
 
 " vim-lsp
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '⚠'}
+
+let g:lsp_highlight_references_enabled = 1
+highlight lspReference ctermfg=white guifg=white ctermbg=grey guibg=grey
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -698,7 +715,6 @@ augroup lsp_install
 augroup END
 
 " Polyglot
-
 let g:polyglot_disabled = ['markdown']
 
 " Vista
@@ -713,14 +729,11 @@ let g:vista_executive_for = {
 " MAP `SPC t`: open/close symbols & tags panel
 nnoremap <silent> <space>t  :Vista!!<CR>
 
-" " MAP `SPC f`: fuzzy find symbol or tag
-" nnoremap <silent> <space>f  :Vista finder coc<CR>
-
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista#renderer#enable_icon = 1
 
-" ALE
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
+" Deoplete
+let g:deoplete#enable_at_startup = 1
 
 " From George in Vim Telegram Group
 function! JsonPrettyTool()

@@ -73,7 +73,17 @@ linked_p `pyenv which flake8` ~/bin/flake8
 pip install black
 linked_p `pyenv which black` ~/bin/black
 
+pip install isort
+linked_p `pyenv which isort` ~/bin/isort
+
 pip install mypy
 linked_p `pyenv which mypy` ~/bin/mypy
+
+pip install 'python-language-server[all]'
+linked_p `pyenv which pyls` ~/bin/pyls
+
+pip install pyls-mypy
+pip install pyls-black
+pip install pyls-isort
 
 pyenv deactivate

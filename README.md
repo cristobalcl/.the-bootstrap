@@ -28,6 +28,12 @@ sudo apt update && sudo apt install git && cd && \
 - Configure new key in [GitHub](https://github.com/settings/ssh/new)
 - Install tmux plugins: `c-b I`
 
+Install NeoVim plugins and language server for Python:
+
+```
+nvim +PlugInstall +qa
+```
+
 Fix origin:
 
 ```

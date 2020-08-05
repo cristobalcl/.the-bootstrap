@@ -84,7 +84,7 @@ abbr -a ssh-finger 'ssh-keygen -l -E md5 -f'
 # http://stackoverflow.com/questions/785519/how-do-i-remove-all-pyc-files-from-a-project
 alias pycdel='find . -name \*.pyc -delete'
 
-alias mkenv="virtualenv -p python3 .venv"
+alias mkenv="virtualenv -p python3 .venv; and .venv/bin/python -m pip install --upgrade pip"
 alias ienv="source .venv/bin/activate.fish"
 alias oenv="deactivate"
 
