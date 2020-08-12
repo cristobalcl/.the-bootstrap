@@ -3,14 +3,10 @@
 # Disable copy deleted words to clipboard
 set FISH_CLIPBOARD_CMD "cat"
 
-if test -e $HOME/bin/nvim
-  set -gx EDITOR "env TERM=xterm-256color $HOME/bin/nvim"
+if command -v nvim > /dev/null
+  set -gx EDITOR nvim
 else
-  if command -v nvim > /dev/null
-    set -gx EDITOR nvim
-  else
-    set -gx EDITOR vim
-  end
+  set -gx EDITOR vim
 end
 
 set -gx  LC_ALL en_US.UTF-8

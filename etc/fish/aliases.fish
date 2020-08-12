@@ -85,6 +85,8 @@ abbr -a ssh-finger 'ssh-keygen -l -E md5 -f'
 alias pycdel='find . -name \*.pyc -delete'
 
 alias mkenv="virtualenv -p python3 .venv; and .venv/bin/python -m pip install --upgrade pip"
+alias mkenv3.7="virtualenv -p (pyenv prefix 3.7.8)/bin/python .venv; and .venv/bin/python -m pip install --upgrade pip"
+alias mkenv3.6="virtualenv -p (pyenv prefix 3.6.11)/bin/python .venv; and .venv/bin/python -m pip install --upgrade pip"
 alias ienv="source .venv/bin/activate.fish"
 alias oenv="deactivate"
 

@@ -29,7 +29,6 @@ if has('nvim')
   " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 endif
 
-let g:airline_powerline_fonts = 1
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,6 +271,7 @@ if exists("*fugitive#statusline")
 endif
 
 " Airline
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'powerlineish'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled = 1
@@ -686,6 +686,15 @@ vmap > >gv
 " set completeopt+=menuone
 
 " vim-lsp
+" if executable('pyls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}, 'pyls_mypy': {'enabled': v:true, 'live_mode': v:true}}}}
+"         \ })
+" endif
+
 let g:lsp_signs_error = {'text': '✗'}
 let g:lsp_signs_warning = {'text': '⚠'}
 
