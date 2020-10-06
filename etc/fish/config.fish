@@ -29,7 +29,7 @@ if test -e $HOME/bin
 end
 
 if test -e $HOME/.local/bin
-    set PATH $PATH $HOME/.local/bin /snap/bin
+    set PATH $PATH $HOME/.local/bin
 end
 
 if test -e /snap/bin

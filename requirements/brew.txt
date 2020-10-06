@@ -1,6 +1,7 @@
 fish
 python
 neovim
+fzf
 jq
 lsd
 fd

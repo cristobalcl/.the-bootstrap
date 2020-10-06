@@ -29,6 +29,9 @@ if has('nvim')
   " $ pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 endif
 
+" Polyglot (should be placed before loading the plugin)
+let g:polyglot_disabled = ['markdown']
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,6 +178,8 @@ call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic {{{
+
+set updatetime=500
 
 let mapleader=','
 
@@ -416,7 +421,7 @@ hi link QuickScopeSecondary ErrorMsg
 
 " set foldmethod=syntax
 " set foldmethod=indent
-" set foldnestmax=2
+set foldnestmax=2
 
 " vim-lsp
 set foldmethod=expr
@@ -695,6 +700,16 @@ vmap > >gv
 "         \ })
 " endif
 
+let g:lsp_settings = {
+\   'pyls': {
+\     'workspace_config': {
+\       'pyls': {
+\         'configurationSources': ['flake8']
+\       }
+\     }
+\   },
+\}
+
 let g:lsp_signs_error = {'text': '✗'}
 let g:lsp_signs_warning = {'text': '⚠'}
 
@@ -722,9 +737,6 @@ augroup lsp_install
     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
-
-" Polyglot
-let g:polyglot_disabled = ['markdown']
 
 " Vista
 
