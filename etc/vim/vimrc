@@ -32,6 +32,8 @@ endif
 " Polyglot (should be placed before loading the plugin)
 let g:polyglot_disabled = ['markdown']
 
+let use_lsp = $VIM_USE_LSP
+
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,27 +134,30 @@ if has('python3')
   Plug 'honza/vim-snippets'
 endif
 
-" Language Service Provider
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-" Plug 'prabirshrestha/asyncomplete.vim'
-" Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+if use_lsp == 'true'
+  " Language Service Provider
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  " Plug 'prabirshrestha/asyncomplete.vim'
+  " Plug 'prabirshrestha/asyncomplete-lsp.vim'
+  Plug 'thomasfaingnaert/vim-lsp-snippets'
+  Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+endif
 
 " Autoformat
 " Plug 'Chiel92/vim-autoformat'
 
 " Completion
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if use_lsp == 'true'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
   Plug 'lighttiger2505/deoplete-vim-lsp'
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'lighttiger2505/deoplete-vim-lsp'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 " Symbols and tag views
@@ -179,7 +184,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Basic {{{
 
-set updatetime=500
+set updatetime=1000
 
 let mapleader=','
 
@@ -372,6 +377,13 @@ nnoremap <C-w>k <C-w><down>
 nnoremap <C-w>l <C-w><up>
 nnoremap <C-w>ñ <C-w><right>
 
+" MAP `C-w C-jklñ`: go to left, down, up, right panel
+nnoremap <C-w><C-j> <C-w><left>
+nnoremap <C-w><C-k> <C-w><down>
+nnoremap <C-w><C-l> <C-w><up>
+" Not working
+nnoremap <C-w><C-ñ> <C-w><right>
+
 " MAP `hh`: beginning of the line
 nnoremap hh 0
 vnoremap hh 0
@@ -436,6 +448,10 @@ set foldmethod=expr
 " MAP `ENTER`: open/close folds (in visual mode create a fold)
 nnoremap <silent> <CR> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <CR> zf
+
+" MAP `,O`: open recursively all folds contained in the current fold
+nnoremap <leader>O zczA
+" nnoremap <leader>O ]z<shift-v>[zzO
 
 " }}}
 
@@ -690,71 +706,74 @@ vmap > >gv
 " set completeopt+=longest,menuone
 " set completeopt+=menuone
 
-" vim-lsp
-" if executable('pyls')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'pyls',
-"         \ 'cmd': {server_info->['pyls']},
-"         \ 'whitelist': ['python'],
-"         \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}, 'pyls_mypy': {'enabled': v:true, 'live_mode': v:true}}}}
-"         \ })
-" endif
+if use_lsp == 'true'
+  " vim-lsp
+  " if executable('pyls')
+  "     au User lsp_setup call lsp#register_server({
+  "         \ 'name': 'pyls',
+  "         \ 'cmd': {server_info->['pyls']},
+  "         \ 'whitelist': ['python'],
+  "         \ 'workspace_config': {'pyls': {'plugins': {'pydocstyle': {'enabled': v:true}, 'pyls_mypy': {'enabled': v:true, 'live_mode': v:true}}
+  "         \     }}
+  "         \ })
+  " endif
 
-let g:lsp_settings = {
-\   'pyls': {
-\     'workspace_config': {
-\       'pyls': {
-\         'configurationSources': ['flake8']
-\       }
-\     }
-\   },
-\}
+  let g:lsp_settings = {
+  \   'pyls': {
+  \     'workspace_config': {
+  \       'pyls': {
+  \         'configurationSources': ['flake8']
+  \       }
+  \     }
+  \   },
+  \}
 
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '⚠'}
+  let g:lsp_signs_error = {'text': '✗'}
+  let g:lsp_signs_warning = {'text': '⚠'}
 
-let g:lsp_highlight_references_enabled = 1
-highlight lspReference ctermfg=white guifg=white ctermbg=grey guibg=grey
+  let g:lsp_highlight_references_enabled = 1
+  highlight lspReference ctermfg=white guifg=white ctermbg=grey guibg=grey
 
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
+  function! s:on_lsp_buffer_enabled() abort
+      setlocal omnifunc=lsp#complete
+      setlocal signcolumn=yes
+      if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+      nmap <buffer> gd <plug>(lsp-definition)
+      nmap <buffer> gr <plug>(lsp-references)
+      nmap <buffer> gi <plug>(lsp-implementation)
+      nmap <buffer> gt <plug>(lsp-type-definition)
+      nmap <buffer> <leader>rn <plug>(lsp-rename)
+      nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+      nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+      nmap <buffer> K <plug>(lsp-hover)
 
-    " refer to doc to add more commands
-endfunction
+      " refer to doc to add more commands
+  endfunction
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+  augroup lsp_install
+      au!
+      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
 
-" Vista
+  " Vista
 
-" Error at startup:
-" let g:vista_default_executive = 'vim_lsp' " ctag/vim_lsp/coc
-" Fix ->
-let g:vista_executive_for = {
-  \ 'python': 'vim_lsp',
-  \ }
+  " Error at startup:
+  " let g:vista_default_executive = 'vim_lsp' " ctag/vim_lsp/coc
+  " Fix ->
+  let g:vista_executive_for = {
+    \ 'python': 'vim_lsp',
+    \ }
 
-" MAP `SPC t`: open/close symbols & tags panel
-nnoremap <silent> <space>t  :Vista!!<CR>
+  " MAP `SPC t`: open/close symbols & tags panel
+  nnoremap <silent> <space>t  :Vista!!<CR>
 
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista#renderer#enable_icon = 1
+  let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+  let g:vista#renderer#enable_icon = 1
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+  " Deoplete
+  let g:deoplete#enable_at_startup = 1
+endif
 
 " From George in Vim Telegram Group
 function! JsonPrettyTool()
