@@ -34,7 +34,7 @@ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs git.io/fisher
 echo "==> ${LBLUE}Installing Fisherman dependencies…${END}"
 cat requirements/fisher.txt | grep -v '^#' | while IFS= read package; do
     echo "--> ${LYELLOW}${package}${END}…"
-    fish -c "fisher add $package"
+    fish -c "fisher install $package"
 done
 
 echo "==> ${LRED}To making Fish the default shell run this:${END}"

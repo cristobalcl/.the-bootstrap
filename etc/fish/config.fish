@@ -102,6 +102,7 @@ eval (ssh-agent -c) > /dev/null
 
 if test -e $HOME/.pyenv
   set -Ux PYENV_ROOT $HOME/.pyenv
+  set PATH $PATH $HOME/.pyenv/bin
   # set -Ux fish_user_paths $PYENV_ROOT/bin $fish_user_paths
   status --is-interactive; and source (pyenv init -|psub)
   # status --is-interactive; and pyenv init - | source

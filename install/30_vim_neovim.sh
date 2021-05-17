@@ -51,39 +51,39 @@ linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
 # Reference:
 # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments
 echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(~/.pyenv/bin/pyenv init -)"
+eval "$(~/.pyenv/bin/pyenv virtualenv-init -)"
 
-# pyenv install 2.7.11
-# pyenv install 3.7.4
+# ~/.pyenv/bin/pyenv install 2.7.11
+# ~/.pyenv/bin/pyenv install 3.7.4
 
-pyenv virtualenv 2.7.18 neovim2
-pyenv virtualenv 3.8.5 neovim3
+~/.pyenv/bin/pyenv virtualenv 2.7.18 neovim2
+~/.pyenv/bin/pyenv virtualenv 3.8.5 neovim3
 
-pyenv activate neovim2
+~/.pyenv/bin/pyenv activate neovim2
 pip install pynvim
 
-pyenv activate neovim3
+~/.pyenv/bin/pyenv activate neovim3
 pip install pynvim
 
 # TODO Put all this elsewhere...
 pip install flake8
-linked_p `pyenv which flake8` ~/bin/flake8
+linked_p `~/.pyenv/bin/pyenv which flake8` ~/bin/flake8
 
 pip install black
-linked_p `pyenv which black` ~/bin/black
+linked_p `~/.pyenv/bin/pyenv which black` ~/bin/black
 
 pip install isort
-linked_p `pyenv which isort` ~/bin/isort
+linked_p `~/.pyenv/bin/pyenv which isort` ~/bin/isort
 
 pip install mypy
-linked_p `pyenv which mypy` ~/bin/mypy
+linked_p `~/.pyenv/bin/pyenv which mypy` ~/bin/mypy
 
 pip install 'python-language-server[all]'
-linked_p `pyenv which pyls` ~/bin/pyls
+linked_p `~/.pyenv/bin/pyenv which pyls` ~/bin/pyls
 
 pip install pyls-mypy
 pip install pyls-black
 pip install pyls-isort
 
-pyenv deactivate
+~/.pyenv/bin/pyenv deactivate

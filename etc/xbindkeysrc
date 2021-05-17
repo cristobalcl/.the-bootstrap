@@ -39,6 +39,14 @@
     m:0x8 + c:41
     Alt + f
 
+# Insert email
+"xvkbd -xsendevent -text 'ccarnerolinan@gmail.com'"
+    Alt + a
+
+# Insert lines
+"xvkbd -xsendevent -text '- - - - - - - - - -'"
+    Alt + h
+
 # Insert today date
 "xvkbd -xsendevent -text `date +%F`"
     m:0x8 + c:28

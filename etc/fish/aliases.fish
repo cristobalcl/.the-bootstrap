@@ -163,6 +163,8 @@ alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
 # tmux
 abbr -a tl 'tmux ls'
 abbr -a ta 'tmux attach-session -t'
+abbr -a tt 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; split-window -v -p 50 \; selectw -t 1 \; selectp -t 0 \;'
+
 abbr -a tv 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
 abbr -a tvw 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; new-window \; selectw -t 1 \; selectp -t 0 \;'
 abbr -a tvww 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; new-window \; new-window \; selectw -t 1 \; selectp -t 0 \;'
