@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [ "$#" -eq 1 ]
+then
+    cd $1
+fi
+
+directory=$(pwd)
+project=$(basename $directory | sed 's/^\.//')
+
+tmux has-session -t $project 2>/dev/null
+
+if [ -n "$TMUX" ]
+then
+    term_width=$(tmux display-message -p "#{window_width}")
+    term_height=$(tmux display-message -p "#{window_height}")
+else
+    term_width=$(tput cols)
+    term_height=$(tput lines)
+fi
+
+if [ $? != 0 ]
+then
+    tmux new-session -d -s $project -x "$term_width" -y "$term_height" \; \
+        send-keys \'nvim\' C-m \; \
+        split-window -v -p 30 \; \
+        selectw -t 1 \; \
+        selectp -t 0 \;
+fi
+
+if [ -n "$TMUX" ]
+then
+    tmux switch-client -t $project
+else
+    tmux attach-session -t $project
+fi
