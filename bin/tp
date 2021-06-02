@@ -8,8 +8,6 @@ fi
 directory=$(pwd)
 project=$(basename $directory | sed 's/^\.//')
 
-tmux has-session -t $project 2>/dev/null
-
 if [ -n "$TMUX" ]
 then
     term_width=$(tmux display-message -p "#{window_width}")
@@ -18,6 +16,8 @@ else
     term_width=$(tput cols)
     term_height=$(tput lines)
 fi
+
+tmux has-session -t $project 2>/dev/null
 
 if [ $? != 0 ]
 then
