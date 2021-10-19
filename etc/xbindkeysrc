@@ -47,6 +47,18 @@
 "xvkbd -xsendevent -text '- - - - - - - - - -'"
     Alt + h
 
+# Insert lines
+"xvkbd -xsendevent -text '--------------------------------------------------------------------------------'"
+    Alt + Shift + h
+
+# Insert lines with scissors
+"xvkbd -xsendevent -text '- - - - 8< - - - - -'"
+    Alt + j
+
+# Insert lines with scissors
+"xvkbd -xsendevent -text '- - - - >8 - - - - -'"
+    Alt + Shift + j
+
 # Insert today date
 "xvkbd -xsendevent -text `date +%F`"
     m:0x8 + c:28

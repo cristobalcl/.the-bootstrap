@@ -129,10 +129,8 @@ Plug 'Raimondi/delimitMate'
 Plug 'zef/vim-cycle'
 
 " UltiSnips
-if has('python3')
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-endif
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 if use_lsp == 'true'
   " Language Service Provider
@@ -147,6 +145,7 @@ endif
 
 " Autoformat
 " Plug 'Chiel92/vim-autoformat'
+Plug 'psf/black', { 'branch': 'stable' }
 
 " Completion
 if use_lsp == 'true'
@@ -577,6 +576,7 @@ map gFF :wincmd gf<CR>
 " Snippets {{{
 
 let g:UltiSnipsSnippetDirectories = ['UltiSnips']
+let g:UltiSnipsExpandTrigger="<tab>"
 
 " }}}
 
@@ -637,7 +637,7 @@ nnoremap <leader>S :%s/[ \t]\+$//g<cr>
 nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
 
 " MAP `,v`: select until end of the line
-nnoremap <leader>v v$h
+nnoremap <leader>v v$ho
 
 " nnoremap <CR> gea<CR><ESC>d^
 
@@ -774,6 +774,11 @@ if use_lsp == 'true'
   " Deoplete
   let g:deoplete#enable_at_startup = 1
 endif
+
+" MAP `<F9>`: format with Black
+nnoremap <F9> :Black<CR>
+" Auto-format on save:
+" autocmd BufWritePre *.py execute ':Black'
 
 " From George in Vim Telegram Group
 function! JsonPrettyTool()

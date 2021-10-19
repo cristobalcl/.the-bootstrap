@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# set -x
+
 if [ "$#" -eq 1 ]
 then
     cd $1
@@ -17,15 +19,22 @@ else
     term_height=$(tput lines)
 fi
 
-tmux has-session -t $project 2>/dev/null
-
-if [ $? != 0 ]
+if ! tmux has-session -t $project 2>/dev/null
 then
-    tmux new-session -d -s $project -x "$term_width" -y "$term_height" \; \
-        send-keys \'nvim\' C-m \; \
-        split-window -v -p 30 \; \
-        selectw -t 1 \; \
-        selectp -t 0 \;
+    if tmux info &> /dev/null
+    then
+        tmux new-session -d -s $project -x "$term_width" -y "$term_height" \; \
+            send-keys \'nvim\' C-m \; \
+            split-window -v -p 30 \; \
+            selectw -t 1 \; \
+            selectp -t 0 \;
+    else
+        tmux new-session -s $project -x "$term_width" -y "$term_height" \; \
+            send-keys \'nvim\' C-m \; \
+            split-window -v -p 30 \; \
+            selectw -t 1 \; \
+            selectp -t 0 \;
+    fi
 fi
 
 if [ -n "$TMUX" ]

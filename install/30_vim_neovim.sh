@@ -54,36 +54,36 @@ echo "==> ${LBLUE}Creating virtual environments for NeoVim…${END}"
 eval "$(~/.pyenv/bin/pyenv init -)"
 eval "$(~/.pyenv/bin/pyenv virtualenv-init -)"
 
-# ~/.pyenv/bin/pyenv install 2.7.11
-# ~/.pyenv/bin/pyenv install 3.7.4
+~/.pyenv/bin/pyenv install -s 2.7.18
+~/.pyenv/bin/pyenv install -s 3.8.5
 
-~/.pyenv/bin/pyenv virtualenv 2.7.18 neovim2
-~/.pyenv/bin/pyenv virtualenv 3.8.5 neovim3
+~/.pyenv/bin/pyenv virtualenv 2.7.18 neovim2 || true
+~/.pyenv/bin/pyenv virtualenv 3.8.5 neovim3 || true
 
-~/.pyenv/bin/pyenv activate neovim2
-pip install pynvim
+# ~/.pyenv/bin/pyenv activate neovim2
+$(pyenv root)/versions/neovim2/bin/pip install pynvim
 
-~/.pyenv/bin/pyenv activate neovim3
-pip install pynvim
+# ~/.pyenv/bin/pyenv activate neovim3
+$(pyenv root)/versions/neovim3/bin/pip install pynvim
 
 # TODO Put all this elsewhere...
-pip install flake8
+$(pyenv root)/versions/neovim3/bin/pip install flake8
 linked_p `~/.pyenv/bin/pyenv which flake8` ~/bin/flake8
 
-pip install black
+$(pyenv root)/versions/neovim3/bin/pip install black
 linked_p `~/.pyenv/bin/pyenv which black` ~/bin/black
 
-pip install isort
+$(pyenv root)/versions/neovim3/bin/pip install isort
 linked_p `~/.pyenv/bin/pyenv which isort` ~/bin/isort
 
-pip install mypy
+$(pyenv root)/versions/neovim3/bin/pip install mypy
 linked_p `~/.pyenv/bin/pyenv which mypy` ~/bin/mypy
 
-pip install 'python-language-server[all]'
+$(pyenv root)/versions/neovim3/bin/pip install 'python-language-server[all]'
 linked_p `~/.pyenv/bin/pyenv which pyls` ~/bin/pyls
 
-pip install pyls-mypy
-pip install pyls-black
-pip install pyls-isort
+$(pyenv root)/versions/neovim3/bin/pip install pyls-mypy
+$(pyenv root)/versions/neovim3/bin/pip install pyls-black
+$(pyenv root)/versions/neovim3/bin/pip install pyls-isort
 
-~/.pyenv/bin/pyenv deactivate
+# ~/.pyenv/bin/pyenv deactivate

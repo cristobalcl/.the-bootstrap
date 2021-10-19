@@ -151,11 +151,21 @@ abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
 abbr -a glsn 'git clean -xdn'
 abbr -a gclean 'git clean -fd'
 abbr -a gcleanall 'git clean -fdx'
+abbr -a gr 'git remote'
+abbr -a gru 'git remote get-url'
+abbr -a grus 'git remote set-url'
+abbr -a gra 'git remote add'
 
 # Docker
 abbr -a dps 'docker ps'
 abbr -a ds 'docker stop'
-abbr -a dk 'docker stop'
+abbr -a db 'docker build -f Dockerfile . -t'
+abbr -a dr 'docker run --rm'
+abbr -a dser 'docker run -p 127.0.0.1:8888:8888/tcp --rm'
+abbr -a dsh 'docker run --rm -it --entrypoint sh'
+abbr -a dbsh 'docker run --rm -it --entrypoint bash'
+abbr -a dsp 'docker system prune'
+abbr -a dexe 'docker exec -it'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
