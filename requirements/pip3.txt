@@ -9,3 +9,7 @@ you-get
 glances[action,browser,cloud,cpuinfo,docker,export,folders,gpu,graph,ip,raid,snmp,web,wifi]
 tldr
 ranger-fm
+jupyter
+jupyter-client==6.1.12
+jupytext
+awscli-local

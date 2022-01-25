@@ -70,11 +70,11 @@ alias lost "cat ~/lost.txt; cat >> ~/lost.txt"
 
 # Top 10 biggest files/directories in the current directory:
 # https://plus.google.com/+MattMight/posts/6NJJeExpqQW
-alias ducks='du -cks * | sort -rn | head'
+abbr -a ducks 'du -cks * | sort -rn | head'
 # alias unp 'file-unpack'
 
 # Disk usage for each directory with depth=1
-alias dud='du . -hd1'
+abbr -a dud 'du . -hd1'
 
 # Print MD5 fingerprint of a SSH public key
 abbr -a ssh-finger 'ssh-keygen -l -E md5 -f'
@@ -146,6 +146,7 @@ abbr -a g+ 'git stash --include-untracked'
 abbr -a g- 'git stash apply'
 abbr -a gsl 'git stash list'
 abbr -a gundo 'git reset HEAD~'
+abbr -a gamv 'git add -A .'
 abbr -a gunmerge 'git merge --abort'
 abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
 abbr -a glsn 'git clean -xdn'
@@ -187,6 +188,7 @@ abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
 # .the-bootstrap
 alias .tbcd 'cd ~/.the-bootstrap'
 alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
+alias .tb 'cd ~/.the-bootstrap; and tmux'
 
 if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'
