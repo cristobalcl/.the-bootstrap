@@ -52,6 +52,14 @@ if test -e $HOME/.poetry/bin
     set PATH $PATH $HOME/.poetry/bin
 end
 
+if test -e $HOME/.cargo/bin
+    set PATH $PATH $HOME/.cargo/bin
+end
+
+# if test -e /root/.cargo/bin
+#     set PATH $PATH /root/.cargo/bin
+# end
+
 if type -q powerline-shell
     function fish_prompt
         powerline-shell --shell bare $status

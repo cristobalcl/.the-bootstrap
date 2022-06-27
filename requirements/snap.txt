@@ -1,2 +1,3 @@
 kubectl --classic
 lsd --classic
+fx

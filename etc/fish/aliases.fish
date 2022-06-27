@@ -165,6 +165,7 @@ abbr -a dr 'docker run --rm'
 abbr -a dser 'docker run -p 127.0.0.1:8888:8888/tcp --rm'
 abbr -a dsh 'docker run --rm -it --entrypoint sh'
 abbr -a dbsh 'docker run --rm -it --entrypoint bash'
+abbr -a dmount 'docker run --rm -it --mount type=bind,source=(pwd),target=/local --entrypoint bash'
 abbr -a dsp 'docker system prune'
 abbr -a dexe 'docker exec -it'
 
@@ -185,10 +186,16 @@ abbr -a tran 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basena
 # Deepo
 abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
 
+# pass
+abbr -a pl "pass ls"
+abbr -a p "pass show"
+abbr -a pp "upass"
+abbr -a pe "pass edit"
+
 # .the-bootstrap
 alias .tbcd 'cd ~/.the-bootstrap'
 alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
-alias .tb 'cd ~/.the-bootstrap; and tmux'
+alias .tb 'cd ~/.the-bootstrap; and tp'
 
 if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'

@@ -1,0 +1,7 @@
+Terminal
+========
+
+Commands
+--------
+
+* **dust** (*du*)

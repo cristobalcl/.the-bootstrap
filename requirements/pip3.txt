@@ -13,3 +13,4 @@ jupyter
 jupyter-client==6.1.12
 jupytext
 awscli-local
+upass

@@ -2,6 +2,7 @@ apt-transport-https
 software-properties-common
 ca-certificates
 build-essential
+cmake
 
 httpie
 
@@ -64,3 +65,8 @@ snapd
 vim
 
 shellcheck
+
+pass
+
+jo
+duf

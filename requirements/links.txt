@@ -2,3 +2,4 @@
 etc/screenrc ~/.screenrc
 etc/tmux.conf ~/.tmux.conf
 etc/ranger/rc.conf ~/.config/ranger/rc.conf
+etc/gitconfig ~/.gitconfig
