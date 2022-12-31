@@ -59,9 +59,6 @@ end
 
 alias vi "nvim -u NONE"
 
-alias gc "git commit"
-alias gcv "git commit --no-verify"
-
 # alias lost "clear; tail -n 52 ~/lost.txt; cat >> ~/lost.txt"
 alias lost "cat ~/lost.txt; cat >> ~/lost.txt"
 
@@ -127,9 +124,25 @@ alias gconflict 'git diff --name-only --diff-filter=U'
 abbr -a gd 'git diff'
 abbr -a ga 'git add'
 abbr -a gaa 'git add .'
+
 abbr -a gc 'git commit -m'
 abbr -a gca 'git commit -am'
 abbr -a gcF 'git commit --no-verify -m'
+
+# Based loosely on: https://hackmd.io/tRPFV2YGTLChBnunPLMhYg
+abbr -a gdoc 'git commit -m "📝'
+abbr -a gfeat 'git commit -m "✨'
+abbr -a gclean 'git commit -m "♻️'
+abbr -a gref 'git commit -m "♻️'
+abbr -a gnit 'git commit -m "🥢'
+abbr -a gsec 'git commit -m "🔒'
+abbr -a gopt 'git commit -m "⚡'
+abbr -a gconf 'git commit -m "👷'
+abbr -a gcfg 'git commit -m "👷'
+abbr -a gev 'git commit -m "🔊'
+abbr -a gfix 'git commit -m "🐞'
+abbr -a gbug 'git commit -m "🐞'
+
 abbr -a gll 'git pull'
 abbr -a gp 'git push'
 abbr -a gls 'git branch -a'

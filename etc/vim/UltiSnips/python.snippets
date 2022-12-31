@@ -165,7 +165,7 @@ try:
         pass
 
 except (KeyboardInterrupt, SystemExit):
-	print('Exiting!')
+  print('Exiting!')
 endsnippet
 
 snippet "tests" "unit tests" !b
@@ -198,8 +198,8 @@ import attr
 @attr.s(auto_attribs=True)
 class ${1:Name}:
     attribute1: str = attr.ib()
-		attribute2: int = attr.ib(init=False)
+    attribute2: int = attr.ib(init=False)
 
     def __attrs_post_init__(self):
-			  pass
+        pass
 endsnippet

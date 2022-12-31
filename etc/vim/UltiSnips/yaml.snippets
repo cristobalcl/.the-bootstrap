@@ -1,0 +1,184 @@
+snippet playbook "playbook" !b
+---
+- name: A playbook
+  hosts: all
+  # remote_user: root
+  become: yes
+  vars:
+    foo: 10
+  vars_files:
+    - /vars/vars.yml
+
+  # tasks:
+  #   - name: One task
+
+  roles:
+    - common
+    - role: name
+      vars:
+        foo: 'value'
+      tags: one
+
+  handlers:
+    - name: Restart daemon
+endsnippet
+
+snippet inventory "Inventory" !b
+all:
+  hosts:
+    mail.example.com:
+  children:
+    webservers:
+      hosts:
+        foo.example.com:
+          ansible_host: foo_server
+          ansible_port: 2222
+          ansible_user: manager
+        www[01:50:2].example.com:
+          http_port: 80
+      vars:
+        ntp_server: ntp.atlanta.example.com
+        proxy: proxy.atlanta.example.com
+    dbservers:
+      hosts:
+        one.example.com:
+        db-[a:f].example.com:
+    jumper:
+      ansible_port: 5555
+      ansible_host: 192.0.2.50
+endsnippet
+
+snippet tasktemplate "Task create from template" !b
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: /templates/foo.conf.j2
+    dest: /etc/foo.conf
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+endsnippet
+
+snippet taskline "Task set line in file" !b
+- name: Set line in file
+  lineinfile:
+    dest: /path/to/file
+    regexp: '^var'
+    line: 'var = foo'
+    state: present
+  notify: Restart daemon
+endsnippet
+
+snippet tasksh "Task run shell command" !b
+  - name: Run shell command
+    shell: echo 1
+    register: output
+    failed_when: int(output.stdout) != 1
+endsnippet
+
+snippet taskcmd "Task run command" !b
+  - name: Run command
+    ansible.builtin.command: /bin/echo foo
+    register: output
+    failed_when: int(output.stdout) != 1
+endsnippet
+
+snippet taskaptupdate "Task update apt cache" !b
+- name: Only run "update_cache=yes" if the last one is more than 3600 seconds ago
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+endsnippet
+
+snippet taskaptupdate "Task update apt all" !b
+- name: Update all packages to their latest version
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+endsnippet
+
+snippet taskaptupgrade "Task upgrade apt" !b
+- name: Upgrade the OS (apt-get dist-upgrade)
+  ansible.builtin.apt:
+    upgrade: dist
+endsnippet
+
+snippet taskaptinstall "Task install apt package" !b
+- name: Install apt package
+  ansible.builtin.apt:
+    name: package-name
+    state: present
+  update_cache: no
+  install_recommends: no
+endsnippet
+
+snippet taskaptinstallmany "Task install apt package list" !b
+- name: Install a list of packages
+  ansible.builtin.apt:
+    pkg:
+    - foo
+    - foo-tools
+  update_cache: no
+  install_recommends: no
+endsnippet
+
+snippet taskaptlist "Task install apt package list" !b
+- name: Install a list of packages
+  ansible.builtin.apt:
+    pkg:
+    - foo
+    - foo-tools
+  update_cache: no
+  install_recommends: no
+endsnippet
+
+snippet taskdeb "Task install deb package list" !b
+- name: Install a .deb package from the internet
+  ansible.builtin.apt:
+    deb: https://example.com/python-ppq_0.1-1_all.deb
+endsnippet
+
+snippet taskclean "Task apt clean" !b
+- name: Run the equivalent of "apt-get clean" as a separate step
+  apt:
+    clean: yes
+endsnippet
+
+snippet ignore "Ignore errors" !b
+ignore_errors: true
+endsnippet
+
+snippet err "Ignore errors" !b
+ignore_errors: true
+endsnippet
+
+snippet when "When condition" !b
+when: foo.rc == 5
+endsnippet
+
+snippet check "When condition" !b
+when: foo.rc == 5
+endsnippet
+
+snippet cond "When condition" !b
+when: foo.rc == 5
+endsnippet
+
+snippet wh "When condition" !b
+when: foo.rc == 5
+endsnippet
+
+snippet output "Register" !b
+register: foo
+endsnippet
+
+snippet sav "Register" !b
+register: foo
+endsnippet
+
+snippet rec "Register" !b
+register: foo
+endsnippet
+
+snippet reg "Register" !b
+register: foo
+endsnippet

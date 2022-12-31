@@ -7,6 +7,13 @@ cd "$(dirname "$0")/.."
 source lib/files.sh
 source lib/colors.sh
 
+if [ "$OS_NAME" == "ubuntu" ]; then
+    echo "==> ${LBLUE}Setup Hashicorp repo…${END}"
+    wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo apt update
+fi
+
 if ! command -v ansible &> /dev/null; then
     # echo "==> ${LBLUE}Adding Ansible repository…${END}"
     # sudo apt-add-repository ppa:ansible/ansible -y
@@ -22,40 +29,21 @@ fi
 
 if ! command -v vagrant &> /dev/null; then
     if [ "$OS_NAME" == "ubuntu" ]; then
-        VAG_VERSION=`curl -L https://releases.hashicorp.com/vagrant/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'vagrant_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
-
-        echo "==> ${LBLUE}Downloading Vagrant ${VAG_VERSION}…${END}"
-        download "https://releases.hashicorp.com/vagrant/${VAG_VERSION}/vagrant_${VAG_VERSION}_x86_64.deb" /tmp/vagrant.deb
-
-        echo "==> ${LBLUE}Installing Vagrant ${VAG_VERSION}…${END}"
-        sudo dpkg -i /tmp/vagrant.deb
-        rm /tmp/vagrant.deb
+        echo "==> ${LBLUE}Installing Vagrant…${END}"
+        sudo aptitude install vagrant
     fi
 fi
 
 if ! command -v packer &> /dev/null; then
     if [ "$OS_NAME" == "ubuntu" ]; then
-        PAC_VERSION=`curl -L https://releases.hashicorp.com/packer/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'packer_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
-
-        echo "==> ${LBLUE}Downloading Packer ${PAC_VERSION}…${END}"
-        download "https://releases.hashicorp.com/packer/${PAC_VERSION}/packer_${PAC_VERSION}_linux_amd64.zip" /tmp/packer.zip
-
-        echo "==> ${LBLUE}Installing Packer ${PAC_VERSION}…${END}"
-        unzip /tmp/packer.zip -d ~/bin/
-        rm /tmp/packer.zip
+        echo "==> ${LBLUE}Installing Packer…${END}"
+        sudo aptitude install packer
     fi
 fi
 
 if ! command -v terraform &> /dev/null; then
     if [ "$OS_NAME" == "ubuntu" ]; then
-        TER_VERSION=`curl -L https://releases.hashicorp.com/terraform/ 2> /dev/null | grep -v 'alpha\|beta\|rc\|oci' | grep -m 1 'terraform_' | grep -oh -m 1 '[0-9]\+\.[0-9]\+\.[0-9]\+' | head -n 1`
-
-        echo "==> ${LBLUE}Downloading Terraform ${TER_VERSION}…${END}"
-        download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_linux_amd64.zip" /tmp/terraform.zip
-        # download "https://releases.hashicorp.com/terraform/${TER_VERSION}/terraform_${TER_VERSION}_darwin_amd64.zip" /tmp/terraform.zip
-
-        echo "==> ${LBLUE}Installing Terraform ${TER_VERSION}…${END}"
-        unzip /tmp/terraform.zip -d ~/bin/
-        rm /tmp/terraform.zip
+        echo "==> ${LBLUE}Installing Terraform (and its Language Server)…${END}"
+        sudo aptitude install terraform terraform-ls
     fi
 fi

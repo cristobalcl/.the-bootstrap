@@ -78,9 +78,16 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Fuzzy find
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" " Fuzzy find
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim'
+
+" Telescope
+if has('nvim')
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+endif
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -135,6 +142,7 @@ if has('nvim')
   Plug 'hrsh7th/cmp-nvim-lsp' " LSP source for nvim-cmp
   Plug 'saadparwaiz1/cmp_luasnip' " Snippets source for nvim-cmp
   Plug 'L3MON4D3/LuaSnip' " Snippets plugin
+  Plug 'williamboman/nvim-lsp-installer'
 
   " :TSInstall python
   " :TSInstall hcl
@@ -486,13 +494,19 @@ set smartcase                           " Smartcase
 " MAP `,s`: clear search
 nmap <leader>s :nohlsearch<CR>
 
-" Ag (grep) + fzf
-" MAP `,G`: grep in open buffers
-nnoremap <leader>G :Lines<CR>
-" MAP `\`: grep
-nnoremap \ :Ag<Space>
-" MAP `+`: grep this word
-nnoremap <silent> + :Ag <C-R><C-W><CR>
+" " Ag (grep) + fzf
+" " MAP `,G`: grep in open buffers
+" nnoremap <leader>G :Lines<CR>
+" " MAP `\`: grep
+" nnoremap \ :Ag<Space>
+" " MAP `+`: grep this word
+" nnoremap <silent> + :Ag <C-R><C-W><CR>
+
+" Telescope
+if has('nvim')
+  nnoremap \ <cmd>Telescope live_grep<cr>
+  nnoremap + <cmd>Telescope grep_string<cr>
+endif
 
 " }}}
 
@@ -557,19 +571,52 @@ map <Leader>f <plug>NERDTreeTabsToggle<CR>
 " If more than one window and previous buffer was NERDTree, go back to it.
 autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
 
-" Fuzzy open file
-
-" MAP `,F`: search file
-nnoremap <silent> <leader>F :Files<CR>
-" MAP `,B`: search buffer
-nnoremap <silent> <leader>B :Buffers<CR>
 " MAP `,p`: show full filename and path
 nnoremap <leader>p :echo expand('%:p')<CR>
 
+" Fuzzy open file
+
+" " MAP `,F`: search file
+" nnoremap <silent> <leader>F :Files<CR>
+" " MAP `,B`: search buffer
+" nnoremap <silent> <leader>B :Buffers<CR>
+
+" Telescope
+if has('nvim')
+  nnoremap <leader>F <cmd>Telescope find_files<cr>
+  nnoremap <leader>B <cmd>Telescope buffers<cr>
+  nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+lua << EOF
+local actions = require("telescope.actions")
+require("telescope").setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<esc>"] = actions.close,
+        ["<C-u>"] = false
+      },
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  }
+}
+
+require('telescope').load_extension('fzf')
+EOF
+endif
+
 " MAP `gF`: open file under cursor in a horizontal split
 map gF :wincmd f<CR>
-" MAP `gFF`: open file under cursor in a new tab
-map gFF :wincmd gf<CR>
+" MAP `gff`: open file under cursor in a new tab
+map gff :wincmd gf<CR>
 
 " }}}
 
@@ -745,9 +792,10 @@ require'nvim-treesitter.configs'.setup {
   },
 
   indent = {
-    enable = true
+    enable = true,
+    disable = {"python",},
+    }
   }
-}
 EOF
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -807,7 +855,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+-- local servers = { 'clangd', 'rust_analyzer', 'pylsp', 'tsserver' }
+local servers = { 'pylsp', }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
@@ -860,6 +909,13 @@ cmp.setup {
 }
 EOF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+  " Telescope
+  nnoremap <leader>R <cmd>lua require('telescope.builtin').lsp_references()<cr>
+  nnoremap <leader>S <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+  nnoremap <leader>W <cmd>lua require('telescope.builtin').lsp_workspace_symbols()<cr>
+  nnoremap <leader>E <cmd>lua require('telescope.builtin').diagnostics()<cr>
+  nnoremap <leader>T <cmd>lua require('telescope.builtin').treesitter()<cr>
 endif
 
 " MAP `<F9>`: format with Black
@@ -958,6 +1014,10 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " *.md files -> Markdown
 autocmd BufEnter,BufRead,BufNewFile *.md set filetype=markdown
+
+" Bash (disable fi -> if)
+autocmd FileType solidity
+      \ setlocal shiftwidth=4 tabstop=4 softtabstop=4 expandtab iskeyword-=.,#
 
 " }}}
 

@@ -63,6 +63,7 @@ snapd
 
 # Vim
 vim
+ripgrep
 
 shellcheck
 

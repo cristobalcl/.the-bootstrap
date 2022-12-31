@@ -60,6 +60,10 @@ end
 #     set PATH $PATH /root/.cargo/bin
 # end
 
+if test -e $HOME/.local/share/nvim/lsp_servers/python
+    set PATH $PATH $HOME/.local/share/nvim/lsp_servers/python
+end
+
 if type -q powerline-shell
     function fish_prompt
         powerline-shell --shell bare $status
