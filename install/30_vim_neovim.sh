@@ -42,11 +42,14 @@ echo "==> ${LBLUE}Linking NeoVim configuration…${END}"
 directory ~/.config/nvim
 directory ~/.local/share/nvim/site/
 
-linked etc/vim/vimrc ~/.config/nvim/init.vim
-linked etc/vim/UltiSnips ~/.config/nvim/
-# linked etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
-linked_p ~/.vim ~/.nvim
-linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
+# linked etc/vim/vimrc ~/.config/nvim/init.vim
+# linked etc/vim/UltiSnips ~/.config/nvim/
+# # linked etc/vim/coc-settings.json ~/.config/nvim/coc-settings.json
+# linked_p ~/.vim ~/.nvim
+# linked_p ~/.vim/autoload ~/.local/share/nvim/site/autoload
+
+linked etc/nvim/init.lua ~/.config/nvim/init.lua
+linked etc/nvim/lua ~/.config/nvim/
 
 # Reference:
 # https://github.com/deoplete-plugins/deoplete-jedi/wiki/Setting-up-Python-for-Neovim#using-virtual-environments

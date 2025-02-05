@@ -30,3 +30,11 @@
 	hunk-header-file-style = red
 	hunk-header-line-number-style = "#067a00"
 	hunk-header-style = file line-number syntax
+[alias]
+	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$\\`echo $VAR\\`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+[credential]
+	helper = cache
+[url "git@github.com:/Iberia-Ent/"]
+	insteadOf = https://github.com/Iberia-Ent/
+[init]
+	defaultBranch = master

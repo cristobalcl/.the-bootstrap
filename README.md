@@ -27,6 +27,7 @@ sudo apt update && sudo apt install git && cd && \
 - Add ssh key: `ssh-add ~/.ssh/id_rsa`
 - Configure new key in [GitHub](https://github.com/settings/ssh/new)
 - Install tmux plugins: `c-b I`
+- Install font: [Ligature-Hack](https://github.com/gaplo917/Ligatured-Hack)
 
 Install NeoVim plugins and language server for Python:
 

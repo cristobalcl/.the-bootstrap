@@ -6,6 +6,7 @@ curl
 htop
 tree
 xsel
+pipx
 Yakuake
 file-unpack
 xvkbd

@@ -37,13 +37,18 @@ alias today "date +%F"
 # alias pylab='ipython -pylab'
 # alias wcat='wget -qO-'
 
+abbr -a plasma_restart 'kquitapp5 plasmashell && kstart5 plasmashell'
+
 if type -q xsel
   alias here "printf (pwd) | xsel --clipboard"
   alias there 'cd (xsel --clipboard)'
+  alias this "printf (basename (pwd)) | xsel --clipboard"
 else
   if type -q pbcopy
     alias here "printf (pwd) | pbcopy"
     alias there 'cd (pbpaste)'
+    alias this "basename (pwd) | pbcopy"
+    alias this "printf (basename (pwd)) | pbcopy"
   end
 end
 
@@ -81,9 +86,7 @@ abbr -a ssh-finger 'ssh-keygen -l -E md5 -f'
 # http://stackoverflow.com/questions/785519/how-do-i-remove-all-pyc-files-from-a-project
 alias pycdel='find . -name \*.pyc -delete'
 
-alias mkenv="virtualenv -p python3 .venv; and .venv/bin/python -m pip install --upgrade pip"
-alias mkenv3.7="virtualenv -p (pyenv prefix 3.7.8)/bin/python .venv; and .venv/bin/python -m pip install --upgrade pip"
-alias mkenv3.6="virtualenv -p (pyenv prefix 3.6.11)/bin/python .venv; and .venv/bin/python -m pip install --upgrade pip"
+alias mkenv="python -m venv .venv; and .venv/bin/python -m pip install --upgrade pip; or true"
 alias ienv="source .venv/bin/activate.fish"
 alias oenv="deactivate"
 
@@ -159,6 +162,8 @@ abbr -a g+ 'git stash --include-untracked'
 abbr -a g- 'git stash apply'
 abbr -a gsl 'git stash list'
 abbr -a gundo 'git reset HEAD~'
+abbr -a gunadd 'git restore --staged .'
+abbr -a greset 'git reset --hard HEAD'
 abbr -a gamv 'git add -A .'
 abbr -a gunmerge 'git merge --abort'
 abbr -a gmfe 'git checkout develop; and git merge --no-ff feature/'
@@ -169,6 +174,15 @@ abbr -a gr 'git remote'
 abbr -a gru 'git remote get-url'
 abbr -a grus 'git remote set-url'
 abbr -a gra 'git remote add'
+abbr -a gtouch 'git ls-files -m | xargs touch'
+
+function gtag
+  git tag "$argv"; and git push origin "$argv"
+end
+
+function gdeltag
+  git tag -d "$argv"; and git push origin :refs/tags/"$argv"
+end
 
 # Docker
 abbr -a dps 'docker ps'
@@ -181,6 +195,10 @@ abbr -a dbsh 'docker run --rm -it --entrypoint bash'
 abbr -a dmount 'docker run --rm -it --mount type=bind,source=(pwd),target=/local --entrypoint bash'
 abbr -a dsp 'docker system prune'
 abbr -a dexe 'docker exec -it'
+
+# AWS
+abbr -a alog 'aws sso login --no-browser'
+abbr -a acheck 'aws sts get-caller-identity'
 
 # screen
 alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
@@ -195,6 +213,12 @@ abbr -a tvw 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basenam
 abbr -a tvww 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'nvim\' C-m \; split-window -v -p 30 \; new-window \; new-window \; selectw -t 1 \; selectp -t 0 \;'
 
 abbr -a tran 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'ranger\' C-m \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
+
+# .tb
+abbr -a .tbtp 'cd ~/.the-bootstrap; and tp'
+
+# Poetry
+abbr -a plock 'poetry lock --no-update'
 
 # Deepo
 abbr -a deepo "nvidia-docker run --rm ufoym/deepo"
@@ -217,6 +241,10 @@ if type -q fzf
   function gcf -d "Fuzzy-find and checkout a branch"
     git branch --all | grep -v HEAD | string trim | fzf | read -l result; and git checkout "$result"
   end
+
+  function tpa -d "Fuzzy-find and attach tmux session"
+    tmux list-sessions -F '#{session_name}' | fzf | read -l result; and tmux attach-session -t "$result"
+  end
 end
 
 if test -e $HOME/.pyenv
@@ -229,3 +257,8 @@ if type -q jq
     cat "$argv" | jq
   end
 end
+
+abbr -a metro "dart run nylo_framework:main"
+
+# TODO XXX REMOVE
+#abbr -a newnvim "NVIM_APPNAME=newnvim nvim"

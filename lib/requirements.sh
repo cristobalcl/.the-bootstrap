@@ -31,6 +31,14 @@ install_brew() {
     done
 }
 
+install_pipx() {
+    echo "==> ${LBLUE}Installing pipx dependencies…${END}"
+    cat requirements/pipx.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read package; do
+        echo "--> ${LYELLOW}${package}${END}…"
+        pipx install $package
+    done
+}
+
 install_snap() {
     echo "==> ${LBLUE}Installing Snap dependencies…${END}"
     cat requirements/snap.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while IFS= read package; do

@@ -58,6 +58,10 @@ cat requirements/pip3.txt | grep -v '^#' | grep -v -e '^[[:space:]]*$' | while I
 done
 
 if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
+    install_pipx
+fi
+
+if [ "$OS_NAME" == "ubuntu" ] || [ "$OS_NAME" == "opensuse" ]; then
     install_snap
 fi
 

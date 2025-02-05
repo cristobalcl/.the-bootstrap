@@ -101,10 +101,10 @@ if test -e $HOME/Programas/anaconda3/bin/
     # set fish_user_paths $fish_user_paths $HOME/Programas/anaconda3/bin/
 end
 
-if test -e ~/.nvm/nvm.sh
-	bass export NVM_DIR="$HOME/.nvm"
-	bass '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"'  # This loads nvm
-end
+# if test -e ~/.nvm/nvm.sh
+#   set -x NVM_DIR "$HOME/.nvm"
+#   bash "$NVM_DIR/nvm.sh"
+# end
 
 if test -e /usr/lib/dart/bin/
   set PATH $PATH /usr/lib/dart/bin/
@@ -119,4 +119,12 @@ if test -e $HOME/.pyenv
   status --is-interactive; and source (pyenv init -|psub)
   # status --is-interactive; and pyenv init - | source
   # status --is-interactive; and pyenv virtualenv-init - | source
+end
+
+if test -e $HOME/.local/share/solana/install/active_release/bin
+  set PATH $PATH $HOME/.local/share/solana/install/active_release/bin
+end
+
+if type -q direnv
+  direnv hook fish | source
 end

@@ -1,3 +1,4 @@
 broot
 git-delta
 du-dust
+tree-sitter-cli
