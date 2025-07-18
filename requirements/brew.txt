@@ -16,3 +16,4 @@ npm
 broot
 lazygit
 tmuxinator
+ripgrep

@@ -117,7 +117,8 @@ abbr -a g 'git'
 abbr -a gi 'git init'
 abbr -a gs 'git status -u'
 # Source: https://coderwall.com/p/euwpig/a-better-git-log
-alias gh 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit'
+# Conflict with GitHub cli:
+alias ghi 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit'
 alias ghd 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit -p'
 alias gl 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit'
 alias gld 'git log --graph --pretty=format:\'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\' --abbrev-commit -p'
@@ -201,7 +202,7 @@ abbr -a alog 'aws sso login --no-browser'
 abbr -a acheck 'aws sts get-caller-identity'
 
 # screen
-alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
+# alias scr 'env TERM=xterm-256color screen -x; or env TERM=xterm-256color screen'
 
 # tmux
 abbr -a tl 'tmux ls'
@@ -260,5 +261,17 @@ end
 
 abbr -a metro "dart run nylo_framework:main"
 
+abbr -a coexp "gh copilot explain"
+abbr -a cosug "gh copilot suggest"
+
 # TODO XXX REMOVE
 #abbr -a newnvim "NVIM_APPNAME=newnvim nvim"
+
+function d
+    if test (count $argv) -eq 0
+      git diff --color
+      git ls-files --others --exclude-standard -z | xargs -0 -n 1 git --no-pager diff /dev/null
+    else
+        git diff $argv
+    end
+end

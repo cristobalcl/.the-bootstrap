@@ -1,6 +1,9 @@
 require("thebootstrap.plugins.install")
 
+require("thebootstrap.plugins.bufkill")
+require("thebootstrap.plugins.auto-session")
 require("thebootstrap.plugins.tree")
+require("thebootstrap.plugins.bufferline")
 require("thebootstrap.plugins.telescope")
 require("thebootstrap.plugins.treesitter")
 require("thebootstrap.plugins.fugitive")

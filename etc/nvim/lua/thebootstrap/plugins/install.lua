@@ -17,6 +17,10 @@ return require("packer").startup(function(use)
   -- Plugins --
   use "freeo/vim-kalisi"
 
+  use "qpkorr/vim-bufkill"
+
+  use {"akinsho/bufferline.nvim", tag = "*", requires = "nvim-tree/nvim-web-devicons"}
+
   use {
     "nvim-tree/nvim-tree.lua",
     requires = {
@@ -30,11 +34,13 @@ return require("packer").startup(function(use)
     requires = { {"nvim-lua/plenary.nvim"} }
   }
 
+  use {"rmagatti/auto-session"}
+
   use({"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"})
 
   use "mbbill/undotree"
   use "tpope/vim-fugitive"
-  use "tpope/vim-commentary"
+  -- use "tpope/vim-commentary"
   use {
     "psf/black",
     branch = "stable",
@@ -85,6 +91,25 @@ return require("packer").startup(function(use)
       -- {"rafamadriz/friendly-snippets"},
     }
   }
+
+  use {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    requires = {
+      {"zbirenbaum/copilot.lua"},
+      {"nvim-lua/plenary.nvim", branch = "master"},
+    },
+    run = "make tiktoken"
+  }
+
+  -- Configured in lsp-zero.lua:
+  use ({
+    "nvimdev/lspsaga.nvim",
+    -- XXX Problematic line:
+    -- after = "nvim-lspconfig",
+    -- config = function()
+    --   require("lspsaga").setup({})
+    -- end,
+  })
 
   use {
     "kevinhwang91/nvim-ufo",
