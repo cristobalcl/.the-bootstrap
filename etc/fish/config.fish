@@ -36,8 +36,8 @@ if test -e /snap/bin
     set PATH $PATH /snap/bin
 end
 
-if test -e $HOME/Programas/flutter/bin
-    set PATH $PATH $HOME/Programas/flutter/bin $HOME/Programas/flutter/.pub-cache/bin
+if test -e $HOME/.local/opt/flutter/bin
+    set PATH $PATH $HOME/.local/opt/flutter/bin $HOME/.local/opt/flutter/.pub-cache/bin
 end
 
 if test -e $HOME/Library/Python/3.7/bin
@@ -101,13 +101,9 @@ if test -e $HOME/Programas/anaconda3/bin/
     # set fish_user_paths $fish_user_paths $HOME/Programas/anaconda3/bin/
 end
 
-# if test -e ~/.nvm/nvm.sh
-#   set -x NVM_DIR "$HOME/.nvm"
-#   bash "$NVM_DIR/nvm.sh"
-# end
-
-if test -e $HOME/.nvm/versions/node/v22.13.1/bin/node
-  fish_add_path $HOME/.nvm/versions/node/v22.13.1/bin
+if test -e ~/.nvm/nvm.sh
+  set -x NVM_DIR "$HOME/.nvm"
+  bash "$NVM_DIR/nvm.sh"
 end
 
 if test -e /usr/lib/dart/bin/

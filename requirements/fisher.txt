@@ -1,4 +1,3 @@
 jethrokuan/z
 edc/bass
-FabioAntunes/fish-nvm
 jethrokuan/fzf
