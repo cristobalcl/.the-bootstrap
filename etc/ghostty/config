@@ -1,0 +1,5 @@
+#font-family = Hack Nerd Font Mono
+#theme = SpaceGray Bright
+#theme = tokyonight-storm
+theme = catppuccin-macchiato
+mouse-scroll-multiplier = 0.1

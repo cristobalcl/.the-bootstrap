@@ -1,0 +1,23 @@
+{
+  "theme": "~/.config/powerline-shell/catppuccin_macchiato.py",
+  "segments": [
+    "virtual_env",
+    "ssh",
+    "cwd",
+    "read_only",
+    "git",
+    "hg",
+    "jobs",
+    "exit_code",
+    "aws_profile",
+    "root"
+  ],
+  "cwd": {
+    "max_depth": 4,
+    "max_dir_size": 60,
+    "full_cwd": true
+  },
+  "hostname": {
+    "colorize": false
+  }
+}
