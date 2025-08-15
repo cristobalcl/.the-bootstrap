@@ -1,45 +1,71 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# set -x
-
-if [ "$#" -eq 1 ]
-then
-    cd $1
+# Usage: tp [directory]
+if [[ $# -ge 1 ]]; then
+  cd -- "$1"
 fi
 
-directory=$(pwd)
-project=$(basename $directory | sed 's/^\.//')
+command -v tmux >/dev/null 2>&1 || {
+  echo "Error: tmux is not in PATH." >&2
+  exit 1
+}
 
-if [ -n "$TMUX" ]
-then
-    term_width=$(tmux display-message -p "#{window_width}")
-    term_height=$(tmux display-message -p "#{window_height}")
+directory=$(pwd -P)
+
+# # Session name: repo toplevel (if any) or basename, plus short hash of absolute path
+# if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+#   base_name=$(basename -- "$git_root")
+# else
+#   base_name=$(basename -- "$directory")
+# fi
+base_name=$(basename -- "$directory")
+
+base_name="${base_name#.}"  # drop leading dot
+hash_suffix=$(printf '%s' "$directory" | md5sum | cut -c1-6)
+project=$(printf '%s-%s' "$base_name" "$hash_suffix" | sed 's/[^A-Za-z0-9_.-]/-/g')
+
+# # Create session and layout only if it doesn't exist
+# if ! tmux has-session -t "=${project}" 2>/dev/null; then
+#   tmux new-session -d -s "$project" -c "$directory" -n editor "nvim"
+#   tmux split-window -v -p 30 -t "=${project}":editor -c "$directory"
+#   tmux select-pane -t "=${project}":editor -U  # focus nvim (top)
+# fi
+
+# Determine current available screen size (client if inside tmux, otherwise terminal)
+if [[ -n "${TMUX-}" ]]; then
+  # client_* reflects the current terminal displaying tmux
+  term_w=$(tmux display-message -p "#{client_width}")
+  term_h=$(tmux display-message -p "#{client_height}")
 else
-    term_width=$(tput cols)
-    term_height=$(tput lines)
+  term_w=$(tput cols || echo 80)
+  term_h=$(tput lines || echo 24)
 fi
 
-if ! tmux has-session -t $project 2>/dev/null
-then
-    if tmux info &> /dev/null
-    then
-        tmux new-session -d -s $project -x "$term_width" -y "$term_height" \; \
-            send-keys \'nvim\' C-m \; \
-            split-window -v -p 30 \; \
-            selectw -t 1 \; \
-            selectp -t 0 \;
-    else
-        tmux new-session -s $project -x "$term_width" -y "$term_height" \; \
-            send-keys \'nvim\' C-m \; \
-            split-window -v -p 30 \; \
-            selectw -t 1 \; \
-            selectp -t 0 \;
-    fi
+landscape=0
+if (( term_w > 3 * term_h )); then
+  landscape=1
 fi
 
-if [ -n "$TMUX" ]
-then
-    tmux switch-client -t $project
+# Create session and layout only if it doesn't exist
+if ! tmux has-session -t "=${project}" 2>/dev/null; then
+  # Start with nvim in a window named "editor"
+  tmux new-session -d -s "$project" -c "$directory" -n editor "nvim"
+
+  if (( landscape )); then
+    # Landscape: split side-by-side (nvim left, shell right)
+    tmux split-window -h -p 30 -t "=${project}":editor -c "$directory"
+    tmux select-pane -t "=${project}":editor -L  # focus back to left (nvim)
+  else
+    # Portrait: split top/bottom (nvim top, shell bottom)
+    tmux split-window -v -p 30 -t "=${project}":editor -c "$directory"
+    tmux select-pane -t "=${project}":editor -U  # focus back to top (nvim)
+  fi
+fi
+
+# Attach/switch
+if [[ -n "${TMUX-}" ]]; then
+  tmux switch-client -t "=${project}"
 else
-    tmux attach-session -t $project
+  exec tmux attach-session -t "=${project}"
 fi

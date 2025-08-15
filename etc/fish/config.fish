@@ -67,6 +67,8 @@ end
 if type -q powerline-shell
     function fish_prompt
         powerline-shell --shell bare $status
+        # echo
+        # echo -n '$ '
     end
 else
     set PYTHON3_USER_PATH (python3 -c "import sys; print(next((x for x in sys.path if x.startswith(\"$HOME\")), ['']))")

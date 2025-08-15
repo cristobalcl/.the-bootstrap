@@ -17,6 +17,7 @@ local opts = { noremap = true, silent = true }
 
 -- Basic
 keymap("n", "-", ":", { noremap = true })
+keymap("v", "-", ":", { noremap = true })
 keymap("n", "Q", "<Nop>", opts)
 
 -- Movement
@@ -95,7 +96,6 @@ keymap("n", "<C-w>ñ", "<C-w><right>", opts)
 keymap("n", "<leader>b", ":ls<cr>:b<space>", opts)
 keymap("n", "<C-h>", ":bprevious<CR>", opts)
 keymap("n", "<C-j>", ":bnext<CR>", opts)
-keymap("n", "<C-t>", ":enew<CR>", opts)
 
 keymap("n", "<backspace>", "<C-^>", opts)
 
@@ -130,8 +130,8 @@ keymap("n", "<home>", "gT", opts)
 keymap("n", "<end>", "gt", opts)
 
 -- Create tabs
-keymap("n", "<C-t>", ":tabnew<CR>", opts)
-keymap("i", "<C-t>", "<Esc>:tabnew<CR>", opts)
+keymap("n", "<C-t>", ":tab split<CR>", opts)
+keymap("i", "<C-t>", "<Esc>:tab split<CR>", opts)
 
 -- Move tab
 -- keymap("n", "<A-PageUp>", ":tabmove -1<CR>", opts)

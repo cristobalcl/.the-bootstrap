@@ -16,6 +16,8 @@ return require("packer").startup(function(use)
 
   -- Plugins --
   use "freeo/vim-kalisi"
+  -- use "folke/tokyonight.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   use "qpkorr/vim-bufkill"
 
