@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: tp [directory]
+# Usage: tmux-nvim-opencode [directory]
 if [[ $# -ge 1 ]]; then
   cd -- "$1"
 fi
@@ -13,28 +13,18 @@ command -v tmux >/dev/null 2>&1 || {
 
 directory=$(pwd -P)
 
-# # Session name: repo toplevel (if any) or basename, plus short hash of absolute path
-# if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
-#   base_name=$(basename -- "$git_root")
-# else
-#   base_name=$(basename -- "$directory")
-# fi
-base_name=$(basename -- "$directory")
-
-base_name="${base_name#.}"  # drop leading dot
+# Session name: repo toplevel (if any) or basename + short hash of absolute path
+if git_root=$(git rev-parse --show-toplevel 2>/dev/null); then
+  base_name=$(basename -- "$git_root")
+else
+  base_name=$(basename -- "$directory")
+fi
+base_name="${base_name#.}"
 hash_suffix=$(printf '%s' "$directory" | md5sum | cut -c1-6)
 project=$(printf '%s-%s' "$base_name" "$hash_suffix" | sed 's/[^A-Za-z0-9_.-]/-/g')
 
-# # Create session and layout only if it doesn't exist
-# if ! tmux has-session -t "=${project}" 2>/dev/null; then
-#   tmux new-session -d -s "$project" -c "$directory" -n editor "nvim"
-#   tmux split-window -v -p 30 -t "=${project}":editor -c "$directory"
-#   tmux select-pane -t "=${project}":editor -U  # focus nvim (top)
-# fi
-
-# Determine current available screen size (client if inside tmux, otherwise terminal)
+# Determine terminal size for orientation
 if [[ -n "${TMUX-}" ]]; then
-  # client_* reflects the current terminal displaying tmux
   term_w=$(tmux display-message -p "#{client_width}")
   term_h=$(tmux display-message -p "#{client_height}")
 else
@@ -42,28 +32,34 @@ else
   term_h=$(tput lines || echo 24)
 fi
 
-landscape=0
-if (( term_w > 3 * term_h )); then
-  landscape=1
-fi
+# Optional manual override: TMUX_SPLIT_ORIENT=landscape|portrait|auto
+case "${TMUX_SPLIT_ORIENT:-auto}" in
+  landscape) orient="landscape" ;;
+  portrait)  orient="portrait" ;;
+  *)         orient=$([[ "$term_w" -gt "$term_h" ]] && echo landscape || echo portrait) ;;
+esac
 
-# Create session and layout only if it doesn't exist
+# Create the session only if it doesn't exist
 if ! tmux has-session -t "=${project}" 2>/dev/null; then
-  # Start with nvim in a window named "editor"
   tmux new-session -d -s "$project" -c "$directory" -n editor "nvim"
+  # Capture the original pane id (nvim)
+  root_pane=$(tmux list-panes -t "=${project}":editor -F "#{pane_id}" | head -n1)
 
-  if (( landscape )); then
-    # Landscape: split side-by-side (nvim left, shell right)
-    tmux split-window -h -p 30 -t "=${project}":editor -c "$directory"
-    tmux select-pane -t "=${project}":editor -L  # focus back to left (nvim)
+  if [[ "$orient" == "landscape" ]]; then
+    # Side-by-side; put opencode on the right
+    tmux split-window -h -t "$root_pane" -c "$directory"
+    tmux select-layout -t "=${project}":editor even-horizontal
   else
-    # Portrait: split top/bottom (nvim top, shell bottom)
-    tmux split-window -v -p 30 -t "=${project}":editor -c "$directory"
-    tmux select-pane -t "=${project}":editor -U  # focus back to top (nvim)
+    # Stacked; put opencode at the bottom
+    tmux split-window -v -t "$root_pane" -c "$directory"
+    tmux select-layout -t "=${project}":editor even-vertical
   fi
+
+  # Focus back to nvim (original pane)
+  tmux select-pane -t "$root_pane"
 fi
 
-# Attach/switch
+# Attach or switch to the session
 if [[ -n "${TMUX-}" ]]; then
   tmux switch-client -t "=${project}"
 else
