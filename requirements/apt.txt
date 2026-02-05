@@ -57,6 +57,8 @@ unrar
 libxml2-utils
 run-one
 silversearcher-ag
+bat
+fd-find
 jq
 libaa-bin
 

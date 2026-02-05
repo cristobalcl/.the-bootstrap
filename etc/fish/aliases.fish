@@ -282,6 +282,14 @@ if type -q jq
   end
 end
 
+if type -q fdfind
+  alias fd fdfind
+end
+
+if type -q batcat
+  alias bat batcat
+end
+
 abbr -a metro "dart run nylo_framework:main"
 
 abbr -a coexp "gh copilot explain"
