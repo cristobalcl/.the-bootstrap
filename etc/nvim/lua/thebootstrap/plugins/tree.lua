@@ -56,7 +56,8 @@ require("nvim-tree").setup({
     group_empty = true,
   },
   filters = {
-    dotfiles = true,
+    dotfiles = false,
+    custom = { "^\\.git$", "^\\.cache$", "^node_modules$", "^.venv"},
   },
   on_attach = my_on_attach,
 })

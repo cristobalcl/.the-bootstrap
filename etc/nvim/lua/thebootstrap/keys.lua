@@ -129,6 +129,10 @@ keymap("n", "gt", "<C-]>", opts)
 keymap("n", "<home>", "gT", opts)
 keymap("n", "<end>", "gt", opts)
 
+-- Create buffer
+keymap("n", "<C-n>", ":enew<CR>", opts)
+keymap("i", "<C-n>", "<Esc>:enew<CR>", opts)
+
 -- Create tabs
 keymap("n", "<C-t>", ":tab split<CR>", opts)
 keymap("i", "<C-t>", "<Esc>:tab split<CR>", opts)
@@ -198,3 +202,15 @@ keymap("v", "<leader>J", ":'<,'>!jq .<cr>", { silent = true })
 -- Format Python dictionary
 keymap("v", "<leader>P", ":'<,'>!python -c 'import sys, pprint; data = eval(sys.stdin.read()); pprint.pprint(data)'<cr>", { silent = true })
 -- keymap("v", "<leader>P", ":in *{repo_path}* '<,'>!python -c 'import sys, pprint; data = eval(sys.stdin.read()); pprint.pprint(data)'<cr>", { silent = true })
+
+function CopyFilePath()
+  local filepath = vim.fn.expand('%:p')
+  if filepath == '' then
+    print('No file path to copy')
+    return
+  end
+  vim.fn.setreg('+', filepath)
+  print('Copied to clipboard: ' .. filepath)
+end
+
+vim.keymap.set('n', '<leader>cp', CopyFilePath, { desc = 'Copy file path to clipboard' })

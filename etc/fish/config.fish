@@ -64,19 +64,23 @@ if test -e $HOME/.local/share/nvim/lsp_servers/python
     set PATH $PATH $HOME/.local/share/nvim/lsp_servers/python
 end
 
-if type -q powerline-shell
-    function fish_prompt
-        powerline-shell --shell bare $status
-        # echo
-        # echo -n '$ '
-    end
+if type -q starship
+  starship init fish | source
 else
-    set PYTHON3_USER_PATH (python3 -c "import sys; print(next((x for x in sys.path if x.startswith(\"$HOME\")), ['']))")
+  if type -q powerline-shell
+      function fish_prompt
+          powerline-shell --shell bare $status
+          # echo
+          # echo -n '$ '
+      end
+  else
+      set PYTHON3_USER_PATH (python3 -c "import sys; print(next((x for x in sys.path if x.startswith(\"$HOME\")), ['']))")
 
-    if test -e "$PYTHON3_USER_PATH/powerline/bindings/fish/"
-        set fish_function_path $fish_function_path "$PYTHON3_USER_PATH/powerline/bindings/fish/"
-        powerline-setup
-    end
+      if test -e "$PYTHON3_USER_PATH/powerline/bindings/fish/"
+          set fish_function_path $fish_function_path "$PYTHON3_USER_PATH/powerline/bindings/fish/"
+          powerline-setup
+      end
+  end
 end
 
 if type -q fzf
@@ -133,4 +137,10 @@ if type -q podman
   alias docker podman
 
   set -x CDK_DOCKER podman
+end
+
+#####
+# Should be at the end of the file:
+if type -q zoxide
+  zoxide init fish | source
 end

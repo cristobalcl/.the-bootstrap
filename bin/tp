@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Usage: tmux-nvim-opencode [directory]
+# Usage: tp [directory]
 if [[ $# -ge 1 ]]; then
   cd -- "$1"
 fi
@@ -32,11 +32,19 @@ else
   term_h=$(tput lines || echo 24)
 fi
 
+# echo "Terminal size: ${term_w}x${term_h}"
+
 # Optional manual override: TMUX_SPLIT_ORIENT=landscape|portrait|auto
 case "${TMUX_SPLIT_ORIENT:-auto}" in
   landscape) orient="landscape" ;;
   portrait)  orient="portrait" ;;
-  *)         orient=$([[ "$term_w" -gt "$term_h" ]] && echo landscape || echo portrait) ;;
+  *)
+    if (( term_w > 3*term_h )); then
+      orient="landscape"
+    else
+      orient="portrait"
+    fi
+    ;;
 esac
 
 # Create the session only if it doesn't exist
@@ -46,13 +54,11 @@ if ! tmux has-session -t "=${project}" 2>/dev/null; then
   root_pane=$(tmux list-panes -t "=${project}":editor -F "#{pane_id}" | head -n1)
 
   if [[ "$orient" == "landscape" ]]; then
-    # Side-by-side; put opencode on the right
-    tmux split-window -h -t "$root_pane" -c "$directory"
-    tmux select-layout -t "=${project}":editor even-horizontal
+    # Side-by-side; put shell on the right
+    tmux split-window -h -p 30 -t "$root_pane" -c "$directory"
   else
-    # Stacked; put opencode at the bottom
-    tmux split-window -v -t "$root_pane" -c "$directory"
-    tmux select-layout -t "=${project}":editor even-vertical
+    # Stacked; put shell at the bottom
+    tmux split-window -v -p 30 -t "$root_pane" -c "$directory"
   fi
 
   # Focus back to nvim (original pane)

@@ -11,18 +11,30 @@ else
   alias l1 "ls -1"
 end
 
-alias .. "cd .."
-alias ... "cd ../.."
-alias .... "cd ../../.."
-alias ..... "cd ../../../.."
-alias , "cd -"
+if type -q z
+  alias .. "z .."
+  alias ... "z ../.."
+  alias .... "z ../../.."
+  alias ..... "z ../../../.."
+  alias , "z -"
+
+  function mkcd
+      mkdir "$argv"; and z "$argv"
+  end
+else
+  alias .. "cd .."
+  alias ... "cd ../.."
+  alias .... "cd ../../.."
+  alias ..... "cd ../../../.."
+  alias , "cd -"
+
+  function mkcd
+      mkdir "$argv"; and cd "$argv"
+  end
+end
 abbr -a -- + 'pushd .'
 abbr -a -- - 'popd'
 abbr -a chsh 'chmod +x *.sh'
-
-function mkcd
-    mkdir "$argv"; and cd "$argv"
-end
 
 # ? () { echo "$*" | bc -l; }
 function =
@@ -41,12 +53,20 @@ abbr -a plasma_restart 'kquitapp5 plasmashell && kstart5 plasmashell'
 
 if type -q xsel
   alias here "printf (pwd) | xsel --clipboard"
-  alias there 'cd (xsel --clipboard)'
+  if type -q z
+    alias there 'z (xsel --clipboard)'
+  else
+    alias there 'cd (xsel --clipboard)'
+  end
   alias this "printf (basename (pwd)) | xsel --clipboard"
 else
   if type -q pbcopy
     alias here "printf (pwd) | pbcopy"
+  if type -q z
+    alias there 'z (pbpaste)'
+  else
     alias there 'cd (pbpaste)'
+  end
     alias this "basename (pwd) | pbcopy"
     alias this "printf (basename (pwd)) | pbcopy"
   end
@@ -215,8 +235,16 @@ abbr -a tvww 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basena
 
 abbr -a tran 'tmux new-session -s (tmux ls | wc -l | awk \'{print $1}\')-(basename $PWD | sed 's/\.//') \; send-keys \'ranger\' C-m \; split-window -v -p 30 \; selectw -t 1 \; selectp -t 0 \;'
 
-# .tb
-abbr -a .tbtp 'cd ~/.the-bootstrap; and tp'
+# .the-bootstrap
+if type -q z
+  alias .tbcd 'z ~/.the-bootstrap'
+  alias .tbed 'z ~/.the-bootstrap; and eval $EDITOR'
+  alias .tb 'z ~/.the-bootstrap; and tp'
+else
+  alias .tbcd 'cd ~/.the-bootstrap'
+  alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
+  alias .tb 'cd ~/.the-bootstrap; and tp'
+end
 
 # Poetry
 abbr -a plock 'poetry lock --no-update'
@@ -229,11 +257,6 @@ abbr -a pl "pass ls"
 abbr -a p "pass show"
 abbr -a pp "upass"
 abbr -a pe "pass edit"
-
-# .the-bootstrap
-alias .tbcd 'cd ~/.the-bootstrap'
-alias .tbed 'cd ~/.the-bootstrap; and eval $EDITOR'
-alias .tb 'cd ~/.the-bootstrap; and tp'
 
 if type -q fzf
   alias v 'eval $EDITOR "(fzf --height 40% --layout=reverse --border)"'

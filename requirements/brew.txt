@@ -7,13 +7,16 @@ lsd
 fd
 bat
 the_silver_searcher
-pandoc
+# pandoc
 zlib
 readline
 xz
-pyenv-virtualenv
+# pyenv-virtualenv
 npm
 broot
 lazygit
-tmuxinator
+# tmuxinator
 ripgrep
+zoxide
+gum
+starship
