@@ -128,6 +128,14 @@ if type -q direnv
   direnv hook fish | source
 end
 
+if test -e /var/lib/flatpak/exports/share
+  set PATH $PATH /var/lib/flatpak/exports/share
+end
+
+if test -e $HOME/.local/share/flatpak/exports/share
+  set PATH $PATH $HOME/.local/share/flatpak/exports/share
+end
+
 # Replace docker with podman if available
 if type -q podman
   alias docker podman
