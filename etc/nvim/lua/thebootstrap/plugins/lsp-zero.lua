@@ -47,18 +47,19 @@ require("mason-lspconfig").setup({
   }
 })
 
-require"lspconfig".pylsp.setup{
+vim.lsp.config("pylsp", {
   settings = {
     pylsp = {
       plugins = {
         pycodestyle = {
-          -- ignore = {"E501"},
-          maxLineLength = 99
-        }
-      }
-    }
-  }
-}
+          maxLineLength = 99,
+        },
+      },
+    },
+  },
+})
+
+vim.lsp.enable("pylsp")
 
 -- -- markdown-oxide
 -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
