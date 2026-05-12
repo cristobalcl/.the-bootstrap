@@ -150,7 +150,7 @@ return require("packer").startup(function(use)
   use {
     "vim-airline/vim-airline",
     requires = {
-      "vim-airline/vim-airline-themes",
+      -- "vim-airline/vim-airline-themes",
       "ryanoasis/vim-devicons",
     }, 
   }

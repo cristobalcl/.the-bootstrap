@@ -1,6 +1,5 @@
 vim.g["airline_powerline_fonts"] = 1
--- vim.g["airline_theme"] = "powerlineish"
-vim.g["airline_theme"] = "catppuccin"
+vim.g["airline_theme"] = "base16_material_palenight"
 -- vim.g["airline#extensions#tabline#enabled"] = 1
 
 -- vim.cmd(
