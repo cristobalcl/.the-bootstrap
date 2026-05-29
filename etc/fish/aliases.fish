@@ -197,6 +197,8 @@ abbr -a grus 'git remote set-url'
 abbr -a gra 'git remote add'
 abbr -a gtouch 'git ls-files -m | xargs touch'
 
+abbr -a gtrigger 'git commit --allow-empty -m "chore: run pipeline"'
+
 function gtag
   git tag "$argv"; and git push origin "$argv"
 end
