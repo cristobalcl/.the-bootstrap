@@ -121,7 +121,13 @@ return require("packer").startup(function(use)
     branch="v0.6", --recomended as each new version will have breaking changes
     config=function ()
       require("ultimate-autopair").setup({
-        --Config goes here
+        extensions = {
+          -- Work around Neovim Treesitter API changes that currently break
+          -- ultimate-autopair's smart filetype detection, especially in Markdown.
+          filetype = {
+            tree = false,
+          },
+        },
       })
     end,
   }

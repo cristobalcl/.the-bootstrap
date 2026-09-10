@@ -25,6 +25,7 @@
   - `lib/requirements.sh` for package installers
   - `lib/files.sh` for `linked`, `linked_p`, `download`, `directory`
 - System config in `$HOME` is mostly symlinked from this repo (via `requirements/links.txt` and install scripts), so fix config issues by editing repo files first, not files under `~/.config` directly.
+- This same rule applies to linked scripts too (for example `tp`: edit `bin/tp` in-repo, not `~/bin/tp`); assume other linked files under `$HOME` are repo-managed unless proven otherwise.
 - Neovim config shipped by this repo is under `etc/nvim/` and is linked to `~/.config/nvim` by `install/30_vim_neovim.sh`.
 
 ## Neovim-specific note

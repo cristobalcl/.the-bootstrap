@@ -5,6 +5,10 @@ require'nvim-treesitter'.setup {
   auto_install = true,
 }
 
+-- Neovim 0.12.2 currently crashes while resolving Markdown Treesitter
+-- injections on this setup, so disable only that query as a workaround.
+vim.treesitter.query.set("markdown", "injections", "")
+
 -- Highlighting is enabled by default via vim.treesitter in Neovim 0.12+
 -- Disable for large files
 vim.api.nvim_create_autocmd("FileType", {

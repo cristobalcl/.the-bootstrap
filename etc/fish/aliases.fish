@@ -11,21 +11,18 @@ else
   alias l1 "ls -1"
 end
 
+alias .. "cd .."
+alias ... "cd ../.."
+alias .... "cd ../../.."
+alias ..... "cd ../../../.."
+
 if type -q z
-  alias .. "z .."
-  alias ... "z ../.."
-  alias .... "z ../../.."
-  alias ..... "z ../../../.."
   alias , "z -"
 
   function mkcd
       mkdir "$argv"; and z "$argv"
   end
 else
-  alias .. "cd .."
-  alias ... "cd ../.."
-  alias .... "cd ../../.."
-  alias ..... "cd ../../../.."
   alias , "cd -"
 
   function mkcd
@@ -308,3 +305,5 @@ function d
         git diff $argv
     end
 end
+
+alias roy='podman exec -it openclaw openclaw'

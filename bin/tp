@@ -56,10 +56,10 @@ if ! tmux has-session -t "=${project}" 2>/dev/null; then
 
   if [[ "$orient" == "landscape" ]]; then
     # Side-by-side; put shell on the right
-    tmux split-window -h -p 30 -t "$root_pane" -c "$directory"
+    tmux split-window -h -l 30% -t "$root_pane" -c "$directory"
   else
     # Stacked; put shell at the bottom
-    tmux split-window -v -p 30 -t "$root_pane" -c "$directory"
+    tmux split-window -v -l 30% -t "$root_pane" -c "$directory"
   fi
 
   # Focus back to nvim (original pane)

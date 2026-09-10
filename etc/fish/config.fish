@@ -107,10 +107,21 @@ if test -e $HOME/Programas/anaconda3/bin/
     # set fish_user_paths $fish_user_paths $HOME/Programas/anaconda3/bin/
 end
 
-if test -e ~/.nvm/nvm.sh
-  set -x NVM_DIR "$HOME/.nvm"
-  bash "$NVM_DIR/nvm.sh"
-end
+# if test -e ~/.nvm/nvm.sh
+#   set -x NVM_DIR "$HOME/.nvm"
+#   bash "$NVM_DIR/nvm.sh"
+# end
+
+set -gx NVM_DIR "$HOME/.nvm"
+# if test -e "$NVM_DIR/alias/default"
+#     set node_version (string trim < "$NVM_DIR/alias/default")
+#     set node_path (find "$NVM_DIR/versions/node" -maxdepth 1 -type d -name "v$node_version.*" | sort -V | tail -n 1)
+#
+#     if test -n "$node_path"
+#         fish_add_path --prepend "$node_path/bin"
+#     end
+# end
+fish_add_path --prepend "$NVM_DIR/versions/node/v22.23.2/bin"
 
 if test -e /usr/lib/dart/bin/
   set PATH $PATH /usr/lib/dart/bin/
